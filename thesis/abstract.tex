@@ -1,0 +1,77 @@
+\chapter*{Abstract}
+
+The Internet-of-Things (IoT) is an ever growing network of devices connected to the Internet. Such devices are heterogeneous in their protocols and computation capabilities. With the rising computation and connectivity capabilities of these devices, the possibilities of their use in IoT systems increases. Concepts like smart cities are the pinnacle of the use of these systems, which involves a big amount of different devices in different conditions.
+
+There are several tools for building IoT systems; some of these tools have different levels of expertise required and employ different architectures. One of the most popular is Node-RED~\cite{Node-red2017}. It allows users to build systems using a visual data flow architecture, making it easy for a non-developer to use it.
+
+However, most of these mainstream tools employ centralized methods of computation, where a main component --- usually hosted in the cloud --- executes most of the computation on data provided by edge devices, \emph{e.g.} sensors and gateways. There are multiple consequences to this approach: (a)~edge computation capabilities are being neglected, (b)~it introduces a single point of failure, and (c)~local data is being transferred across boundaries (private, technological, political...) either without need, or even in violation of legal constraints. Particularly, the principle of Local-First --- \emph{i.e.}, data and logic should reside locally, independent of third-party services faults and errors --- is blatantly ignored.
+
+Previous work attempt to mitigate some of these consequences, usually through tools that extend existing visual programming frameworks, such as Node-RED. They go as far as to propose a solution to decentralize flows and its execution in fog/edge devices. So far, achieving such decentralization requires that the decomposition and partitioning effort be manually specified by the developer when building the system.
+
+Our goal is to extend Node-RED to allow automatic decomposition and partitioning of the system towards higher decentralization, by inferring computational boundaries. Furthermore, through automatic detection of abnormal run-time conditions, we also intend to provide dynamic self-adaptation. The prototype developed will be first validated with real devices and later with simulations.
+
+As a result, we expect to achieve a more robust and efficient execution of IoT systems, by leveraging edge and fog computational capabilities present in the network, and improving overall reliability. 
+
+
+\vspace*{10mm}\noindent
+\textbf{Keywords}: Internet of Things, Visual Programming, Edge Computing
+
+\chapter*{Resumo}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed vehicula
+lorem commodo dui. Fusce mollis feugiat elit. Cum sociis natoque
+penatibus et magnis dis parturient montes, nascetur ridiculus
+mus. Donec eu quam. Aenean consectetuer odio quis nisi. Fusce molestie
+metus sed neque. Praesent nulla. Donec quis urna. Pellentesque
+hendrerit vulputate nunc. Donec id eros et leo ullamcorper
+placerat. Curabitur aliquam tellus et diam. 
+
+Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
+scelerisque libero faucibus sem. Nullam molestie leo quis
+tellus. Donec ipsum. Nulla lobortis purus pharetra turpis. Nulla
+laoreet, arcu nec hendrerit vulputate, tortor elit eleifend turpis, et
+aliquam leo metus in dolor. Praesent sed nulla. Mauris ac augue. Cras
+ac orci. Etiam sed urna eget nulla sodales venenatis. Donec faucibus
+ante eget dui. Nam magna. Suspendisse sollicitudin est et mi. 
+
+Fusce sed ipsum vel velit imperdiet dictum. Sed nisi purus, dapibus
+ut, iaculis ac, placerat id, purus. Integer aliquet elementum
+libero. Phasellus facilisis leo eget elit. Nullam nisi magna, ornare
+at, aliquet et, porta id, odio. Sed volutpat tellus consectetuer
+ligula. Phasellus turpis augue, malesuada et, placerat fringilla,
+ornare nec, eros. Class aptent taciti sociosqu ad litora torquent per
+conubia nostra, per inceptos himenaeos. Vivamus ornare quam nec sem
+mattis vulputate. Nullam porta, diam nec porta mollis, orci leo
+condimentum sapien, quis venenatis mi dolor a metus. Nullam
+mollis. Aenean metus massa, pellentesque sit amet, sagittis eget,
+tincidunt in, arcu. Vestibulum porta laoreet tortor. Nullam mollis
+elit nec justo. In nulla ligula, pellentesque sit amet, consequat sed,
+faucibus id, velit. Fusce purus. Quisque sagittis urna at quam. Ut eu
+lacus. Maecenas tortor nibh, ultricies nec, vestibulum varius, egestas
+id, sapien. 
+
+Phasellus ullamcorper justo id risus. Nunc in leo. Mauris auctor
+lectus vitae est lacinia egestas. Nulla faucibus erat sit amet lectus
+varius semper. Praesent ultrices vehicula orci. Nam at metus. Aenean
+eget lorem nec purus feugiat molestie. Phasellus fringilla nulla ac
+risus. Aliquam elementum aliquam velit. Aenean nunc odio, lobortis id,
+dictum et, rutrum ac, ipsum. 
+
+Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
+scelerisque libero faucibus sem. Nullam molestie leo quis
+tellus. Donec ipsum. Nulla lobortis purus pharetra turpis. Nulla
+laoreet, arcu nec hendrerit vulputate, tortor elit eleifend turpis, et
+aliquam leo metus in dolor. Praesent sed nulla. Mauris ac augue. Cras
+ac orci. Etiam sed urna eget nulla sodales venenatis. Donec faucibus
+ante eget dui. Nam magna. Suspendisse sollicitudin est et mi. 
+
+Phasellus ullamcorper justo id risus. Nunc in leo. Mauris auctor
+lectus vitae est lacinia egestas. Nulla faucibus erat sit amet lectus
+varius semper. Praesent ultrices vehicula orci. 
+
+Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
+scelerisque libero faucibus sem. Nullam molestie leo quis
+tellus. Donec ipsum. 
+
+\vspace*{10mm}\noindent
+\textbf{Keywords}: keyword1, Keyword2, keyword3

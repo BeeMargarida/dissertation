@@ -1,0 +1,155 @@
+\chapter{Background} \label{chap:background}
+
+\section*{}
+
+\textcolor{yellow}{\textbf{**TEMP**}}
+
+This chapter describes the necessary foundations regarding visual programming tools for the Internet of Things context. Section \ref{sec:slr} presents a systematic literature review on the topic of visual programming tools applied to the Internet of Things paradigm, which aims to answer the research questions defined in section \ref{sec:research_questions}. Section \ref{sec:slr_results} ...
+
+\section{Systematic Literature Review}\label{sec:slr}
+
+A Systematic Literature Review was made to gather information on the state of the art of visual programming applied to the Internet of Things paradigm. \textcolor{red}{\textbf{INSERT HERE INFO ABOUT: (i) WHAT IS A SLR, (ii) WHY IT IS BETTER, (iii) WHERE IT COMES FROM}}
+
+\subsection{Methodology}\label{sec:methodology}
+
+During this Systematic Literature Review, a specific methodology was followed to reduce bias and produce the best results \cite{SLR_guidelines}.
+We started by defining the research questions to be answered as well as choosing data sources to search for publications.
+
+\subsubsection{Research Questions}\label{sec:research_questions}
+
+\textcolor{red}{\textbf{**REVIEW**}}\\
+In this Systematic Literature Review we intent to answer the following questions:
+\\ \\
+\textbf{RQ1: How did Visual Programming Languages and Internet of Things evolve over time?} Internet of Things is a paradigm with several years, but in the last few years it has been increasing in its applications, specifically with its integration with visual programming tools and environments. It is important to analyze the evolution of these concepts and their integration, to be able to compare with the state of the art.\\ \\
+\textbf{RQ2: Methodologies implemented in Internet of Things with Visual Programming Languages?} With the integration of visual programming tools with Internet of Things, several methodologies were implemented for it to be possible and provide users with a better experience.\\ \\
+\textbf{RQ3: What is the maintenance and resilience of a Visual Programming Language integrated with an IoT system?} Visual programming tools provide users a easy way of programming, with the use of visual elements and relations between them. However, this approach has downsides, such as difficulty in constructing and maintaining complex systems and high level programming that undermines efficiency and resilience.
+
+
+\subsubsection{Databases}\label{sec:databases}
+
+The publications retrieved during this research were retrieved from the following databases, which are considered good and reliable sources:
+
+\begin{itemize}
+    \item IEEE
+    \item ACM
+    \item Scopus
+\end{itemize}{}
+
+\subsubsection{Search Process}\label{sec:process}
+
+To obtain results from the databases chosen, a research question was written with the union of the keywords "visual programming", "node-red", "dataflow" and intersection with the keyword "Internet of Things".
+
+\noindent
+\begin{lstlisting}[frame=none, numbers=none, backgroundcolor=\color{white},]
+((vpl OR visual programming OR visual-programming) OR (node-red OR node red OR nodered) OR (data-flow OR dataflow)) AND (IoT OR internet of things OR internet-of-things)
+\end{lstlisting}
+
+The search was performed in October of 2019 and the results produced are the ones present in the table \ref{tab:slr_search_results}.
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{| c | c | c |}
+        \hline
+        \textbf{Database} & \textbf{Total Results} & \textbf{Extracted Results}\\
+        \hline
+        IEEE & 410 & 379 \\
+        \hline
+        ACM & 171,768 & 2021 \\
+        \hline
+        Scopus & 540 & 500 \\
+        \hline
+    \end{tabular}
+    \caption{Systematic Literature Review search results per database}
+    \label{tab:slr_search_results}
+\end{table}{}
+
+\subsubsection{Inclusion Criteria}\label{sec:inclusion}
+
+To be included in the results, all publications should respect the inclusion criteria. If one of the criteria were not checked, the publication would not be included in the results. The inclusion criteria are the following:
+
+\begin{enumerate}
+    \item On the topic of visual programming in internet of things;
+    \item Includes sufficient explanation of the research findings;
+    \item Publication year in the range between 2008 and 2019.
+\end{enumerate}{}
+
+\subsubsection{Exclusion Criteria}\label{sec:exclusion}
+
+In addition to the inclusion criteria, all publications were analyzed in their compliance to the exclusion criteria. If any publication failed to comply with at least one of the exclusion criteria, it would not be included in the results. The exclusion criteria are the following:
+
+\begin{enumerate}
+    \item Has less than two (non-self) citations when more than five years old;
+    \item Presents just ideas, magazine publications, interviews or discussion papers;
+    \item Not in English.
+\end{enumerate}{}
+
+\subsubsection{Quality Assessment}\label{sec:quality_accessment}
+
+In order to classify if a publication is relevant to the research field, 4 assessments were made in order to better facility the process. The quality assessments are the following:\\
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{| l | l |}
+        \hline
+        \textbf{Quality Assessment Query} & \textbf{Quality Indicator (0-2)}\\
+        \hline
+        Is the publication relevant to us? & BARELY-PARTIALLY-SATISFACTORILY \\
+        \hline
+        Does the publication include and define research objectives adequately? & NO-PARTIALLY-YES \\
+        \hline
+        Are limitations and challenges well defined? & NO-PARTIALLY-YES \\
+        \hline
+        Is the proposed contribution well described? & NO-PARTIALLY-YES \\
+        \hline
+    \end{tabular}
+    }
+    \caption{Parameters for measuring the quality of a publication}
+    \label{tab:quality_assessment}
+\end{table}{}
+
+Each assessment was posed in the form of a questions, and to each question there were three possible answers, with a numeric value each. If a publication didn't address the assessment the value with be 0, if the assessments was partially addressed the value would be 1. If the assessment was successfully satisfied, the value would be 2. In the end, the sum of all the assessments would represent the quality of the publication.
+
+\subsubsection{Evaluation Process}\label{sec:evaluation_process}
+
+The evaluation process of the publications followed six steps with specific purposes:
+
+\begin{enumerate}
+    \item \textbf{Range:} Publications are evaluated on date range, between 2008 and 2019;
+    \item \textbf{Relevance:} Title and abstract are scanned for relevance regarding the defined research field;
+    \item \textbf{Inclusion:} Publications are assessed against inclusion and exclusion criteria. Any publications not meeting the full inclusion criteria are discarded as well as all publications failing to comply to any exclusion criteria;
+    \item \textbf{Specificity:} Reading the publication to verify if it relates closely enough to the defined research field; 
+    \item \textbf{Data:} Selected publications are analyzed for data related to the research questions and contribution details;
+    \item \textbf{Publication quality:} Publications are assessed using quality criteria defined in Table \ref{tab:quality_assessment}.
+\end{enumerate}{}
+
+\subsection{Results}\label{sec:slr_results}
+
+\textcolor{yellow}{\textbf{**TODO**}}\\
+basicamente chapar aqui os resumos do twist
+
+\subsection{Analysis and Discussion}
+
+\textcolor{yellow}{\textbf{**TODO**}}
+
+\subsubsection{Result Analysis}
+
+\textcolor{yellow}{\textbf{**TODO**}}
+
+\subsubsection{Research Questions}
+
+\textcolor{yellow}{\textbf{**TODO**}}
+
+\subsection{Conclusions}
+
+\textcolor{yellow}{\textbf{**TODO**}}
+
+\section{Related Work}
+
+\textcolor{yellow}{\textbf{**TODO**}}
+
+\section{Summary}
+
+\textcolor{yellow}{\textbf{**TODO**}}
