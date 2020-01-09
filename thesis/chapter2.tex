@@ -17,11 +17,11 @@ Internet of Things paradigm was defined by the committee of the International Or
  
 \subsection{IoT architectures}\label{sec:architectures}
 
-\textcolor{blue}{Talk about the three types of architectures - cloud computing, fog computing, edge computing; maybe insert a nice image}
+\textcolor{blue}{Start by talking about the starting architecture: cloud computing, what it is, drawbacks (done) - latency and huge use of bandwidth (done); Explain 2 alternatives: Fog Computing and Edge Computing}
 
-\textcolor{blue}{Start by talking about the starting architecture: cloud computing, what it is, drawbacks - latency and huge use of bandwidth; Explain 2 alternatives: Fog Computing and Edge Computing. Check sources from link below}
-
-%https://en.wikipedia.org/wiki/Fog_computing
+Internet of Things systems deal with big amounts of data from different sources and has to process it in efficient and fast ways. Typical IoT systems use a Cloud Computing architecture, where it takes advantage of centralized computing and storage. This approach has several benefits, such as increased computational capabilities and storage, as well as an easier maintenance. However, it comes with several problems such as (a) high latency and (b) high use of bandwidth, due to the need to send data from sensors to the centralized unit. \cite{connecting_fog_and_cloud} These problems originated solutions like Edge and Fog Computing.
+\par Fog Computing enables a computing layer closer to the perception layer, which contains the sensors. Due to this proximity and their high distribution, Fog Computing allows for several benefits like location-awareness, which can be useful for mobility and security requirements and low latency. These features are critical for Fog Computing and it is what differentiates it from Cloud Computing. One example of its use is in a system with several gateways that allow access to a back-end service. These gateways can be visualized as a network that besides passing information between users and the back-end, can also process and store data if necessary. \cite{fog_computing_book}
+\par Edge Computing ...
 
 \subsection{Applications}\label{sec:iot_applications}
 
