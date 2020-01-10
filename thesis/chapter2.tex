@@ -9,7 +9,7 @@ This chapter describes the necessary foundations regarding visual programming to
 
 Internet of Things paradigm was defined by the committee of the International Organization for Standardization and the International Electrotechnical Commission \cite{ISOIEC} as:
 \begin{quote}
-    “An infrastructure of interconnected objects, people, systems and information resources together with intelligent services to allow them to process information of the physical and the virtual world and react.”
+    \emph{“An infrastructure of interconnected objects, people, systems and information resources together with intelligent services to allow them to process information of the physical and the virtual world and react.”}
 \end{quote}
 \par This paradigm is built upon the network of heterogenous devices interconnected between themselves, people and the environment. According to Buuya \cite{iot_future_direction}, the applications of IoT systems can be divided into four categories: (i) Home at the scale of an individual or home, (ii) Enterprise at the scale of a community, (iii) Utilities at a national or regional scale and (iv) Mobile, which is spread across domains due to its large scale in connectivity ans scale. 
 %Nowadays, the use of Internet of Things systems is present in different areas, such as aerospace, automotive, telecommunications and health industries, as well as city and agriculture managements, amongst others \cite{applications_iot}.
@@ -18,19 +18,25 @@ Internet of Things paradigm was defined by the committee of the International Or
 \subsection{IoT architectures}\label{sec:architectures}
 
 Internet of Things systems deal with big amounts of data from different sources and has to process it in efficient and fast ways. Typical IoT systems use a Cloud Computing architecture, where it takes advantage of centralized computing and storage. This approach has several benefits, such as increased computational capabilities and storage, as well as an easier maintenance. However, it comes with several problems such as (a) high latency and (b) high use of bandwidth, due to the need to send data from sensors to the centralized unit \cite{connecting_fog_and_cloud}. These problems originated solutions like Edge and Fog Computing.
-\par Fog Computing enables a computing layer closer to the perception layer, which contains the sensors. Due to this proximity and their high distribution, Fog Computing allows for several benefits like location-awareness, which can be useful for mobility and security requirements and low latency. These features are critical for Fog Computing and it is what differentiates it from Cloud Computing. One example of its use is in a system with several gateways that allow access to a back-end service. These gateways can be visualized as a network that besides passing information between users and the back-end, can also process and store data if necessary \cite{fog_computing_book}. 
+\par Fog Computing brings computing closer to the perception layer, which contains the sensors. Due to this proximity and their high distribution, Fog Computing allows for several benefits like location-awareness, which can be useful for mobility and security requirements and low latency. These features are critical for Fog Computing and it is what differentiates it from Cloud Computing. One example of its use is in a system with several gateways that allow access to a back-end service. These gateways can be visualized as a network that besides passing information between users and the back-end, can also process and store data if necessary \cite{fog_computing_book}. 
 \par Edge Computing is a distributed architecture that uses the devices computational power to process the data they collect or generate. Its goal is to minimize the bandwidth and time response of IoT systems while leveraging the computational power of the devices in them. This paradigm is useful in overcoming common cloud computing problems, reducing latency and lessening the bandwidth bottleneck caused by the transfer of huge amounts of data \cite{edge_computing}. 
 Despite the vantages of Fog and Edge Computing, these approaches don't replace Cloud Computing. However, they can complement the high availability and great processing capacity and storage of the Cloud.
 
 \section{Visual Programming Languages}\label{sec:background_vpl}
 
-\textcolor{blue}{explain what a vpl is (DONE); what is its goal (DONE); uses (DONE);why it is good, its drawbacks; characteristics of vpls; classification of VPLs}
-
-Visual Programming, as defined by Shu, consists of using meaningful graphical representations in the process of programming \cite{vpl_definition_shu}. With this definition, we can consider Visual Programming Languages (VPLs) as a way of handling visual information and interaction with it, allowing the use of visual expressions for programming. The goal of visual programming is to facilitate the programming experience, providing the user with an interface that allows him to produce without too much overhead. \textcolor{red}{check this last phrase}
+Visual Programming, as defined by Shu, consists of using meaningful graphical representations in the process of programming \cite{vpl_definition_shu}. With this definition, we can consider Visual Programming Languages (VPLs) as a way of handling visual information and interaction with it, allowing the use of visual expressions for programming. According to Burnet and Baker \cite{scaling_vpls}, visual programming languages are constructed in order \emph{"improve the programmer's ability to express program logic and to understand how the program works"}.
 \par There are several applications of visual programming languages in different areas, such as education, video game development, automation, multimedia, data warehousing, system management and simulation, with this last area being the area with most use cases \cite{survey_vpl_iot}.
-\par VPLs can be categorized ...
- \cite{vpl-book}
+\par Visual programming languages have several characteristics, such as a concrete process and depiction of the program, immediate visual feedback and requires the knowledge of fewer programming concepts (e.g. pointers, memory allocation, etc) \cite{scaling_vpls}.
+\par VPLs were categorized by Downes \cite{vpls_survey} based on their visual paradigms and architecture: 
+\begin{itemize}
+    \item \textbf{Purely Visual Languages}, where the creation is made using only graphical elements and the subsequently debugging and execution is made in the same environment.
+    \item \textbf{Hybrid text and visual systems}, where the programs are created using graphical elements but their executions is translated into text language.
+    \item \textbf{Programming-by-example systems}, where a user uses graphical elements to teach the system.
+    \item \textbf{Constraint-oriented systems}, where the user translates physical entities into virtual objects and applies constraints to them, in order to simulate their behavior in reality.
+    \item \textbf{Form-based systems}, which were based in the architecture and behavior of spreadsheets.
+\end{itemize}
+The categories mentioned can be present in a single system, making them not mutually exclusive.
 
 \section{Summary}
 
-\textcolor{yellow}{\textbf{**TODO**}}
+This chapter introduces two areas that are fundamental for the understanding of this dissertation. Internet of Things is defined, as well as its use cases and categories. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document. Finally, a definition and categorization of visual programming languages is introduced and explained.
