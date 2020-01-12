@@ -10,17 +10,19 @@ The Internet of Things paradigm states that all devices, independently of their 
 \par The interest in Internet of Things has been growing massively, following the rising of connected devices along these past years. According to Siemens, in 2020 there will be around 26 billion physical devices connected to the Internet and in 2025 the predictions are pointing at 75 billion \cite{tanweer}. Although this allows for more opportunities, it is important to note that these devices are very different in their hardware and capabilities, which causes several problems in terms of development the systems, as well as their scalability, maintainability and security. 
 \par Visual Programming Languages (VPLs) allow the user to communicate with the system by using and arranging visual elements that can be translated into code \cite{vpl-book}. It provides the user with an intuitive and straightforward interface for coding at the possible cost of loosing functionality. There are several programming languages with different focuses, such as education, video game development, 3D building, system design and even Internet of Things \cite{survey_vpl_iot}. Node-RED\footnote{https://nodered.org/} is one of the most famous open source visual programming tool, originally developed by IBM’s Emerging Technology Services team and now a part of the JS Foundation, which provides an environment for users to develop their own Internet of Things systems.
 
-\section{Motivation} \label{sec:motivation}
-
-\textcolor{red}{\textbf{Still needs something...more references and stuff}}\\
-Internet of Things is a rapid growing concept that is being applied to several areas, such as home automation, industry, health, city management and many others. Given the number of existing systems with different protocols and architectures, it becomes difficult for a user to build a system that is in accordance to standards \cite{standard-iot}. 
-\par With the appearance of visual programming languages focused in IoT, more specifically Node-RED, users can build their own systems in an easier and streamlined way, removing the overhead of learning advanced programming concepts and protocols.   
+\textcolor{red}{Falar de resiliência e atributos não funcionaus de qualidade de sistemas; falar sobre arquiteturas centralizadas e decentralizadas; mencionar fog e edge}
 
 \section{Problem Definition} \label{sec:problem_definition}
 
 Most mainstream visual programming tools focused on Internet of Things, Node-RED included, have a centralized approach, where a main component executes most of the computation on data provided by edge devices, e.g. sensors and gateways. There are several consequences to this approach: (a) computation capabilities of the edge devices are being ignored, (b) it introduces a single point of failure, and (c) local data is being transferred across boundaries (private, technological, political...) either without need, or even in violation of legal constraints. The principle of Local-First - i.e, data and logic should reside locally, independent of third-party services faults and errors - is being ignored. 
 \par Besides being a single point of failure, centralized systems can be less efficient than decentralized ones and in this context it might be the case, since there are computation capabilities that aren't being taken advantage of.
 \par Chapter \ref{chap:problem_statement} expands on the problem definition, explaining it in bigger detail, defining its scope, use cases and research questions. \textcolor{red}{\textbf{**CHECK THIS**}}
+
+\section{Motivation} \label{sec:motivation}
+
+\textcolor{red}{\textbf{Still needs something...more references and stuff}}\\
+Internet of Things is a rapid growing concept that is being applied to several areas, such as home automation, industry, health, city management and many others. Given the number of existing systems with different protocols and architectures, it becomes difficult for a user to build a system that is in accordance to standards \cite{standard-iot}. 
+\par With the appearance of visual programming languages focused in IoT, more specifically Node-RED, users can build their own systems in an easier and streamlined way, removing the overhead of learning advanced programming concepts and protocols.   
 
 \section{Goals} \label{sec:goals}
 
