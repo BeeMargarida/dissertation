@@ -3,7 +3,7 @@
 \section*{}
 
 
-This chapter describes the necessary foundations regarding visual programming tools for the Internet of Things context. Section \ref{sec:background_iot} describes the background of the Internet of Things paradigm and important concepts in that area, with description of IoT architecture in Section \ref{sec:architectures}. Section \ref{sec:background_vpl} mentions visual programming languages, their uses as well as their benefits and drawbacks.
+This chapter describes the necessary foundations regarding visual programming tools for the Internet of Things context. Section \ref{sec:background_iot} describes the background of the Internet of Things paradigm and important concepts in that area, with description of IoT architecture in Section \ref{sec:architectures}. Sections \ref{sec:fog_computing} and \ref{sec:edge_computing} explain Fog and Edge computing concepts, respectively. Section \ref{sec:node-red} describes the Node-RED programming tool and its architecture and uses. Finally, section \ref{sec:background_vpl} mentions visual programming languages, their uses as well as their benefits and drawbacks.
 
 \section{Internet of Things}\label{sec:background_iot}
 
@@ -17,10 +17,27 @@ Internet of Things paradigm was defined by the committee of the International Or
  
 \subsection{IoT architectures}\label{sec:architectures}
 
-Internet of Things systems deal with big amounts of data from different sources and has to process it in efficient and fast ways. Typical IoT systems use a Cloud Computing architecture, where it takes advantage of centralized computing and storage. This approach has several benefits, such as increased computational capabilities and storage, as well as an easier maintenance. However, it comes with several problems such as (a) high latency and (b) high use of bandwidth, due to the need to send data from sensors to the centralized unit \cite{connecting_fog_and_cloud}. These problems originated solutions like Edge and Fog Computing.
-\par Fog Computing brings computing closer to the perception layer, which contains the sensors. Due to this proximity and their high distribution, Fog Computing allows for several benefits like location-awareness, which can be useful for mobility and security requirements and low latency. These features are critical for Fog Computing and it is what differentiates it from Cloud Computing. One example of its use is in a system with several gateways that allow access to a back-end service. These gateways can be visualized as a network that besides passing information between users and the back-end, can also process and store data if necessary \cite{fog_computing_book}. 
-\par Edge Computing is a distributed architecture that uses the devices computational power to process the data they collect or generate. Its goal is to minimize the bandwidth and time response of IoT systems while leveraging the computational power of the devices in them. This paradigm is useful in overcoming common cloud computing problems, reducing latency and lessening the bandwidth bottleneck caused by the transfer of huge amounts of data \cite{edge_computing}. 
-Despite the vantages of Fog and Edge Computing, these approaches don't replace Cloud Computing. However, they can complement the high availability and great processing capacity and storage of the Cloud.
+Internet of Things systems deal with big amounts of data from different sources and has to process it in efficient and fast ways. Typical IoT systems use a Cloud Computing architecture, where it takes advantage of centralized computing and storage. This approach has several benefits, such as increased computational capabilities and storage, as well as easier maintenance. However, it comes with several problems such as (a) high latency and (b) high use of bandwidth, due to the need to send the data generated from the sensors to the centralized unit \cite{connecting_fog_and_cloud}. Systems that only use cloud computing are not scalable, specially real-time applications, which are sensible to increased latency. With the increasing computation capabilities of edge devices and the requirements of reduced latency, two new paradigms appeared - Fog and Edge Computing.
+
+\subsubsection{Fog Computing}\label{sec:fog_computing}
+
+Nowadays, with the improvement of wireless networks and the hardware and software of mobile devices, there is a possibility to take advantage of this variables in the computational execution of IoT systems. This will allow for devices in the network to communicate and share resources between them, reducing latency. The central instance, which in the paradigm before executed all the computation, now serves as a scheduler and state manager of the communication between the devices, occasionally providing necessary resources if needed. The paradigm described before is called Fog Computing, which aims to bring computing closer to the perception layer, extending the cloud closer to the edge of the network \cite{mobile_cloud}. It focuses on distributing data throughout the IoT system, from the cloud to the edge devices.
+\par According to Buuya \cite{IoT_principles_and_paradigms}, Fog Computing has several advantages: (i) reduction of network traffic by having edge devices filtering and analyzing the data generated and sending data if necessary, (ii) reduced communication distance by having the devices communicate between them without using the cloud as middleman, (iii) low-latency by moving the processing closer to the data source instead of sending the data to the cloud to be processed, and (iv) scalability by reducing the burden on the cloud, which could be a bottleneck for the system.
+\par It is possible to see an example of the architecture of a IoT system using the Fog paradigm in image \ref{fig:fog_architecture}. The Fog Computing connects the cloud to the edge devices, normally with the use of access points and gateways. 
+
+\begin{figure}[h]
+\caption{Fog Computing Architecture \cite{IoT_principles_and_paradigms}}
+\label{fig:fog_architecture}
+\centering
+\includegraphics[width=0.8\textwidth]{fog_computing_architecture.png}
+\end{figure}
+
+\par Despite all the advantages, Fog Computing has several requirements and difficulties. In order to make a successful and efficient distribution of computation and communication, it requires knowledge about the resources of the connected devices. The complexity is also bigger than Cloud Computing due to the fact that it needs to work with heterogenous devices with different capacities. 
+       
+\subsubsection{Edge Computing}\label{sec:edge_computing}
+
+Edge Computing is a distributed architecture that uses the devices computational power to process the data they collect or generate. It takes advantage of the Edge layer, which contains the devices closer to the end user - smartphones, TVs, sensors, etc. This paradigm goal is to minimize the bandwidth and time response of IoT systems while leveraging the computational power of the devices in them. It reduces bandwidth usage by processing data instead of sending it to the cloud to be processed, which is also correlated to reduced latency, since it does not wait for the server response. In addition to these advantages and related to their cause, Edge Computing also prevents sensitive data from leaving the network, reducing data leakage and increasing security and privacy \cite{edge_computing, edge_computing_2019}.
+\par In this paradigm, each device serves both as a data producer and a data consumer. Since each device is constrained it terms of resources, this brings several challenges such as system reliability and energy constraints due to short battery life and overall security. Other issues consist in the lack of easy-to-use tools and frameworks to build cloud-edge systems, inexistent standards regarding the naming of edge devices and the lack of security edge devices have against outside threats such as hackers \cite{promise_of_edge_computing}.
 
 \section{Visual Programming Languages}\label{sec:background_vpl}
 
@@ -37,6 +54,39 @@ Visual Programming, as defined by Shu, consists of using meaningful graphical re
 \end{itemize}
 The categories mentioned can be present in a single system, making them not mutually exclusive.
 
+\section{Node-RED}\label{sec:node-red}
+
+Node-RED\footnote{https://nodered.org/} is a programming tool applied to the development of Internet of Things systems. It was first developed as a proof-of-concept for visualizing and manipulating mappings between MQTT topics in IBM's Emerging Technology Services group. It then expanded into a more general open-source tool, which is now part ot the JS Foundation.
+\par It is a web-based tool consisting of a run time built with the Node.js framework and a browser-based visual editor. This tool provides the end user with a simple interface to connected devices and APIs, using a flow-programming approach. Programs are called \emph{flows}, built with \emph{nodes} connected by wires. Each node correspond to a action, such has input, output, data processing, etc. 
+\par The Node-RED interface has three components: (1) Palette, (2) Workspace and (3) Sidebar. The Palette contains all the nodes installed and available to use, divided into categories. They can be used by dragging them into the workspace and additional features for each node are accessible by double-clicking them. The Workspace is where the flows are created and modified. It is possible to have several \emph{flows} and \emph{subflows} accessible with the use of tabs. Lastly, the Sidebar contains information about the nodes, the debug console, node configuration manager and the context data. Figure \ref{fig:node_red_window} showcases the visual interface of Node-RED and its elements.
+
+\begin{figure}[h]
+\caption{Node-RED environment}
+\label{fig:node_red_window}
+\centering
+\includegraphics[width=1\textwidth]{node_red_window.png}
+\end{figure}
+
+\par One example of a \emph{flow} can be seen in picture \ref{fig:node_red_example}, where a request is being made in intervals of 5 minutes to a HTTP URL that returns a CSV with the feed of significant earthquakes in the last 7 days. The data from the CSV is then printed to the debug console and, if the magnitude is equal or bigger than 7, the message "PANIC!" is printed to the console. 
+
+\begin{figure}[!h]
+\caption{Example of a Node-RED flow}
+\label{fig:node_red_example}
+\centering
+\includegraphics[width=1\textwidth]{node_red_example.png}
+\end{figure}
+
+\par Regarding the architecture of Node-RED, the \texttt{Node} base class is a subclass of Node.js event APIs \texttt{EventEmitter}. This class implements an observer design pattern that maintains a subscriber list of all the nodes connected to it by \emph{wires} and emits events to them. When a node finishes processing data from external sources or from another node, it calls the methods \texttt{send()} with a Javascript object. In its turn, this method call the \texttt{EventEmitter emit()} method that sends named events to the subscribed nodes. 
+\par Being open-source, Node-RED takes advantage of a large community that contributes with new nodes and improvements to the tool. It is the most popular open-source visual programming tool for IoT, as seen in figure \ref{fig:node_red_popularity}. \textcolor{red}{*ADD ARTICLE "Visual Runtime Verification and Self-Healing of IoT Systems" TO THE BIB*}
+
+\begin{figure}[h]
+\caption{Number of stars on GitHub for visual programming tools applied to IoT}
+\label{fig:node_red_popularity}
+\centering
+\includegraphics[width=0.7\textwidth]{node_red_popularity.png}
+\end{figure}
+
+
 \section{Summary}
 
-This chapter introduces two areas that are fundamental for the understanding of this dissertation. Internet of Things is defined, as well as its use cases and categories. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document. Finally, a definition and categorization of visual programming languages is introduced and explained.
+This chapter introduces two areas that are fundamental for the understanding of this dissertation. Internet of Things is defined, as well as its use cases and categories. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document. Node-RED is introduced as a visual programming tool for IoT and its architecture is explained. Finally, a definition and categorization of visual programming languages is introduced and explained.
