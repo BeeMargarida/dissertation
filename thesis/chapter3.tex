@@ -127,7 +127,7 @@ The evaluation process of the publications followed six steps with specific purp
     \item \textbf{Publication quality:} Publications are assessed using quality criteria defined in Table \ref{tab:quality_assessment}.
 \end{enumerate}{}
 
-The results from the evaluation process can be seen if Table 
+The results from the evaluation process can be seen in Table \ref{tab:evaluation_process_results}.
 
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
@@ -144,7 +144,7 @@ The results from the evaluation process can be seen if Table
         \hline
         Exclusion/Inclusion criteria (Titles and Abstracts) & 65 & 2561\\
         \hline
-        Exclusion/Inclusion criteria (Introduction and Conclusion) & 30 & 35\\
+        Exclusion/Inclusion criteria (Introduction and Conclusion) & 29 & 36\\
         \hline
         Specificity &  & \\
         \hline
@@ -156,13 +156,12 @@ The results from the evaluation process can be seen if Table
 
 \subsection{Results}\label{sec:slr_results}
 
-After analyzing the 30 publications, we organized them by categories. \cite{pratical_trigger_action}, \cite{survey_vpl_iot} and \cite{block-based_vs_flow-based} were surveys and the remaining 27 were frameworks or tools.
+After analyzing the 29 publications, we organized them by categories. \cite{pratical_trigger_action}, \cite{survey_vpl_iot} and \cite{block-based_vs_flow-based} were surveys and the remaining 26 were frameworks or tools.
 \par Regarding surveys, publication \cite{pratical_trigger_action} investigates the use of trigger-action (\textit{IFTTT}) programming in the customization of smart-home devices by non-developer users. It produced positive results in the way end users received and used this programming paradigm. \cite{survey_vpl_iot} makes an in-dept review of 13 visual programming languages in the field of IoT, comparing them under four attributes: (1) programming environment, (2) license, (3) project repository and (4) platform support. The author concluded with some advantages of using visual programming languages, such as the ease of visualizing programming logic, useful for rapid development and less burden on handling syntax error. However, some negative aspects were also mentioned, being the large amount of time building simple IoT applications the most important one. Publication \cite{block-based_vs_flow-based} proposes an hypothesis that flow-based programming will be better than block-based programming as a visual programming language for users with no previous programming experience. The results were inconclusive but the stated problem was interesting, seeing as the future of programming can involve casual users with little programming experience, who use visual programming languages to solve problems, similar to the use of spreadsheets nowadays.
-\par The remaining 27 articles are frameworks or tools of visual programming applied to IoT. One of the tool is repeated in two papers, which showcases its evolution. The frameworks are:
+\par The remaining 26 articles are frameworks or tools of visual programming applied to IoT. One of the tool is repeated in two papers, which showcases its evolution. The frameworks are:
 
 \begin{enumerate}
     \item Solution for connecting devices from different IoT platforms, using Flow Based Programming with Node-RED \cite{Belsa2018}, proposed by \textbf{Belsa et al}. Its motivation is based on the limitation imposed by the IoT platform on communication between components and extensibility. This hinders possibilities to interact with services provided by other platforms. To validate their solution, they implemented a use case in the domain of transportation and logistics, with a composed service that used five different types of applications. The developed tool offers access to available services in a centralized visual framework, where end-users can use them to build more complex applications.
-    \item \textbf{WARBLE} \cite{warble} is a middleware for IoT applications that provides a seamless interoperability between heterogeneous devices. It allows applications to discover available devices across different vendors and domains and contains an interaction history that make it possible for IoT devices to make decisions based on previous interactions. Additionally, it introduces the binding concept, that connects a certain device to an application and simplifies the communication between them for the developer. The developed solution address challenges like interoperability, personalization and simplicity but still has several challenges left to address, like security and privacy.
     \item \textbf{Ivy} \cite{ivy} proposes the next step forward regarding visualization applied to IoT with a visual programming tool that uses immersive virtual reality to allow users to link devices, insert logic and visualize real-time data flows between real-world sensors and actuators. It provides the end users with an immersive virtual reality that allows them to visualize the data flow, access to debugging tools and real-time deployment. Each programming construct called node - data flow architecture - has a distinct shape and color, which makes it easier for the user to understand the system being built or debugged. The experiences made in order to validate the prototype were positive, with the participants being receptive to Ivy and indicating use cases for it.
     \item With the rise in number of devices and their applications, it is impossible for developers to predict the way end users will exploit the devices, how they will be arranged and for which objectives will they be used. The goal of this paper \cite{personalization_of_context_dependent_apps}, proposed by \textbf{Ghiani et al.}, is to build a set of tools that allow non-developer users to customize their own Web IoT applications with the use of trigger-actions rules. The proposed solution provides a web-based tool for specifying trigger-action rules using \textit{IFTTT} and a context manager middleware that is able to adapt to the context and events of the devices and apply rules to the system. In order to validate the developed tool, an example home automation application that displays sensor values and directly controls appliances was built. The results were for the most part positive, and the issues found are related to usability and visual clues.
     \item \textbf{ViSiT} \cite{visit} allows its end-users to use a jigsaw puzzle metaphor to implement a system of connected IoT objects. It provides a web-based visual tool connected with a web-service that generates an executable implementation of the jigsaw representation and transformation. Their goal is achievable by adapting model transformations used by software developers into understandable metaphors for non-developers to use. They validated the developed tool with a usability evaluation, which was overall positive, with a great percentage considering the tool useful and providing real-life scenarios where they could implement it.
@@ -173,8 +172,7 @@ After analyzing the 30 publications, we organized them by categories. \cite{prat
     \item \textbf{PWCT} \cite{pwct} is a visual programming language applied to building IoT, Data Computing and Cloud Computing systems. Its goal consist of reducing the cost of development of these types of systems by providing an easy and more productive development tool. The language was designed to compete with text based languages such as Java and C/C++. It uses graphical elements to replace textual code and has 3 main layers: (1) the VPL layer, composed of graphical elements, (2) the middleware layers, responsible for connecting the VPL layer with the system's view, which is the (3) System Layer, responsible for dealing with the source code generated by the first layer. The created solution received positive feedback from the community, with more than 70,000 downloads and 93\% of user satisfaction.
     \item \textbf{DDF} \cite{ddf} is a Distributed Dataflow (DDF) programming model for IoT systems, leveraging resources across the Fog and the Cloud. They implemented a DDF framework extending Node-RED, which originally is a centralized framework. Their motivation comes from the possibility to develop applications from the perspective of Fog Computing, leveraging these devices for efficiency and reduced latency, since there is a big amount of resources such as edge devices and gateways in IoT systems. They evaluated their prototype using a small scale evaluation, which was positive. The results showed that their DDF framework provides an easy alternative for designing and developing distributed IoT systems, despite having some open issues such as not having a distributed discovery of devices and networks.
     \item \textbf{GIMLE} \cite{gimle}, Graphical Installation Modelling Language for IoT Ecosystems), is a visual language that uses general-purpose visual programming styles to model domain knowledge through expressive ontological requirements. The goal of this language is to fill the gap of modelling requirements on physical properties of IoT installations by proposing a novel process for configuring industrial installations. It makes use of flow-based and domain-based visual programming in order to separate the logical flow of the requirements from their details. The developed tool supports reuse within the models, which is useful due to the repetitive nature of industrial installations,but it still needs to clarify how it fits within the current practice and its use in production settings.
-    \item The approach on Runtime Verification proposed by \textbf{Leotta et al.}  aims to assure the quality of an IoT system. It can be used for detecting bugs in systems during development and maintenance activities, as well as be adopted for monitoring deployed IoT systems. Runtime verification is a software analysis approach in which a running system is observed by monitoring relevant events and their associated information to verify against a given specification of the expected behavior. When efficiently implemented, the verification process can be executed before the deployment of the system, for detecting bugs during the development and maintenance activities, as well as after the deployment, in order to provide an additional level of protection against unforeseen events.
-    The results of the runtime verification tool developed were positive, with 92  \% detection of the bugs injected into the system. For future work, they plan to automate the generation of trace expressions and scenarios, as well as compare their approach with testing.
+    \item The approach on Runtime Verification proposed by \textbf{Leotta et al.} \cite{runtime_verification} aims to assure the quality of an IoT system. It can be used for detecting bugs in systems during development and maintenance activities, as well as be adopted for monitoring deployed IoT systems. Runtime verification is a software analysis approach in which a running system is observed by monitoring relevant events and their associated information to verify against a given specification of the expected behavior. When efficiently implemented, the verification process can be executed before the deployment of the system, for detecting bugs during the development and maintenance activities, as well as after the deployment, in order to provide an additional level of protection against unforeseen events. The results of the runtime verification tool developed were positive, with 92  \% detection of the bugs injected into the system. For future work, they plan to automate the generation of trace expressions and scenarios, as well as compare their approach with testing.
     \item \textbf{DDFlow} \cite{ddflow} is a macro-programming abstraction that aims to provide efficient means to program high quality distributed apps for IoT.
     The authors refer a lack of solutions for complex IoT systems programming, causing developers to build their own systems, which leads to a lack of portability/extensibility and results in a lot of similar systems that do the same thing, but are “different” because they were created by different programmers. Developers use Node-Red to specify the application functionalities and DDFlow handles scalability and deployment. The authors describe DDFlow's goal as to allow developers to formulate complex applications without having to care about low-level network, hardware and coordination details. This is done by having the DDFlow accompanying runtime dynamically scaling and mapping the resources, instead of the developer. DDFlow gives developers the possibility to inject custom code on nodes and have custom logic, if the available nodes are not enough for some task.
     \item The tool proposed by \textbf{Kefalakis et al.} \cite{visual_paradigm_iot_solutions_development} consists of a visual environment that operates over the OpenIoT architecture and facilitates the development of IoT applications with minimal programming effort. Modeling IoT services with the developed tool is made by specifying a graph that corresponds to an IoT application, which can be validated and its code generated and enacted over the OpenIoT middleware platform. It aims to fill the gap of tools that provide support for the development and deployment of integrated IoT applications. The approach taken presents several advantages: (1) it leverages standards-based semantic model for sensor and IoT context, making it easier to be widely adopted, (2) it is based on web-based technologies which opens the possibilities of applications from developers and (3) it is open source. 
@@ -194,16 +192,82 @@ After analyzing the 30 publications, we organized them by categories. \cite{prat
 The mentioned frameworks and tools were divided into the following categories, according to several characteristics:
 
 \begin{description}
-    \item [Scope] Some tools have specific use cases in mind (\textit{e.g.} smart cities, Home automation, industry, etc). Therefore, knowledge of the scope of a tool is useful to assess if it solves a problem or fills a specific gap in the literature. Example values consist of \textit{smart cities, home automation, education}. 
-    \item [Architecture]
-    \item [License]
-    \item [Tier]
-    \item [Programming language]
-    \item [Hardware]
+    \item [Scope] Some tools have specific use cases in mind (\textit{e.g.} smart cities, Home automation, industry, etc). Therefore, knowledge of the scope of a tool is useful to assess if it solves a problem or fills a specific gap in the literature. Example values consist of \textit{smart cities, home automation, education, industry} or \textit{many}, if there is more than one. 
+    \item [Architecture] Visual programming tools applied to the Internet of Things can have an centralized or decentralized architecture, based on their use of Cloud, Fog or Edge Computing architecture. Possible values are \textit{Cloud}, \textit{Fog} and \textit{Edge}.
+    \item [License] The license of a software or tool is essential in terms of its usability. Normally, an open-source software reaches a bigger user base and allows them to expand and contribute to it. Possible values are the name of the tool license or N/A if it does not have one.
+    \item [Scalability] Defines how the tool or framework scales. It can be calculated based on metrics used to test the performance of the system. Possible values are \textit{low}, \textit{medium}, \textit{high} or N/A, it case there is no sufficient information.
+    \item [Paradigm] The visual programming language can be imperative or functional programming, which can also be called block-based and flow-based respectively. It is important to know which type, so that might be possible to assess the type of experience the tool provides to the user and its architecture. Possible values can be \textit{block-based} or \textit{flow-based}. \textcolor{red}{\textbf{CHECK THIS}}
+    \item [Web-based] Defines if the visual programming language and/or environment can be used in a browser. It is useful in terms of usability of the tool.
 \end{description}
 
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \caption{VPLs applied to IoT and their characteristics. Small circles (\textbullet) mean \textit{yes}, hyphens (-) mean \textit{no information available}, nothing means \textit{no} and asterisk (*) means more than one.}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{| c | c | c | c | c | c | c |}
+        \hline
+        \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Scalability} & \textbf{Paradigm} & \textbf{Web-based}\\
+        \hline
+        Belsa et al.\cite{Belsa2018} & * & Cloud & - & High & Flow-based & \textbullet \\
+        \hline
+        Ivy \cite{ivy} & * & Cloud & - & High & Flow-based &  \\
+        \hline
+        Ghiani et al. \cite{personalization_of_context_dependent_apps} & Home Automation & Cloud &  &  &  & \textbullet \\
+        \hline
+        ViSiT \cite{visit} &  &  &  &  &  &  \\
+        \hline
+        Valsamakis and Savidis \cite{Valsamakis2017} &  &  &  &  &  &  \\
+        \hline
+        WireMe \cite{wireme} &  &  &  &  &  &  \\
+        \hline
+        VIPLE \cite{viple} &  &  &  &  &  &  \\
+        \hline
+        Smart Block \cite{smart_block} &  &  &  &  &  &  \\
+        \hline
+        PWCT \cite{pwct} &  &  &  &  &  &  \\
+        \hline
+        DDF \cite{ddf} &  &  &  &  &  &  \\
+        \hline
+        GIMLE \cite{gimle} &  &  &  &  &  &  \\
+        \hline
+        Leotta et al. \cite{runtime_verification} &  &  &  &  &  &  \\
+        \hline
+        DDFlow \cite{ddflow} &  &  &  &  &  &  \\
+        \hline
+        Kefalakis et al. \cite{visual_paradigm_iot_solutions_development} &  &  &  &  &  &  \\
+        \hline
+        Eterovic et al. \cite{vpl_uml} &  &  &  &  &  &  \\
+        \hline
+        FRED \cite{fred} &  &  &  &  &  &  \\
+        \hline
+        WoTFlow \cite{wotflow_dnr} &  &  &  &  &  &  \\
+        \hline
+        Ancona et al. \cite{runtime_monitoring} &  &  &  &  &  &  \\
+        \hline
+        Devify \cite{devify} &  &  &  &  &  &  \\
+        \hline
+        Paller et al. \cite{orcc_extension} &  &  &  &  &  &  \\
+        \hline
+        Besari et al. \cite{mobile_apps_rpi} \cite{pre_mobile_apps_rpi} &  &  &  &  &  &  \\
+        \hline
+        CharIoT \cite{chariot} &  &  &  &  &  &  \\
+        \hline
+        Desolda et al. \cite{desolda} &  &  &  &  &  &  \\
+        \hline
+        Eun et al. \cite{eud_platform} &  &  &  &  &  &  \\
+        \hline
+        RHEA \cite{rhea} &  &  &  &  &  &  \\
+        \hline
+    \end{tabular}
+    }
+    \label{tab:evaluation_process_results}
+\end{table}{}
+
 \textcolor{red}{\textbf{**WIP**}}
-\textcolor{blue}{explicar caracteristicas de classificação; fazer o quadro com tudo organizado;}
+\textcolor{blue}{explicar caracteristicas de classificação(DONE); fazer o quadro com tudo organizado;}
+
+
 
 \subsection{Expanded Search}
 
