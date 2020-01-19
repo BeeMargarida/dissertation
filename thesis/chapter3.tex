@@ -193,10 +193,11 @@ The mentioned frameworks and tools were divided into the following categories, a
 
 \begin{description}
     \item [Scope] Some tools have specific use cases in mind (\textit{e.g.} smart cities, Home automation, industry, etc). Therefore, knowledge of the scope of a tool is useful to assess if it solves a problem or fills a specific gap in the literature. Example values consist of \textit{smart cities, home automation, education, industry} or \textit{many}, if there is more than one. 
-    \item [Architecture] Visual programming tools applied to the Internet of Things can have an centralized or decentralized architecture, based on their use of Cloud, Fog or Edge Computing architecture. Possible values are \textit{Cloud}, \textit{Fog} and \textit{Edge}.
+    \item [Architecture] Visual programming tools applied to the Internet of Things can have an centralized or decentralized architecture, based on their use of Cloud, Fog or Edge Computing architecture. Possible values are \textit{Centralized}, \textit{Decentralized} and \textit{Mixed}.
     \item [License] The license of a software or tool is essential in terms of its usability. Normally, an open-source software reaches a bigger user base and allows them to expand and contribute to it. Possible values are the name of the tool license or N/A if it does not have one.
+    \item [Tier] IoT systems, as explained in Section \ref{sec:architectures} is composed of three tiers - \textit{Cloud}, \textit{Fog} and \textit{Edge}. A tool can interact in several of these tiers, which shapes the features it contains and how it is built.
     \item [Scalability] Defines how the tool or framework scales. It can be calculated based on metrics used to test the performance of the system. Possible values are \textit{low}, \textit{medium}, \textit{high} or N/A, it case there is no sufficient information.
-    \item [Programming] The visual programming language can be imperative or functional programming, which can also be called block-based and flow-based respectively. It is important to know which type, so that might be possible to assess the type of experience the tool provides to the user and its architecture. Possible values can be \textit{block-based} or \textit{flow-based}. \textcolor{red}{\textbf{CHECK THIS}}
+    \item [Programming] According to Downes and Boshernitsan \cite{vpls_survey} and also mentioned in Section \ref{sec:background_vpl}, visual programming languages can be classified in five categories: (1) Purely Visual languages, (2) Hybrid text and visual systems, (3) Programming-by-example systems, (4) Constraint-oriented systems and (5) Form-based systems. These classifications aren't mutually exclusive. It is important to know which type, so that might be possible to assess the type of experience the tool provides to the user and its architecture.
     \item [Web-based] Defines if the visual programming language and/or environment can be used in a browser. It is useful in terms of usability of the tool.
 \end{description}
 
@@ -205,59 +206,59 @@ The mentioned frameworks and tools were divided into the following categories, a
     \centering
     \caption{VPLs applied to IoT and their characteristics. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
     \resizebox{\textwidth}{!}{
-    \begin{tabular}{| c | c | c | c | c | c | c |}
+    \begin{tabular}{| c | c | c | c | c | c | c | c |}
         \hline
-        \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
+        \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
         \hline
-        Belsa et al.\cite{Belsa2018} & * & Cloud & - & High & Flow-based & \textbullet \\
+        Belsa et al.\cite{Belsa2018} & * & Centralized & - & \textcolor{red}{TODO} & High & \textcolor{red}{TODO} & \textbullet \\
         \hline
-        Ivy \cite{ivy} & * & Cloud & - & High & Flow-based &  \\
+        Ivy \cite{ivy} & * & Centralized & - & \textcolor{red}{TODO} & High & \textcolor{red}{TODO} &  \\
         \hline
-        Ghiani et al. \cite{personalization_of_context_dependent_apps} & Home Automation & Cloud & - & ? & - & \textbullet \\
+        Ghiani et al. \cite{personalization_of_context_dependent_apps} & Home Automation & Centralized & - & \textcolor{red}{TODO} & \textcolor{red}{TODO} & \textcolor{red}{TODO} & \textbullet \\
         \hline
-        ViSiT \cite{visit} &  &  &  &  &  &  \\
+        ViSiT \cite{visit} &  &  &  &  &  &  &  \\
         \hline
-        Valsamakis and Savidis \cite{Valsamakis2017} &  &  &  &  &  &  \\
+        Valsamakis and Savidis \cite{Valsamakis2017} &  &  &  &  &  &  &  \\
         \hline
-        WireMe \cite{wireme} &  &  &  &  &  &  \\
+        WireMe \cite{wireme} &  &  &  &  &  &  &  \\
         \hline
-        VIPLE \cite{viple} &  &  &  &  &  &  \\
+        VIPLE \cite{viple} &  &  &  &  &  &  &  \\
         \hline
-        Smart Block \cite{smart_block} &  &  &  &  &  &  \\
+        Smart Block \cite{smart_block} &  &  &  &  &  &  &  \\
         \hline
-        PWCT \cite{pwct} &  &  &  &  &  &  \\
+        PWCT \cite{pwct} &  &  &  &  &  &  &  \\
         \hline
-        DDF \cite{ddf} &  &  &  &  &  &  \\
+        DDF \cite{ddf} &  &  &  &  &  &  &  \\
         \hline
-        GIMLE \cite{gimle} &  &  &  &  &  &  \\
+        GIMLE \cite{gimle} &  &  &  &  &  &  &  \\
         \hline
-        Leotta et al. \cite{runtime_verification} &  &  &  &  &  &  \\
+        Leotta et al. \cite{runtime_verification} &  &  &  &  &  &  &  \\
         \hline
-        DDFlow \cite{ddflow} &  &  &  &  &  &  \\
+        DDFlow \cite{ddflow} &  &  &  &  &  &  &  \\
         \hline
-        Kefalakis et al. \cite{visual_paradigm_iot_solutions_development} &  &  &  &  &  &  \\
+        Kefalakis et al. \cite{visual_paradigm_iot_solutions_development} &  &  &  &  &  &  &  \\
         \hline
-        Eterovic et al. \cite{vpl_uml} &  &  &  &  &  &  \\
+        Eterovic et al. \cite{vpl_uml} &  &  &  &  &  &  &  \\
         \hline
-        FRED \cite{fred} &  &  &  &  &  &  \\
+        FRED \cite{fred} &  &  &  &  &  &  &  \\
         \hline
-        WoTFlow \cite{wotflow_dnr} &  &  &  &  &  &  \\
+        WoTFlow \cite{wotflow_dnr} &  &  &  &  &  &  &  \\
         \hline
-        Ancona et al. \cite{runtime_monitoring} &  &  &  &  &  &  \\
+        Ancona et al. \cite{runtime_monitoring} &  &  &  &  &  &  &  \\
         \hline
-        Devify \cite{devify} &  &  &  &  &  &  \\
+        Devify \cite{devify} &  &  &  &  &  &  &  \\
         \hline
-        Paller et al. \cite{orcc_extension} &  &  &  &  &  &  \\
+        Paller et al. \cite{orcc_extension} &  &  &  &  &  &  &  \\
         \hline
-        Besari et al. \cite{mobile_apps_rpi} \cite{pre_mobile_apps_rpi} &  &  &  &  &  &  \\
+        Besari et al. \cite{mobile_apps_rpi} \cite{pre_mobile_apps_rpi} &  &  &  &  &  &  &  \\
         \hline
-        CharIoT \cite{chariot} &  &  &  &  &  &  \\
+        CharIoT \cite{chariot} &  &  &  &  &  &  &  \\
         \hline
-        Desolda et al. \cite{desolda} &  &  &  &  &  &  \\
+        Desolda et al. \cite{desolda} &  &  &  &  &  &  &  \\
         \hline
-        Eun et al. \cite{eud_platform} &  &  &  &  &  &  \\
+        Eun et al. \cite{eud_platform} &  &  &  &  &  &  &  \\
         \hline
-        RHEA \cite{rhea} &  &  &  &  &  &  \\
+        RHEA \cite{rhea} &  &  &  &  &  &  &  \\
         \hline
     \end{tabular}
     }
