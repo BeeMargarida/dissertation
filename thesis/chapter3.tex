@@ -193,7 +193,7 @@ The mentioned frameworks and tools were divided into the following categories, a
     \item [Architecture] Visual programming tools applied to the Internet of Things can have an centralized or decentralized architecture, based on their use of Cloud, Fog or Edge Computing architecture. Possible values are \textit{Centralized}, \textit{Decentralized} and \textit{Mixed}.
     \item [License] The license of a software or tool is essential in terms of its usability. Normally, an open-source software reaches a bigger user base and allows them to expand and contribute to it. Possible values are the name of the tool license or N/A if it does not have one.
     \item [Tier] IoT systems, as explained in Section \ref{sec:architectures} is composed of three tiers - \textit{Cloud}, \textit{Fog} and \textit{Edge}. A tool can interact in several of these tiers, which shapes the features it contains and how it is built.
-    \item [Scalability] Defines how the tool or framework scales. It can be calculated based on metrics used to test the performance of the system. Possible values are \textit{low}, \textit{medium}, \textit{high} or N/A, it case there is no sufficient information.
+    \item [Scalability] Defines how the tool or framework scales. It can be calculated based on metrics used to test the performance of the system. In this case we considered scalability in terms of number and different type of devices supported. Possible values are \textit{low}, \textit{medium}, \textit{high} or N/A, it case there is no sufficient information.
     \item [Programming] According to Downes and Boshernitsan \cite{vpls_survey} and also mentioned in Section \ref{sec:background_vpl}, visual programming languages can be classified in five categories: (1) Purely Visual languages, (2) Hybrid text and visual systems, (3) Programming-by-example systems, (4) Constraint-oriented systems and (5) Form-based systems. These classifications aren't mutually exclusive. It is important to know which type, so that might be possible to assess the type of experience the tool provides to the user and its architecture.
     \item [Web-based] Defines if the visual programming language and/or environment can be used in a browser. It is useful in terms of usability of the tool.
 \end{description}
@@ -207,17 +207,17 @@ The mentioned frameworks and tools were divided into the following categories, a
         \hline
         \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
         \hline
-        Belsa et al.\cite{Belsa2018} & * & Centralized & - & \textcolor{red}{TODO} & High & \textcolor{red}{TODO} & \textbullet \\
+        Belsa et al.\cite{Belsa2018} & * & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
-        Ivy \cite{ivy} & * & Centralized & - & \textcolor{red}{TODO} & High & \textcolor{red}{TODO} &  \\
+        Ivy \cite{ivy} & * & Centralized & - & Cloud & Medium & Purely Visual language &  \\
         \hline
-        Ghiani et al. \cite{personalization_of_context_dependent_apps} & Home Automation & Centralized & - & \textcolor{red}{TODO} & \textcolor{red}{TODO} & \textcolor{red}{TODO} & \textbullet \\
+        Ghiani et al. \cite{personalization_of_context_dependent_apps} & Home Automation & Centralized & - & Cloud & Medium\textcolor{red}{CHECK} & Constraint-oriented system & \textbullet \\
         \hline
-        ViSiT \cite{visit} &  &  &  &  &  &  &  \\
+        ViSiT \cite{visit} & * & Centralized & - & Cloud & High & Hybrid text and visual systems & \textbullet \\
         \hline
-        Valsamakis and Savidis \cite{Valsamakis2017} &  &  &  &  &  &  &  \\
+        Valsamakis and Savidis \cite{Valsamakis2017} & Ambient Assisted Living & Centralized & - & Cloud & N/A & Hybrid text and visual system & \textbullet \\
         \hline
-        WireMe \cite{wireme} &  &  &  &  &  &  &  \\
+        WireMe \cite{wireme} & Education, Home Automation & Centralized & - & Cloud & N/A & Hybrid text and visual system &  \\
         \hline
         VIPLE \cite{viple} &  &  &  &  &  &  &  \\
         \hline
