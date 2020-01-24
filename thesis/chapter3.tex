@@ -144,7 +144,7 @@ The results from the evaluation process can be seen in Table \ref{tab:evaluation
         \hline
         Exclusion/Inclusion criteria (Titles and Abstracts) & 65 & 2561\\
         \hline
-        Exclusion/Inclusion criteria (Introduction and Conclusion) & 27 & 38\\
+        Exclusion/Inclusion criteria (Introduction and Conclusion) & 26 & 39\\ %devify - 27
         \hline
     \end{tabular}
     }
@@ -153,9 +153,9 @@ The results from the evaluation process can be seen in Table \ref{tab:evaluation
 
 \subsection{Results}\label{sec:slr_results}
 
-After analyzing the 27 publications, we organized them by categories. \cite{survey_vpl_iot} is a survey and the remaining 26 were frameworks or tools.
+After analyzing the 26 publications, we organized them by categories. \cite{survey_vpl_iot} is a survey and the remaining 25 were frameworks or tools.
 \par Regarding the survey, publication \cite{survey_vpl_iot} makes an in-dept review of 13 visual programming languages in the field of IoT, comparing them under four attributes: (1) programming environment, (2) license, (3) project repository and (4) platform support. The author concluded with some advantages of using visual programming languages, such as the ease of visualizing programming logic, useful for rapid development and less burden on handling syntax error. However, some negative aspects were also mentioned, being the large amount of time building simple IoT applications the most important one.
-\par The remaining 26 articles are frameworks or tools of visual programming applied to IoT. One of the tool is repeated in two papers, which showcases its evolution. The frameworks are:
+\par The remaining 25 articles are frameworks or tools of visual programming applied to IoT. One of the tool is repeated in two papers, which showcases its evolution. The frameworks are:
 
 \begin{enumerate}
     \item Solution for connecting devices from different IoT platforms, using Flow Based Programming with Node-RED \cite{Belsa2018}, proposed by \textbf{Belsa et al}. Its motivation is based on the limitation imposed by the IoT platform on communication between components and extensibility. This hinders possibilities to interact with services provided by other platforms. To validate their solution, they implemented a use case in the domain of transportation and logistics, with a composed service that used five different types of applications. The developed tool offers access to available services in a centralized visual framework, where end-users can use them to build more complex applications.
@@ -177,7 +177,7 @@ After analyzing the 27 publications, we organized them by categories. \cite{surv
     \item \textbf{FRED} \cite{fred} is a Frontend for Node-RED, a development tool that makes it possible to host multiple Node-RED processes. It can be used to connect devices to cloud services, coordinate communication between devices, integrate services with each other or creating new web app APIs and applications. To provide all these features, FRED supports the ability to run flows for multiple users and all flows get fair access to CPU, memory and storage resources. It also provides secure access to flow editors and the flow runtime. The authors concluded that FRED is a useful tool for users learning about Node-RED and to rapidly prototype cloud-hosted applications.
     \item \textbf{WoTFlow} \cite{wotflow_dnr} is proposed as a cloud-based platform that aims to provide an execution environment for multi-user cloud environments and individual devices. It aims to take advantage of data flow programming, which allows parts of the flow to be executed in parallel in different devices. Based on this, the tool will take advantage of the ability to split and partition the flows and distribute them by edge devices and the cloud. The state of the developed tool was in the early stages, with future expansions based on the use of optimization heuristics, automatic partitioning based on calculated constraints, security and privacy.
     \item The approach on runtime monitoring of NodeJS applications, proposed by \textbf{Ancona et al.} \cite{runtime_monitoring}, makes use of the dynamic analysis framework Jalangi to detect errors that would be otherwise difficult to catch with other techniques. This paper investigate the use trace expressions in runtime monitoring, which are language and system agnostic through the notion of event domain and type. To implement runtime monitoring, the authors instrument the source code of the program that needs to be verified, adding a piece of code that is able to capture all the relevant events for the domain in use. On the other hand, they have a Prolog server implementing the operational semantics of trace expressions and offering a simple REST interface. The monitor and the server communicate through HTTP requests and responses, effectively implementing a runtime verification system. Future work consist of expanding the current features of logging and error detection into error recovery procedures.
-    \item \textbf{Devify} \cite{devify} is a framework that implements a new software architecture based on a peer-to-peer network and interoperability between IoT devices. This framework is divided in three layers: Application Logic Layer, Broker Server Layer and the Web of Things Layer. The application layer provides a flow-based programming like runtime engine with an unidirectional data flow design. However, the flow-based component has only a single output port and single input port. The broker server implements the peer-to-peer networking, REST-style remote procedure call operations and a distributed hash table. Additionally, the Web of Things layer can make distribution possible by providing a service contract without exposing server-side implementation details. In conclusion, the authors propose a decentralized IoT software framework that provides the ability of secure data exchange between IoT devices autonomously without any centralized server. To achieve security wanted, they used Flowchain, a blockchain-based decentralized IoT platform developed by them.
+    %\item \textbf{Devify} \cite{devify} is a framework that implements a new software architecture based on a peer-to-peer network and interoperability between IoT devices. This framework is divided in three layers: Application Logic Layer, Broker Server Layer and the Web of Things Layer. The application layer provides a flow-based programming like runtime engine with an unidirectional data flow design. However, the flow-based component has only a single output port and single input port. The broker server implements the peer-to-peer networking, REST-style remote procedure call operations and a distributed hash table. Additionally, the Web of Things layer can make distribution possible by providing a service contract without exposing server-side implementation details. In conclusion, the authors propose a decentralized IoT software framework that provides the ability of secure data exchange between IoT devices autonomously without any centralized server. To achieve security wanted, they used Flowchain, a blockchain-based decentralized IoT platform developed by them.
     \item An extension to the tool Orcc\footnote{https://github.com/orcc/orcc}, by \textbf{Paller et al.} \cite{orcc_extension}, that adds new features that are specific for the IoT problem domain to a tool dedicated to dataflow programming. The features added to Orcc, a tool that generates source code from RVC-CAL actors and XDF networks,include the improvements on the graphical Data-Flow Language (DFL), novel code generator for heterogeneous platforms and the library of ready-made IoT components or actors. The main goal was to extend the XDF file to address the platform heterogeneity. Furthermore, the utilization of this tool in development is expected to increase the quality, to reduce the development costs of IoT applications. In conclusion, this is an ongoing research but it has a lot of manual work like creation of the XCF configuration file with the smart environment needs. \textcolor{red}{review this, its super confusing}
     \item An IoT-based GUI, proposed by \textbf{Besari et al.} \cite{mobile_apps_rpi} \cite{pre_mobile_apps_rpi}, that aims to control sensors and actuators in an IoT system using an android application, in which the users used a visual programming language to configure and interact with the IoT system. The system was tested with a Pybot, which is a robot that is programmable similarly to an IoT system, with sensors and actuators. After testing and evaluating the system, the authors came to a score of 72.917 (out of 100) for the Pybot software, which is considered “GOOD”. The overall acceptability of the system was “ACCEPTABLE”, which led the authors to consider the application accepted by users.
     \item \textbf{CharIoT} \cite{chariot} is an end-user programming environment that promises to unify and support the configuration of IoT environments. It provides three blocks of support: capturing higher-level events using virtual sensors, construction of automation rules with a visual overview of the current configuration and support for sharing configuration between end users using a recommendation mechanism. To enable the capturing of higher-level events, it was developed two types of virtual sensors. The programmed virtual sensor provides a more accessible and understandable abstractions (defining that a room is "cold" if temperature is below 20ºC). The demonstrated virtual sensors are more complex, requiring the user to provide demonstration of the occurrence and not occurrence of the event (for example, the event of someone knocking on the door and the absence of someone knocking on the door). This last one requires the training of a Random Forest classifier. This programming environment is similar to IFTTT but goes one step further, with smarter event capturing and reusing of configurations, allowing the end-user to build faster and more robust IoT installations.
@@ -202,6 +202,7 @@ The mentioned frameworks and tools were divided into the following categories, a
 \begin{table}[ht]
     \centering
     \caption{VPLs applied to IoT and their characteristics. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
+    \begin{threeparttable}
     \resizebox{\textwidth}{!}{
     \begin{tabular}{| c | c | c | c | c | c | c | c |}
         \hline
@@ -215,41 +216,41 @@ The mentioned frameworks and tools were divided into the following categories, a
         \hline
         ViSiT \cite{visit} & * & Centralized & - & Cloud & High & Hybrid text and visual systems & \textbullet \\
         \hline
-        Valsamakis and Savidis \cite{Valsamakis2017} & Ambient Assisted Living & Centralized & - & Cloud & N/A & Hybrid text and visual system & \textbullet \\
+        Valsamakis and Savidis \cite{Valsamakis2017} & Ambient Assisted Living & Centralized & - & Cloud & - & Hybrid text and visual system & \textbullet \\
         \hline
-        WireMe \cite{wireme} & Education, Home Automation & Centralized & - & Cloud & N/A & Hybrid text and visual system &  \\
+        WireMe \cite{wireme} & Education, Home Automation & Centralized & - & Cloud & - & Hybrid text and visual system &  \\
         \hline
-        VIPLE \cite{viple} & Education & Centralized & - & Cloud & N/A & Hybrid text and visual system & \\
+        VIPLE \cite{viple} & Education & Centralized & - & Cloud & - & Hybrid text and visual system & \\
         \hline
-        Smart Block \cite{smart_block} & Home Automation & Centralized & - & Cloud & N/A & Hybrid text and visual system & \textbullet \\
+        Smart Block \cite{smart_block} & Home Automation & Centralized & - & Cloud & - & Hybrid text and visual system & \textbullet \\
         \hline
-        PWCT \cite{pwct} &  &  &  &  &  &  &  \\
+        PWCT \cite{pwct} & * & Centralized & GNU GPL v2.0 & -\tnote{1} & High & Hybrid text and visual system &  \\
         \hline
-        DDF \cite{ddf} &  &  &  &  &  &  &  \\
+        DDF \cite{ddf} & N/A & Decentralized & Apache 2.0 & Fog & High & Hybrid text and visual system & \textbullet \\
         \hline
-        GIMLE \cite{gimle} &  &  &  &  &  &  &  \\
+        GIMLE \cite{gimle} & Industry & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
-        Leotta et al. \cite{runtime_verification} &  &  &  &  &  &  &  \\
+        Leotta et al. \cite{runtime_verification} \textcolor{red}{IS IT VALID} & * & Centralized\tnote{2} & - & Cloud and Edge\tnote{2} & - & Hybrid text and visual system\tnote{2} & \textbullet \\
         \hline
-        DDFlow \cite{ddflow} &  &  &  &  &  &  &  \\
+        DDFlow \cite{ddflow} & Security & Decentralized & - & Fog and Edge & - & Hybrid text and visual system & \textbullet \\
         \hline
-        Kefalakis et al. \cite{visual_paradigm_iot_solutions_development} &  &  &  &  &  &  &  \\
+        Kefalakis et al. \cite{visual_paradigm_iot_solutions_development} & - & Centralized & LGPL V3.0\tnote{3} & Cloud & - & Hybrid text and visual system &  \\
         \hline
-        Eterovic et al. \cite{vpl_uml} &  &  &  &  &  &  &  \\
+        Eterovic et al. \cite{vpl_uml} & Home Automation & -\tnote{4} & - & - & - & Hybrid text and visual system & - \\
         \hline
-        FRED \cite{fred} &  &  &  &  &  &  &  \\
+        FRED \cite{fred} & * & Centralized & -\tnote{5} & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
-        WoTFlow \cite{wotflow_dnr} &  &  &  &  &  &  &  \\
+        WoTFlow \cite{wotflow_dnr} & - & Decentralized & - & Fog and Edge & - & Hybrid text and visual system & \textbullet \\
         \hline
-        Ancona et al. \cite{runtime_monitoring} &  &  &  &  &  &  &  \\
-        \hline
-        Devify \cite{devify} &  &  &  &  &  &  &  \\
+        Ancona et al. \cite{runtime_monitoring} \textcolor{red}{IS IT VALID} & * & Centralized\tnote{2} & - & Cloud and Edge\tnote{2} & - & Hybrid text and visual system\tnote{2} & \textbullet \\
+        %\hline
+        %Devify \cite{devify} &  &  &  &  &  &  &  \\
         \hline
         Paller et al. \cite{orcc_extension} &  &  &  &  &  &  &  \\
         \hline
         Besari et al. \cite{mobile_apps_rpi} \cite{pre_mobile_apps_rpi} &  &  &  &  &  &  &  \\
         \hline
-        CharIoT \cite{chariot} &  &  &  &  &  &  &  \\
+        CharIoT \cite{chariot} &  &  & - &  &  &  &  \\
         \hline
         Desolda et al. \cite{desolda} &  &  &  &  &  &  &  \\
         \hline
@@ -259,6 +260,14 @@ The mentioned frameworks and tools were divided into the following categories, a
         \hline
     \end{tabular}
     }
+    \begin{tablenotes}\footnotesize
+        \item[1] Used for several purposes, didn't specify the architecture regarding IoT.
+        \item[2] Since it uses Node-RED, this information was based on its architecture. 
+        \item[3] Under the same license of OpenIoT.
+        \item[4] No information given regarding the architecture of the environment created, only the VPL. 
+        \item[5] No information about license is given, but further research discovered that it has paid plans and no source code available.
+    \end{tablenotes}
+    \end{threeparttable}
     \label{tab:evaluation_process_results}
 \end{table}{}
 
@@ -270,9 +279,31 @@ The mentioned frameworks and tools were divided into the following categories, a
 \subsection{Expanded Search}
 
 \textcolor{yellow}{\textbf{**TODO**}}
-\textcolor{blue}{verificar os surveys e tirar as tools de lá tmb}
+\textcolor{blue}{explicar pq é que as tools deste survey não foram encontradas pela slr}
+
+most tools don't have academic publications associated to them
 
 \subsubsection{Expanded Results}
+
+\textcolor{blue}{verificar os surveys e tirar as tools de lá tmb; fazer tabela similar à anterior}
+
+
+\cite{survey_vpl_iot}
+\begin{enumerate}
+    \item \textbf{Node-RED}
+    \item \textbf{NETLab Toolkit}
+    \item \textbf{ArduBlock}
+    \item \textbf{Scratch for Android (S4a)}
+    \item \textbf{ModKit}
+    \item \textbf{miniBloq}
+    \item \textbf{NooDL}
+    \item \textbf{DGLux5}
+    \item \textbf{AT\&T Flow Designer}
+    \item \textbf{Reactive Blocks}
+    \item \textbf{GraspIO}
+    \item \textbf{Wyliodrin}
+    \item \textbf{Zenodys}
+\end{enumerate}
 
 \subsection{Analysis and Discussion}
 
@@ -281,7 +312,7 @@ The mentioned frameworks and tools were divided into the following categories, a
 \subsubsection{Result Analysis}
 
 \textcolor{yellow}{\textbf{**TODO**}}
-\textcolor{blue}{Organizar os artigos por categorias?}
+\textcolor{blue}{Organizar os artigos pelas categorias ditas acima, tirando conclusões}
 
 \subsubsection{Research Questions}
 
@@ -295,6 +326,21 @@ The mentioned frameworks and tools were divided into the following categories, a
 
 \textcolor{blue}{Colocar aqui os resumos sobre os artigos que li sobre decentralização, mais específicos ao meu tema}
 \textcolor{red}{Ainda nao sei como organizar esta parte}
+
+
+\cite{ddf}
+\cite{ddflow}
+
+\cite{wotflow_dnr} - early work
+\cite{fog_at_the_edge}
+\cite{exogenous_coordination}
+\cite{flow_based_programming_fog}
+\cite{fog_flow}
+\cite{fog_flow_orchestration}
+%\cite{mobile_cloud_heterogeneous}
+%\cite{mobile_cloud}
+\cite{fog_computing_book}
+
 
 \section{Summary}
 
