@@ -254,7 +254,7 @@ The mentioned frameworks and tools were divided into the following categories, a
         \item[6] CharIoT uses the Giotto stack, https://iotexpedition.org/about.html, from where we retrieved this information.
     \end{tablenotes}
     \end{threeparttable}
-    \label{tab:evaluation_process_results}
+    \label{tab:slr_table_results}
 \end{table}{}
 
 \subsection{Expanded Search}
@@ -275,7 +275,7 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
 
 \begin{enumerate}
     \item \textbf{Node-RED} \cite{node_red} is a visual programming environment applied to the IoT paradigm. It makes use of a flow-based development and supports a wide range of devices and APIs. Due to being open-source and extendable, its large community contributes with features that enrich the tool, some of them talked about in Section \ref{sec:slr_results} (e.g. \textit{FRED} \cite{fred} and \textit{DDF} \cite{ddf}).
-    \item \textbf{NETLab Toolkit} \cite{netlabtoolkit} is a visual environment that makes use of drag and drop actions to allows its users to build IoT applications. 
+    \item \textbf{NETLab Toolkit} \cite{netlabtoolkit} is a visual environment that makes use of drag and drop actions to allows its users to build IoT applications. It provides a web interface to connect sensors
     \item \textbf{ArduBlock}
     \item \textbf{Scratch for Android (S4a)}
     \item \textbf{ModKit}
@@ -288,6 +288,26 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
     \item \textbf{Wyliodrin}
     \item \textbf{Zenodys}
 \end{enumerate}
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \caption{---. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
+    \begin{threeparttable}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{| c | c | c | c | c | c | c | c |}
+        \hline
+        \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
+        \hline
+        Node-Red \cite{node_red} & * & Centralized & Apache 2.0 & Cloud and Edge & High & Hybrid text and visual system & \textbullet \\
+        \hline
+        NETLab Toolkit \cite{netlabtoolkit} &  &  & GNU GPL &  &  & Hybrid text and visual system & \textbullet \\
+        \hline
+    \end{tabular}
+    }
+    \end{threeparttable}
+    \label{tab:expanded_research_results}
+\end{table}{}
 
 \subsection{Analysis and Discussion}
 
