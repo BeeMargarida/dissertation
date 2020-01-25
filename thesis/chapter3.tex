@@ -144,7 +144,7 @@ The results from the evaluation process can be seen in Table \ref{tab:evaluation
         \hline
         Exclusion/Inclusion criteria (Titles and Abstracts) & 65 & 2561\\
         \hline
-        Exclusion/Inclusion criteria (Introduction and Conclusion) & 23 & 42\\
+        Exclusion/Inclusion criteria (Introduction and Conclusion) & 22 & 43\\
         \hline
     \end{tabular}
     }
@@ -153,9 +153,9 @@ The results from the evaluation process can be seen in Table \ref{tab:evaluation
 
 \subsection{Results}\label{sec:slr_results}
 
-After analyzing the 23 publications, we organized them by categories. \cite{survey_vpl_iot} is a survey and the remaining 22 were frameworks or tools.
+After analyzing the 22 publications, we organized them by categories. \cite{survey_vpl_iot} is a survey and the remaining 21 were frameworks or tools.
 \par Regarding the survey, publication \cite{survey_vpl_iot} makes an in-dept review of 13 visual programming languages in the field of IoT, comparing them under four attributes: (1) programming environment, (2) license, (3) project repository and (4) platform support. The author concluded with some advantages of using visual programming languages, such as the ease of visualizing programming logic, useful for rapid development and less burden on handling syntax error. However, some negative aspects were also mentioned, being the large amount of time building simple IoT applications the most important one.
-\par The remaining 22 articles are frameworks or tools of visual programming applied to IoT. One of the tool is repeated in two papers, which showcases its evolution. The frameworks are:
+\par The remaining 21 articles are frameworks or tools of visual programming applied to IoT. One of the tool is repeated in two papers, which showcases its evolution. The frameworks are:
 
 \begin{enumerate}
     \item Solution for connecting devices from different IoT platforms, using Flow Based Programming with Node-RED \cite{Belsa2018}, proposed by \textbf{Belsa et al}. Its motivation is based on the limitation imposed by the IoT platform on communication between components and extensibility. This hinders possibilities to interact with services provided by other platforms. To validate their solution, they implemented a use case in the domain of transportation and logistics, with a composed service that used five different types of applications. The developed tool offers access to available services in a centralized visual framework, where end-users can use them to build more complex applications.
@@ -179,7 +179,6 @@ After analyzing the 23 publications, we organized them by categories. \cite{surv
     \item \textbf{CharIoT} \cite{chariot} is an end-user programming environment that promises to unify and support the configuration of IoT environments. It provides three blocks of support: capturing higher-level events using virtual sensors, construction of automation rules with a visual overview of the current configuration and support for sharing configuration between end users using a recommendation mechanism. To enable the capturing of higher-level events, it was developed two types of virtual sensors. The programmed virtual sensor provides a more accessible and understandable abstractions (defining that a room is "cold" if temperature is below 20ºC). The demonstrated virtual sensors are more complex, requiring the user to provide demonstration of the occurrence and not occurrence of the event (for example, the event of someone knocking on the door and the absence of someone knocking on the door). This last one requires the training of a Random Forest classifier. This programming environment is similar to IFTTT but goes one step further, with smarter event capturing and reusing of configurations, allowing the end-user to build faster and more robust IoT installations.
     \item A new technology, proposed by \textbf{Desolda et al.} \cite{desolda}, using a tangible programming language which allows non-programmers to configure the behavior of the smart objects in order to create and customize the smart environments. The main goal was to create, with the developed technology, a scenario of a smart museum. The authors defend that a personalization of a smart environment cannot be limited by the synchronization of smart devices and it may require experts to build the narrative of them, much like a museum said that. With this in mind, they introduced custom attributes to assign semantics to involved objects, in order to empower and simplify the creation of event-condition-action rules. In conclusion, this is an ongoing research focus on developing a new technology with an interaction paradigm to allow domain experts in the creation of smart environments. In addition, the fact that this technology uses expensive material (tabletop surface as digital workspace) doesn’t allow a regular user to use it as stated in the introduction.
     \item An End User Development (EUD) tool, proposed by \textbf{Eun et al.} \cite{eud_platform}, that allows end users to develop their own personal applications. It uses the dataflow approach, which allows for a more generalized programming experience as well the facility to build more complex programs with simple modules. The proposed tool has three main components: Service Template Authoring Tool, Service Template Repository and Smartphone Application. The first one allows for the end user to build more complex methods using atomic templates (components with simple functionality, like opening a curtain if it receives a command). The Service Template Repository contains the proprietary atomic templates as well as ones built by the user. Lastly, the Smartphone Application runs and manages the applications built by the user, as well as their requirements and dependencies. The developed EUD tool was compared with \textit{IFTTT} and Zapier, other tools focused on end user development. \textit{IFTTT} and the developed tool are more similar, focusing on consumer development, IoT and Home, with Zapier focusing on business. Both Zapier and \textit{IFTTT} use the Triger-Action paradigm (TAP), which differs from the dataflow paradigm used in this paper's tool.
-    \item \textbf{RHEA} \cite{rhea} is a framework whose purpose is to offer a unified extensible way for reactive applications to be developed with integration between different sources and middlewares, for example MQTT and ROS (Robot operating system). This is done by using a dataflow model. A user writes a program that will be translated into a dataflow graph. Using that graph, the framework will optimize parts of it and assign them to nodes (physical computation resources), which will be distributed across the available machines for execution. It also handles requirements like node placement, where specific nodes need to be placed in specific machines with specific skills. This framework can be useful in integrating data and building complex applications that integrate IoT and Robotics in a easy way. It facilitates the connection between different modules with several requirements and excuses the user of having to deal with asynchronous callbacks. It differentiates itself from other existing dataflow frameworks by allowing the use of other systems to execute tasks, having support for heterogeneity of hardware and the reactivity aspect of it.
 \end{enumerate}
 
 The mentioned frameworks and tools were divided into the following categories, according to several characteristics:
@@ -238,13 +237,11 @@ The mentioned frameworks and tools were divided into the following categories, a
         \hline
         Besari et al. \cite{pre_mobile_apps_rpi} \cite{mobile_apps_rpi} & Education & Centralized & - & Cloud & - & Hybrid text and visual system &  \\
         \hline
-        CharIoT \cite{chariot} &  &  & - &  &  & Hybrid text and visual systems &  \\
+        CharIoT \cite{chariot} & Home Automation & Centralized\tnote{6} & - & Cloud and Edge\tnote{6} & High\tnote{6} & Hybrid text and visual system & \textbullet \\
         \hline
-        Desolda et al. \cite{desolda} &  &  &  &  &  &  &  \\
+        Desolda et al. \cite{desolda} & Smart Museums & - & - & - & - & Hybrid text and visual system &  \\
         \hline
-        Eun et al. \cite{eud_platform} &  &  &  &  &  &  &  \\
-        \hline
-        RHEA \cite{rhea} &  &  &  &  &  &  &  \\
+        Eun et al. \cite{eud_platform} & Home Automation & Centralized & - & - & - & Hybrid text and visual system & \textbullet \\
         \hline
     \end{tabular}
     }
@@ -254,32 +251,31 @@ The mentioned frameworks and tools were divided into the following categories, a
         \item[3] Under the same license of OpenIoT.
         \item[4] No information given regarding the architecture of the environment created, only the VPL. 
         \item[5] No information about license is given, but further research discovered that it has paid plans and no source code available.
+        \item[6] CharIoT uses the Giotto stack, https://iotexpedition.org/about.html, from where we retrieved this information.
     \end{tablenotes}
     \end{threeparttable}
     \label{tab:evaluation_process_results}
 \end{table}{}
-
-\textcolor{red}{\textbf{**WIP**}}
-\textcolor{blue}{explicar caracteristicas de classificação(DONE); fazer o quadro com tudo organizado;}
-
-
 
 \subsection{Expanded Search}
 
 \textcolor{yellow}{\textbf{**TODO**}}
 \textcolor{blue}{explicar pq é que as tools deste survey não foram encontradas pela slr}
 
-most tools don't have academic publications associated to them
+The results of the Systematic Literature Review are disclosed in Section \ref{sec:slr_results}. However, there are tools that were found by non-systematic surveys \cite{survey_vpl_iot} that are not present in the results mentioned. Possible reasons for this divergence may consist of:
+\begin{enumerate}
+    \item tools not having academic publications associated to them, making it impossible to be returned as results of searches to the publication databases mentioned in Section \ref{sec:databases}. One example is \textit{Node-RED} \cite{node_red}.
+\end{enumerate}
 
 \subsubsection{Expanded Results}
 
 \textcolor{blue}{verificar os surveys e tirar as tools de lá tmb; fazer tabela similar à anterior}
 
+The results from the found survey \cite{survey_vpl_iot} were analyzed. The retrieved tools were assessed against the evaluation process defined in Section \ref{sec:evaluation_process} and characterized with the categories mentioned in Section \ref{sec:slr_results}. Using the methodology described, the results are:
 
-\cite{survey_vpl_iot}
 \begin{enumerate}
-    \item \textbf{Node-RED}
-    \item \textbf{NETLab Toolkit}
+    \item \textbf{Node-RED} \cite{node_red} is a visual programming environment applied to the IoT paradigm. It makes use of a flow-based development and supports a wide range of devices and APIs. Due to being open-source and extendable, its large community contributes with features that enrich the tool, some of them talked about in Section \ref{sec:slr_results} (e.g. \textit{FRED} \cite{fred} and \textit{DDF} \cite{ddf}).
+    \item \textbf{NETLab Toolkit} \cite{netlabtoolkit} is a visual environment that makes use of drag and drop actions to allows its users to build IoT applications. 
     \item \textbf{ArduBlock}
     \item \textbf{Scratch for Android (S4a)}
     \item \textbf{ModKit}
