@@ -2,7 +2,7 @@
 
 \section*{}
 
-This chapter describes the problem, as it can be seen in Section \ref{sec:current_issues}. In Section \ref{sec:disiderata} it is presented the wanted features for the proposed solution and in Section \ref{sec:scope} the scope of the project is defined. Section \ref{sec:research_questions}contains the research questions to be answered by this dissertation. The experimental methodology is outlined in Section \ref{sec:exp_meth}. Chapter \ref{sec:planning} contains a Gantt chart with a planning of this dissertation. Finally, this chapter is summarized by Section \ref{sec:stat_summary} with an overview of the topics mentioned before.
+This chapter describes the problem, as it can be seen in Section \ref{sec:current_issues}. In Section \ref{sec:desiderata} it is presented the wanted features for the proposed solution and in Section \ref{sec:scope} the scope of the project is defined. Section \ref{sec:research_questions}contains the research questions to be answered by this dissertation. The experimental methodology is outlined in Section \ref{sec:exp_meth}. Chapter \ref{sec:planning} contains a Gantt chart with a planning of this dissertation. Finally, this chapter is summarized by Section \ref{sec:stat_summary} with an overview of the topics mentioned before.
 
 \section{Current Issues}\label{sec:current_issues}
 
@@ -11,17 +11,17 @@ We can define the problem in these issues:
 \begin{enumerate}
     \item \textbf{Discovery of computation capabilities}: the current work lacks the automatic discovery of the computational capabilities of the devices in the network. This information is normally manually introduced by the developer.
     \item \textbf{Leveraging devices in the network}: since most tools use a centralized architecture, including Node-RED, they do not leverage the devices in the network. Fog Computing introduces a decentralized solution, one that can be applied to Node-RED by distributing the computational tasks across the edge devices.
-    \item \textbf{Inferring computational capabilities}: current tools require the developer to manually introduce the resources of each device in the network, which is not a scalable solution. This information is vital for the successful distribution of computation across the devices.
+    \item \textbf{Communicate computational capabilities}: current tools require the developer to manually introduce the resources of each device in the network, which is not a scalable solution. This information is vital for the successful distribution of computation across the devices.
     \item \textbf{Detecting non-availability}: when a device fails or becomes unavailable, it is important for the system to automatically realize and adapt. The majority of current solutions do not possess this feature, which is vital if a system aims to dynamically adapt to changes in the environment.
 \end{enumerate}
 
-\section{Desiderata}\label{sec:disiderata}
+\section{Desiderata}\label{sec:desiderata}
 
 Desiderata is a Latin word that translates to "\emph{things wanted}". In the context of this document, this section contains requirements wanted in a solution that aims to solve all the issues identified in Section \ref{sec:current_issues}. The requirements are the following:
 
 \begin{description}
-    \item [D1: Infer computational capabilities of devices connected] so that this information can be sent to an orchestrator that will decompose the total computation workload based on this data.
-    \item [D2: Decomposition and partition of the computation] so that the total computational requested can be distributed through all the devices in the network, using information about the computational capabilities and availability of the devices in the network.
+    \item [D1: Communicate computational capabilities of devices connected] so that this information can be sent to an orchestrator that will decompose the total computation workload based on this data.
+    \item [D2: Decomposition and partition of computation] so that the total computational requested can be distributed through all the devices in the network, using information about the computational capabilities and availability of the devices in the network.
     \item [D3: Convert computational tasks into runnable code] so that each computational task can be executed in edge and fog devices, which contain limited resources.
     \item [D4: Provide self-adaptation of the system] so that it can adapt to non-availability of resources or even appearances of new devices.
 \end{description}
