@@ -21,11 +21,12 @@ We started by defining the research questions to be answered as well as choosing
 
 \textcolor{red}{\textbf{**REVIEW**}}\\
 In this Systematic Literature Review we intent to answer the following questions:
-\\ \\
-\textbf{RQ1: How did Visual Programming Languages and Internet of Things evolve over time?} Internet of Things is a paradigm with several years, but in the last few years it has been increasing in its applications, specifically with its integration with visual programming tools and environments. It is important to analyze the evolution of these concepts and their integration, to be able to compare with the state of the art.\\ \\
-\textbf{RQ2: Methodologies implemented in Internet of Things with Visual Programming Languages?} With the integration of visual programming tools with Internet of Things, several methodologies were implemented for it to be possible and provide users with a better experience.\\ \\
-\textbf{RQ3: What is the maintenance and resilience of a Visual Programming Language integrated with an IoT system?} Visual programming tools provide users a easy way of programming, with the use of visual elements and relations between them. However, this approach has downsides, such as difficulty in constructing and maintaining complex systems and high level programming that undermines efficiency and resilience.
 
+\begin{description}
+    \item [RQ1: How did VPLs and IOT evolve over time?] Internet of Things is a paradigm with several years, but in the last few years it has been increasing in its applications, specifically with its integration with visual programming tools and environments. It is important to analyze the evolution of these concepts and their integration, to be able to compare with the state of the art.
+    \item [RQ2: Methodologies implemented in IoT with VPLs?] With the integration of visual programming tools with Internet of Things, several methodologies were implemented for it to be possible and provide users with a better experience.
+    \item [RQ3: What is the maintenance and resilience of VPLs integrated with an IoT system?] Visual programming tools provide users a easy way of programming, with the use of visual elements and relations between them. However, this approach has downsides, such as difficulty in constructing and maintaining complex systems and high level programming that undermines efficiency and resilience.
+\end{description}
 
 \subsubsection{Databases}\label{sec:databases}
 
@@ -267,8 +268,6 @@ The results of the Systematic Literature Review are disclosed in Section \ref{se
 
 \subsubsection{Expanded Results}
 
-\textcolor{blue}{verificar os surveys e tirar as tools de lá tmb(WIP); fazer tabela similar à anterior(WIP)}
-
 The results from the found survey \cite{survey_vpl_iot} were analyzed. The retrieved tools were assessed against the evaluation process defined in Section \ref{sec:evaluation_process} and characterized with the categories mentioned in Section \ref{sec:slr_results}. Using the methodology described, the results are:
 
 \begin{enumerate}
@@ -278,8 +277,8 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
     \item \textbf{DGLux5} \cite{dglux5} for DSA is a \textit{drag-and-drop} visual language and environment that allows its users to build applications tailored for Distributed Services Architecture (DSA) IoT middleware. It provides a dashboard for analyzing and controlling device data in real-time, as well as building the system only using visual elements.
     \item \textbf{AT\&T Flow Designer} \cite{attflowdesigner} is a visual tool incorporated in a cloud development environment, applied to the development of IoT systems. Its visual paradigm is similar to Node-RED, with the notion of \textit{nodes} and \textit{wires}. This tool provides an easy iteration and improvement of a product, as well as an easy deployment.
     \item \textbf{GraspIO} \cite{graspio} is a Graphical Smart Program for Inputs and Outputs that contains a block \textit{drag-and-drop} visual paradigm that allows its users to build applications for the \textit{Cloudio} hardware. It offers a Cloud Service that connects and manages all \textit{Cloudio} devices, making them available at the user mobile device.
-    \item \textbf{Wyliodrin}
-    \item \textbf{Zenodys}
+    \item \textbf{Wyliodrin} \cite{wyliodrin} is a browser-based visual programming environment that allows development of IoT systems of several devices, such as Raspberry Pi, Arduino, Intel Galileo, Intel Edison and others. It provides a \textit{drag-and-drop} environment, as well as support for text-based languages. A dashboard for visualizing the data collected is provided.
+    \item \textbf{Zenodys} \cite{zenodys} provides a \textit{drag-and-drop} interface to build application backends as well as a user interfaces. Its computing engine can run in several types of devices, from the cloud to chips, devices and distributed computers. Zenodys contains a visual debugger as well as support for text-based programming and code generation. 
 \end{enumerate}
 
 \captionsetup{belowskip=12pt,aboveskip=4pt}
@@ -304,9 +303,10 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
         \hline
         GraspIO \cite{graspio} & Education & - & BSD & Cloud & - & Purely visual language &  \\
         \hline
-        Wyliodrin \cite{} & * & - &  & - & - & Hybrid text and visual system &  \\
+        Wyliodrin \cite{wyliodrin} & * & - & GNU GPL3 & - & - & Hybrid text and visual system & \textbullet \\
         \hline
-        Zenodys \cite{} & * & - &  & - & - & Hybrid text and visual system &  \\
+        Zenodys \cite{zenodys} & * & - & GNU GPL3 & - & High & Hybrid text and visual system & \textbullet \\
+        \hline
     \end{tabular}
     }
     \begin{tablenotes}\footnotesize
@@ -318,16 +318,32 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
 
 \subsection{Analysis and Discussion}
 
-\textcolor{yellow}{\textbf{**TODO**}}
+The tools presented in this Systematic Literature Review passed the evaluation process defined in Section \ref{sec:evaluation_process}. Tools that only supported one device were left out, as well as tools that extended a VPL applied to IoT. 
 
 \subsubsection{Result Analysis}
 
-\textcolor{yellow}{\textbf{**TODO**}}
 \textcolor{blue}{Organizar os artigos pelas categorias ditas acima, tirando conclusões}
+
+\begin{description}
+    \item [Scope] 
+    \item [Architecture]
+    \item [License] 
+    \item [Tier] 
+    \item [Scalability] 
+    \item [Programming] 
+    \item [Web-based] 
+\end{description}
 
 \subsubsection{Research Questions}
 
 \textcolor{blue}{Responder às research questions com os resultados}
+
+\begin{description}
+    \item [RQ1: How did VPLs and IOT evolve over time?] 
+    \item [RQ2: Methodologies implemented in IoT with VPLs?]
+    \item [RQ3: What is the maintenance and resilience of VPLs integrated with an IoT system?]
+\end{description}
+
 
 \subsection{Conclusions}
 
