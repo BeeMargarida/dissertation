@@ -83,6 +83,7 @@ In addition to the inclusion criteria, all publications were analyzed in their c
 \begin{enumerate}
     \item Has less than two (non-self) citations when more than five years old;
     \item Presents just ideas, tutorials, integration experimentation, magazine publications, interviews or discussion papers;
+    \item Presents a tool or framework that doesn't support orchestration of multiple devices;
     \item Not in English.
 \end{enumerate}{}
 
@@ -205,7 +206,7 @@ The mentioned frameworks and tools were divided into the following categories, a
         \hline
         Belsa et al.\cite{Belsa2018} & * & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
-        Ivy \cite{ivy} & * & Centralized & - & Cloud & Medium & Purely Visual language &  \\
+        Ivy \cite{ivy} & * & Centralized & - & Cloud & Medium & Purely visual language &  \\
         \hline
         Ghiani et al. \cite{personalization_of_context_dependent_apps} & Home Automation & Centralized & - & Cloud & Medium\textcolor{red}{CHECK} & Constraint-oriented system & \textbullet \\
         \hline
@@ -272,16 +273,11 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
 
 \begin{enumerate}
     \item \textbf{Node-RED} \cite{node_red} is a visual programming environment applied to the IoT paradigm. It makes use of a flow-based development and supports a wide range of devices and APIs. Due to being open-source and extendable, its large community contributes with features that enrich the tool, some of them talked about in Section \ref{sec:slr_results} (e.g. \textit{FRED} \cite{fred} and \textit{DDF} \cite{ddf}).
-    \item \textbf{NETLab Toolkit} \cite{netlabtoolkit} is a visual environment that makes use of drag and drop actions to allows its users to build IoT applications. It provides a web interface to connect sensors
-    \item \textbf{ArduBlock}
-    \item \textbf{Scratch for Android (S4a)}
-    \item \textbf{ModKit}
-    \item \textbf{miniBloq}
-    \item \textbf{NooDL}
-    \item \textbf{DGLux5}
-    \item \textbf{AT\&T Flow Designer}
-    \item \textbf{Reactive Blocks}
-    \item \textbf{GraspIO}
+    \item \textbf{NETLab Toolkit} \cite{netlabtoolkit} is a visual environment that makes use of drag and drop actions to allows its users to build IoT applications. It provides a web interface to connect sensors, actuators and others for the development of quick prototypes.
+    \item \textbf{NooDL} \cite{noodl} is a platform that provides a visual programming interface for prototyping applications. It allows for the creation of interfaces, using live data and supporting several types of hardware. Although its not specific to IoT, NooDL covers the programming of IoT systems. It makes use of MQTT broker agents for connecting devices and visual paradigms such as \textit{nodes}, \textit{connections} and \textit{hierarchies} to allow the user to build its system.
+    \item \textbf{DGLux5} \cite{dglux5} for DSA is a \textit{drag-and-drop} visual language and environment that allows its users to build applications tailored for Distributed Services Architecture (DSA) IoT middleware. It provides a dashboard for analyzing and controlling device data in real-time, as well as building the system only using visual elements.
+    \item \textbf{AT\&T Flow Designer} \cite{attflowdesigner} is a visual tool incorporated in a cloud development environment, applied to the development of IoT systems. Its visual paradigm is similar to Node-RED, with the notion of \textit{nodes} and \textit{wires}. This tool provides an easy iteration and improvement of a product, as well as an easy deployment.
+    \item \textbf{GraspIO} \cite{graspio} is a Graphical Smart Program for Inputs and Outputs that contains a block \textit{drag-and-drop} visual paradigm that allows its users to build applications for the \textit{Cloudio} hardware. It offers a Cloud Service that connects and manages all \textit{Cloudio} devices, making them available at the user mobile device.
     \item \textbf{Wyliodrin}
     \item \textbf{Zenodys}
 \end{enumerate}
@@ -298,10 +294,24 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
         \hline
         Node-Red \cite{node_red} & * & Centralized & Apache 2.0 & Cloud and Edge & High & Hybrid text and visual system & \textbullet \\
         \hline
-        NETLab Toolkit \cite{netlabtoolkit} &  &  & GNU GPL &  &  & Hybrid text and visual system & \textbullet \\
+        NETLab Toolkit \cite{netlabtoolkit} & - & - & GNU GPL & - & - & Hybrid text and visual system & \textbullet \\
         \hline
+        NooDL \cite{noodl} & * & - & NooDL End User License\tnote{1} & - & - & Hybrid text and visual system &  \\
+        \hline
+        DGLux5 \cite{noodl} & * & - & DGLux Engineering License & - & High & Purely visual language &  \\
+        \hline
+        AT\&T Flow Designer \cite{attflowdesigner} & * & - & GNU GPL3 & Cloud & High & Hybrid text and visual system & \textbullet \\
+        \hline
+        GraspIO \cite{graspio} & Education & - & BSD & Cloud & - & Purely visual language &  \\
+        \hline
+        Wyliodrin \cite{} & * & - &  & - & - & Hybrid text and visual system &  \\
+        \hline
+        Zenodys \cite{} & * & - &  & - & - & Hybrid text and visual system &  \\
     \end{tabular}
     }
+    \begin{tablenotes}\footnotesize
+        \item[1] Available at \url{https://www.noodl.net/eula}
+    \end{tablenotes}
     \end{threeparttable}
     \label{tab:expanded_research_results}
 \end{table}{}
