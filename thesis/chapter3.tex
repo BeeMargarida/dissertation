@@ -363,7 +363,6 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 \par In DDF \cite{ddf}, they started by extending Node-RED and implementing D-NR (Distributed Node-RED), which contains processes that are able to run across devices in local networks and servers in the Cloud. The application, called flow, is built in the visual programming environment, which is running in a development server. All the other devices running D-NR subscribe to a MQTT topic that contains the status of the flow. When a flow is deployed, all devices running D-NR are notified and subsequently analyze the given flow. Based on a set of constrains, they decide which nodes they may need to deploy locally and which sub-flow (parts of a flow) must be shared with other devices. Each device has a set of characteristics, from its computational resources such as bandwidth, available storage to its location. The developer can insert constraints into the flow, by specifying which device a sub-flow must be deployed in or the computational resources needed. However, these constraints and the characteristics of each device must be manually inserted in the system by developers or system operators. 
 \par Subsequent work to the previously mentioned tool focused on support for Smart Cities domain. In the publication of 2018 \cite{fog_at_the_edge}, the problems addressed were the deployment of multiple instances of devices running the same sub-flow was a developed feature, as well as the support for more complex deployment constraints of the application flow. With this, the developer can specify requirements for each node on device identification, computing resources needed (CPU and memory) and physical location. In addition to these improvements, the coordination between nodes in the fog was tackled by introducing a coordinator node. This node is responsible for synchronizing the context of the device with the one given by the centralized coordinator. In Figure \ref{fig:coordination_dnr} it is possible to see the four possible states of a coordinator node: (1) NORMAL, where the node passes the data to its output, (2) DROP, in which the node does not pass the data to other node and instead drops it, (3) FETCH\_FORWARD, where the node gets the input from an external instance of its supposed input and (4) RECEIVE\_REDIRECT in which the node sends the data to an external instance of its output node.
 \par In more recent work \cite{exogenous_coordination}, support for CPSCN (Cyber Physical Social Computing and Networking) was implemented, making it possible to facilitate the development of large scale CPSCN applications. To make this possible, the contextual data and application data were separated, so that the application data is only used for computation activities and the contextual data is used to coordinate the communication between those activities.
-\par \textcolor{red}{FALAR AGORA SOBRE DDFLOW}
 
 \begin{figure}[h]
 \caption{Coordination between nodes in D\-NR}
@@ -372,12 +371,26 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 \includegraphics[width=0.8\textwidth]{dnr_exogenous_coordination.png}
 \end{figure}
 
-\par Other approach was made in the publication 
+\par Other approach was made in the publication from Szydlo et al. \cite{flow_based_programming_fog}, where they focused on the transformation and decomposition of data flow. Parts of the flow can be translated into the executable parts, such as Lua code. Their contribution includes the concepts of data flow transformation, a new framework called \textit{uFlow} that can be executed on a variety of resource-constrained embedded devices and the integration with the Node-RED platform. 
+\par The solution found consisted in the transformation of a given data flow, where the developer chooses the computing operations that will be run on the devices. The operations that will run directly on the devices are implemented in the form of embedded software, using the developed framework \textit{uFlow}, which allows for parts of the flow to be run on heterogenous devices. All this is integrated with NodeRED. The results were promising, with the decrease in the number of measurements made by the sensors. However, there is room for improvements, with the automation of the decomposition and partitioning of the initial flow, the detection bottlenecks which will move computations accordingly from the cloud to the fog. \textcolor{red}{FALAR SOBRE AS IMAGENS A SEREM INSERIDAS}
+\par In 2019, they continued their work with the publication \cite{fog_flow}, where they built the model and engine \textit{FogFlow}, which enables the design of applications able to be decomposed onto heterogeneous IoT environments according to a chosen decomposition schema. To achieve a level of decentralization and heterogeneity, they abstract out the application definition from its architecture and rely on graph representation to provide an unambiguous, well defined model of computations. The application definition should be infrastructure-independent and contain only data processing logic, and its execution should be possible on different set of devices with different capabilities.
+\textcolor{red}{ACABAR}
 
-%\cite{ddflow}
+\textcolor{red}{INSERT PICTURES uflow}
+
+%summaries in twist
+
+\par \textcolor{red}{FALAR SOBRE fog\_flow\_orchestration}
+\par \textcolor{red}{FALAR SOBRE DDFLOW}
+\par \textcolor{red}{FALAR SOBRE mobile\_cloud\_heterogeneous e mobile\_cloud?}
+
+
 %\cite{flow_based_programming_fog}
 %\cite{fog_flow}
 %\cite{fog_flow_orchestration}
+%\cite{ddflow}
+
+
 %\cite{mobile_cloud_heterogeneous}
 %\cite{mobile_cloud}
 %\cite{fog_computing_book}
