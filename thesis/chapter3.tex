@@ -354,8 +354,6 @@ The tools presented in this Systematic Literature Review passed the evaluation p
 
 \section{Decentralized Architectures in Visual Programming Tools applied to the Internet of Things paradigm}
 
-\textcolor{blue}{Falar sobre todos os artigos do Giang e a sua evolução (DONE); falar sobre ddflow(WIP); falar sobre fogflow}
-\textcolor{red}{WIP}
 
 Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solution to visual programming environments applied to Internet of Things systems \cite{ddf} \cite{ddflow} \cite{wotflow_dnr}.
 \par The work made by in WoTFlow \cite{wotflow_dnr}, DDF \cite{ddf} and subsequent works \cite{fog_at_the_edge} \cite{exogenous_coordination} consists of a system built on Node-RED framework and focused on the use case of Smart Cities. Their goal is to make a tool more suitable for the development of fog-based applications that are dependent on the context of the edge devices they operate on. 
@@ -401,6 +399,7 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 
 \par DDFlow \cite{ddflow}, first mentioned in Section \ref{sec:slr_results}, presents another distributed approach by extending Node-RED with a system runtime that supports dynamic scaling and adaption of application deployments. The coordinator of the distributed system maintains the state and assigns tasks to available devices, minimizing end-to-end latency. Dataflow notions of \textit{node} and \textit{wire} are expanded, with a \textit{node} in DDFlow representing an instantiation of a task that is deployed in a device, receiving inputs and generating outputs. \textit{Nodes} can be constrained in their assignment by optional parameters, \textit{Device} and \textit{Region}, inserted by the developer. A \textit{wire} connects two or more nodes and can have three types: \textit{Stream} (one-to-one), \textit{Broadcast} (one-to-many) and \textit{Unite} (many-to-one). 
 \par In a DDFlow system, each device has a set of capabilities and a list of services that correspond to an implementation of a \textit{Node}, as it can be seen in Figure \ref{fig:ddflow}. \textcolor{red}{Falar mais tarde que isto é bastante limitador} 
+\textcolor{red}{ACABAR} 
 
 \begin{figure}[h]
 \caption{DDFlow architecture}
@@ -409,7 +408,6 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 \includegraphics[width=0.8\textwidth]{ddflow.png}
 \end{figure}
 
-\par \textcolor{red}{FALAR SOBRE DDFLOW}
 \par \textcolor{red}{FALAR SOBRE mobile\_cloud\_heterogeneous e mobile\_cloud?}
 
 
