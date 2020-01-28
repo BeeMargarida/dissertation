@@ -365,7 +365,7 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 \par In more recent work \cite{exogenous_coordination}, support for CPSCN (Cyber Physical Social Computing and Networking) was implemented, making it possible to facilitate the development of large scale CPSCN applications. To make this possible, the contextual data and application data were separated, so that the application data is only used for computation activities and the contextual data is used to coordinate the communication between those activities.
 
 \begin{figure}[h]
-\caption{Coordination between nodes in D\-NR}
+\caption{Coordination between nodes in D-NR \cite{fog_at_the_edge}}
 \label{fig:coordination_dnr}
 \centering
 \includegraphics[width=0.8\textwidth]{dnr_exogenous_coordination.png}
@@ -375,7 +375,7 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 \par The solution found consisted in the transformation of a given data flow, where the developer chooses the computing operations that will be run on the devices. The operations that will run directly on the devices are implemented in the form of embedded software, using the developed framework \textit{uFlow}, which allows for parts of the flow to be run on heterogenous devices. All this is integrated with NodeRED. The communication between the devices is made only through the cloud, with no support for peer-to-device communication. The results were promising, with the decrease in the number of measurements made by the sensors. However, there is room for improvements, with the automation of the decomposition and partitioning of the initial flow, the detection bottlenecks which will move computations accordingly from the cloud to the fog. Figure \ref{fig:uflow_1} represents a situation of partitioning and assignment of tasks. There are two IoT devices and a Node-RED instance running in the Cloud. The system goal is to measure soil humidity and ambient light. If a button is pressed or fertilizer is needed, an e-mail is sent to the gardener. The partition of computation is made in the assumption that the closer a selected process it to the source of data, the higher the amount of data transmitted between computing operations. After parts of the flow are assigned to specific devices, they are altered in order to be executed by \textit{uFlow} and Node-RED. It is possible to observe in Figure \ref{fig:uflow_1} the results of the transformation process, where the parts of the flow surrounded by a color are executed in the device with the respective color.
 
 \begin{figure}[h]
-\caption{Partition and assignment of parts of the flow}
+\caption{Partition and assignment of parts of the flow \cite{flow_based_programming_fog}}
 \label{fig:uflow_1}
 \centering
 \includegraphics[width=0.9\textwidth]{uflow_1.png}
@@ -384,20 +384,29 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 \par In 2019, they continued their work with the publication \cite{fog_flow}, where they built the model and engine \textit{FogFlow}, which enables the design of applications able to be decomposed onto heterogeneous IoT environments according to a chosen decomposition schema. To achieve a level of decentralization and heterogeneity, they abstract out the application definition from its architecture and rely on graph representation to provide an unambiguous, well defined model of computations. The application definition should be infrastructure-independent and contain only data processing logic, and its execution should be possible on different set of devices with different capabilities. Several algorithms for flow decomposition were mentioned \cite{algorithm_fog} \cite{ifogsim}, but none were specified in terms of results. Figure \ref{fig:fogflow} represents the \textit{FogFlow} architecture, which is composed by three modules: (1) the \textit{FogFlow} API, which enables the creation of the application definition, (2) the Graph Module, responsible for processing and transforming the application definition into a data flow graph and finally the (3) Execution Model, which translates the graph and generates executables ready to be run on the assigned devices.
 
 \begin{figure}[h]
-\caption{\textit{FogFlow} architecture}
+\caption{\textit{FogFlow} architecture \cite{fog_flow}}
 \label{fig:fogflow}
 \centering
 \includegraphics[width=0.8\textwidth]{fogflow.png}
 \end{figure}
 
-\par \textcolor{red}{FALAR SOBRE fog\_flow\_orchestration}
+\par There is another tool with the same name \textit{FogFlow}, but created by Cheng et al. \cite{fogflow_github}. In the first publication related to this tool \cite{fog_flow_easy}, the contributions made were the implementation of a standard-base programming model for Fog Computing and a scalable context management. The first contribution consists in extending the dataflow programming model with hints, ir order to facilitate the development of fog applications. The scalable context management introduces a distributed approach, which allows to overcome the limits in a centralized context, achieving much better performance in terms of throughput, response time and scalability. The \textit{FogFlow} framework focuses in a Smart City Platform use case, separated in three areas: (1) Service Management, normally hosted in the cloud, (2) Data Processing, present in cloud and edge devices and (3) Context Management, which is separated in an device discovery unit hosted in the cloud and IoT brokers scattered in edge and cloud.
+\par In more recent work \cite{fog_flow_tool}, \textit{FogFlow} was improved in order to provide infrastructure providers an environment that allows them to build decentralized IoT systems faster, with increased stability and scalability. The architecture can be seen in Figure \ref{fig:fogflow_tool}, where the IoT system is represented by dynamic data flows that are orchestrated between sensors (Producers) and actuators (Consumers). The application is first designed using the \textit{FogFlow} Task Designer, a hybrid text and visual programming environment, which results in an abstraction called Service Template. This abstraction contains specifics about the resources needed for each part of the system. Once the Service Template is submitted, the framework will determine how to instantiate it using the context data available. Each task is associated with an operator, which consists of a Docker image, and its assignment is based on how many resources are available on each edge node, the location of data sources and the prediction of workload. Edge nodes are autonomous since they are able to make their own decisions based on their local context, without relying on the central cloud. \textcolor{red}{Review}
+
+\begin{figure}[h]
+\caption{\textit{FogFlow} high level model \cite{fog_flow_tool}}
+\label{fig:fogflow_tool}
+\centering
+\includegraphics[width=0.8\textwidth]{fogflow_tool.png}
+\end{figure}
+
 \par \textcolor{red}{FALAR SOBRE DDFLOW}
 \par \textcolor{red}{FALAR SOBRE mobile\_cloud\_heterogeneous e mobile\_cloud?}
 
 
 %\cite{flow_based_programming_fog}
 %\cite{fog_flow}
-%\cite{fog_flow_orchestration}
+%\cite{fog_flow_tool}
 %\cite{ddflow}
 
 
