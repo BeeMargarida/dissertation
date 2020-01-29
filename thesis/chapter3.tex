@@ -198,12 +198,13 @@ The mentioned frameworks and tools were divided into the following categories, a
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption[VPLs applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
+    \caption[VPLs applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one. The $\star$ symbol represents certainty in the evaluation made.}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
     \begin{tabular}{| c | c | c | c | c | c | c | c |}
         \hline
         \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
+        Certainty & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$  & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ \\
         \hline
         Belsa et al.\cite{Belsa2018} & * & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
@@ -248,7 +249,7 @@ The mentioned frameworks and tools were divided into the following categories, a
     \end{tabular}
     }
     \begin{tablenotes}\footnotesize
-        \item[1] Used for several purposes, didn't specify the architecture regarding IoT.
+        \item[1] Used for several purposes, didn't specify the tier it is located in regarding IoT.
         \item[2] Since it uses Node-RED, this information was based on its architecture. 
         \item[3] Under the same license of OpenIoT.
         \item[4] No information given regarding the architecture of the environment created, only the VPL. 
@@ -284,12 +285,13 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption[Characterization of VPls applied to IoT from survey \cite{survey_vpl_iot}.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
+    \caption[Characterization of VPls applied to IoT from survey \cite{survey_vpl_iot}.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one. The $\star$ symbol represents certainty in the evaluation made.}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
     \begin{tabular}{| c | c | c | c | c | c | c | c |}
         \hline
         \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
+        Certainty & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$  & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ \\
         \hline
         Node-Red \cite{node_red} & * & Centralized & Apache 2.0 & Cloud and Edge & High & Hybrid text and visual system & \textbullet \\
         \hline
@@ -320,7 +322,7 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
 
 The tools presented in this Systematic Literature Review passed the evaluation process defined in Section \ref{sec:evaluation_process}. Tools that only supported one device were left out, as well as tools that extended a VPL applied to IoT. 
 
-\subsubsection{Result Analysis}
+\subsubsection{Result Analysis}\label{sec:result_analysis}
 
 \textcolor{blue}{Organizar os artigos pelas categorias ditas acima, tirando conclusões}
 
@@ -330,7 +332,7 @@ The tools presented in this Systematic Literature Review passed the evaluation p
     \item [Scope] Most of the tools found have several scopes, such as education, industry or home automation. From the 28 tools, 6 were specific to Home Automation, 4 to Education, 3 to specific domains, 1 for industry and the remain had a wide range of use cases.
     \item [Architecture] From the 28 tools found, 16 tools have a centralized architecture, 3 are decentralized and the remaining 9 didn't have enough information to reach a conclusion.
     \item [License] Most of the tools didn't mention a license and the ones who did were in its majority open source (e.g. GNU GPL2, GNU GPL3, Apache 2.0 and LGPL3). 
-    \item [Tier] \textcolor{red}{\textbf{CHECK THIS, RESULTS ARE INCOMPLETE}}
+    \item [Tier] From the 28 tools, 9 didn't specify the tier they are situated in. From the remaining 19, 14 are situated in the Cloud layer, 3 are in the Fog and/or Edge and the remaining 2 are work both in the Cloud and Edge tiers. \textcolor{red}{\textbf{CHECK THIS}}
     \item [Scalability] The majority of tools analyzed don't have scalability metrics analyzed, more specifically the number of devices supported by them. The ones that do have high scalability, which concludes that that result is analyzed when the tool has support for it.
     \item [Programming] From the 28 analyzed tools, 22 employ a hybrid text and visual system visual programming paradigm, while 3 use a purely visual and the other 3 a form-based one. 
     \item [Web-based] The majority of tools analyzed are web-based, being accessible with the use of a browser. Only one tool didn't provide an environment, only a specification of a visual programming language.
@@ -339,11 +341,11 @@ The tools presented in this Systematic Literature Review passed the evaluation p
 \subsubsection{Research Questions}
 
 \textcolor{blue}{Responder às research questions com os resultados}
-
+\textcolor{red}{Check this}
 \begin{description}
-    \item [RQ1: What relevant VPLs applied to IoT exist?]
-    \item [RQ2: What is the scope of the tools found in RQ1?]
-    \item [RQ3: What is the architecture of the tools found in RQ1?]
+    \item [RQ1: What relevant VPLs applied to IoT exist?] Based on the results from Sections \ref{sec:slr_results} and \ref{tab:expanded_research_results}, there are 28 visual programming languages and/or environments applied to the Internet of Things paradigm.
+    \item [RQ2: What is the scope of the tools found in RQ1?] The majority of tools found focus on various use cases, such as education, home automation and industry. These results can be consulted in Tables \ref{tab:slr_table_results} and \ref{tab:expanded_research_results} as well as in Section \ref{sec:result_analysis}.
+    \item [RQ3: What is the architecture of the tools found in RQ1?] Centralized architectures are the dominant architectures in visual programming tools applied to IoT. 
     \item [RQ4: What is the tier of the tools found in RQ1?]
 \end{description}
 
@@ -398,8 +400,8 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 \end{figure}
 
 \par DDFlow \cite{ddflow}, first mentioned in Section \ref{sec:slr_results}, presents another distributed approach by extending Node-RED with a system runtime that supports dynamic scaling and adaption of application deployments. The coordinator of the distributed system maintains the state and assigns tasks to available devices, minimizing end-to-end latency. Dataflow notions of \textit{node} and \textit{wire} are expanded, with a \textit{node} in DDFlow representing an instantiation of a task that is deployed in a device, receiving inputs and generating outputs. \textit{Nodes} can be constrained in their assignment by optional parameters, \textit{Device} and \textit{Region}, inserted by the developer. A \textit{wire} connects two or more nodes and can have three types: \textit{Stream} (one-to-one), \textit{Broadcast} (one-to-many) and \textit{Unite} (many-to-one). 
-\par In a DDFlow system, each device has a set of capabilities and a list of services that correspond to an implementation of a \textit{Node}, as it can be seen in Figure \ref{fig:ddflow}. \textcolor{red}{Falar mais tarde que isto é bastante limitador} 
-\textcolor{red}{ACABAR} 
+\par In a DDFlow system, each device has a set of capabilities and a list of services that correspond to an implementation of a \textit{Node}, as it can be seen in Figure \ref{fig:ddflow}. \textcolor{red}{Falar mais tarde que isto é bastante limitador} The devices communicate this information through their Device Manager or a proxy, if it is a constrained device. The Coordinator is a web server responsible for managing the DDFlow applications and is composed of three parts, which can be seen in Figure \ref{fig:ddflow}: (1) a visual programming environment were DDFlow application are built, (2) a Deployment Manager that communicates with the Device Managers of the devices and (3) a Placement Solver, responsible for decomposing and assigning tasks to the available devices. When an application is deployed, a network topology graph and a task graph are constructed based on the real-time information retrieved from the devices. The Coordinator proceeds with mapping tasks to devices by minimizing the task graph's end-to-end latency of the longest path. Dynamic adaptation is supported by monitoring the system and adapting to changes. If changes in the network are detected, such as the failure or disconnection of a device, adjustments in the assignment of tasks are made. In addition to this, the Coordinator can be replicated onto many devices in order to improve the reliability and fault-tolerance of the system.
+\par In the evaluation made to DDFlow, the system is able to recover from network degradation or device overload, whereas in a centralized system this would cause its total failure.
 
 \begin{figure}[h]
 \caption{DDFlow architecture}
@@ -410,17 +412,8 @@ Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solu
 
 \par \textcolor{red}{FALAR SOBRE mobile\_cloud\_heterogeneous e mobile\_cloud?}
 
-
-%\cite{flow_based_programming_fog}
-%\cite{fog_flow}
-%\cite{fog_flow_tool}
-%\cite{ddflow}
-
-
 %\cite{mobile_cloud_heterogeneous}
 %\cite{mobile_cloud}
-%\cite{fog_computing_book}
-
 
 \section{Summary}
 
