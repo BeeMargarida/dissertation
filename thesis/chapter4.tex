@@ -40,7 +40,17 @@ The focus of this dissertation is the development of a prototype that allows for
 
 This dissertation is built around the following hypothesis:
 
-\textit{Is a decentralized system ... more robust and efficient than a centralized one?}
+\begin{quote}
+    \emph{``Given an IoT system with several heterogeneous devices connected, a decentralized architecture is more resilient, efficient and scalable than a centralized one.''}
+\end{quote}
+
+The attributes presented in the hypothesis will be measure against a system using the current development branch of Node-RED. These attributes consist of:
+
+\begin{itemize}
+    \item \textbf{Resilience} means the system capability to adapt to failures and changes. It will be measured by injecting failures and measuring the Mean Time T Recover (MTTR).
+    \item \textbf{Efficiency} how fast the system can execute the logic of the system, as well as communicate. The efficiency of a system is measured by the sum of total latency of the system. 
+    \item \textbf{Scalability} specifies how a system can grow in terms of devices supported, while maintaining its features. This attribute will be tested by increasingly adding more devices and assessing the behavior of the system.
+\end{itemize}
 
 \section{Experimental Methodology}\label{sec:exp_meth}
 
@@ -55,7 +65,7 @@ In order to help managing the amount of work needed in the next few months, a \t
     \caption{\textit{Gantt Chart} for this dissertation}
     \label{fig:gantt}
     \centering
-    \includegraphics[width=1\textwidth]{gantt_chart.png}
+    \includegraphics[width=1\textwidth]{gantt_chart_full.png}
     \end{figure}
 
 \section{Summary}\label{sec:stat_summary}
