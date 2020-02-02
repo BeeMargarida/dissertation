@@ -87,15 +87,7 @@ Node-RED\footnote{https://nodered.org/} is a programming tool applied to the dev
 \end{figure}
 
 \par Regarding the architecture of Node-RED, the \texttt{Node} base class is a subclass of Node.js event APIs \texttt{EventEmitter}. This class implements an observer design pattern that maintains a subscriber list of all the nodes connected to it by \emph{wires} and emits events to them. When a node finishes processing data from external sources or from another node, it calls the methods \texttt{send()} with a Javascript object. In its turn, this method call the \texttt{EventEmitter emit()} method that sends named events to the subscribed nodes. 
-\par Being open-source, Node-RED takes advantage of a large community that contributes with new nodes and improvements to the tool. It is the most popular open-source visual programming tool for IoT, as seen in figure \ref{fig:node_red_popularity}. \textcolor{red}{*ADD ARTICLE "Visual Runtime Verification and Self-Healing of IoT Systems" TO THE BIB*}
-
-\begin{figure}[h]
-\caption{Number of stars on GitHub for visual programming tools applied to IoT}
-\label{fig:node_red_popularity}
-\centering
-\includegraphics[width=0.7\textwidth]{node_red_popularity.png}
-\end{figure}
-
+\par Being open-source, Node-RED takes advantage of a large community that contributes with new nodes and improvements to the tool. It is the most popular open-source visual programming tool for IoT, with more than 9,300 stars on Github.
 
 \section{Summary}
 
