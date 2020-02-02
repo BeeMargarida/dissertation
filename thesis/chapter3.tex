@@ -162,7 +162,7 @@ After analyzing the 22 publications, we organized them by categories. \cite{surv
     \item \textbf{ViSiT} \cite{visit} allows its end-users to use a jigsaw puzzle metaphor to implement a system of connected IoT objects. It provides a web-based visual tool connected with a web-service that generates an executable implementation of the jigsaw representation and transformation. Their goal is achievable by adapting model transformations used by software developers into understandable metaphors for non-developers to use. They validated the developed tool with a usability evaluation, which was overall positive, with a great percentage considering the tool useful and providing real-life scenarios where they could implement it.
     \item \textbf{Valsamakis and Savidis} \cite{Valsamakis2017} porposes a framework for Ambient Assisted Living (AAL) using IoT technologies, which allows for customized automation. It uses visual programming languages to facilitate their end users - carers, family, friends, elderly - to build and modify the automations. They built a visual programming framework that introduces smart objects grouping in tagged environments and real-time smart-object registration through discovery cycles. It runs on typical smart phones and tablets and is built in Javascript, allowing it to run in browsers. Their future work focuses on integrating different visual programming paradigms to fully accomplish the requirements of the end-user.
     \item \textbf{WireMe} \cite{wireme} is an intuitive solution for building, deploying and monitor IoT systems, built with non-developer end users in mind but also extensible for advanced users to built over it. The developed solution makes use of Scratch, a visual programming interface, to provide its users with a customizable dashboard where they can monitor and control their IoT system as well as program automation tasks. It has a Main Control Unit responsible for communicating the devices status to the dashboard via MQTT, which is programmable using their visual interface and Lua programming language. Their tool was validated by students around 16 years old and engineering students without programming experience. The results were not totally positive, with some students not being able to create the required simple logic. Future work consists improving programming blocks to become more intuitive.
-    \item \textbf{VIPLE} \cite{viple}, Visual IoT/Robotics Programming Language Environment, is a new visual programming language and its correspondent visual environment. It provides an introduction to topics such as computing and engineering and tools for more practical domains like service-oriented computing and software integration. It focuses on complex concepts such as robot as a service (Raas) units and Internet of Intelligent Things (IoIT), while studying the programming issues of building systems classified as such. The developed tool is extremely powerful and has been tested and used in several universities since 2015. \textcolor{red}{CHECK THIS ONE, kinda bad}
+    \item \textbf{VIPLE} \cite{viple}, Visual IoT/Robotics Programming Language Environment, is a new visual programming language and its correspondent visual environment. It provides an introduction to topics such as computing and engineering and tools for more practical domains like service-oriented computing and software integration. It focuses on complex concepts such as robot as a service (Raas) units and Internet of Intelligent Things (IoIT), while studying the programming issues of building systems classified as such. The developed tool is extremely powerful and has been tested and used in several universities since 2015.
     \item \textbf{Smart Block} \cite{smart_block} is a block-based visual programming language and visual programming environment applied to IoT systems, that allows non-developer users to build their own systems in an easier way. Their solution is specific to the home automation domain, like Smart Things. The language was designed using IoTa calculus, used to generalize Event-Condition-Action rules for home automation. The environment was built using Blockly, a client-side Javascript library for creating visual block languages. Future work for this project consist of expanding custom blocks for features such as device grouping and security, as well as extending the tool for other domains besides home automation.
     \item \textbf{PWCT} \cite{pwct} is a visual programming language applied to building IoT, Data Computing and Cloud Computing systems. Its goal consist of reducing the cost of development of these types of systems by providing an easy and more productive development tool. The language was designed to compete with text based languages such as Java and C/C++. It uses graphical elements to replace textual code and has 3 main layers: (1) the VPL layer, composed of graphical elements, (2) the middleware layers, responsible for connecting the VPL layer with the system's view, which is the (3) System Layer, responsible for dealing with the source code generated by the first layer. The created solution received positive feedback from the community, with more than 70,000 downloads and 93\% of user satisfaction.
     \item \textbf{DDF} \cite{ddf} is a Distributed Dataflow (DDF) programming model for IoT systems, leveraging resources across the Fog and the Cloud. They implemented a DDF framework extending Node-RED, which originally is a centralized framework. Their motivation comes from the possibility to develop applications from the perspective of Fog Computing, leveraging these devices for efficiency and reduced latency, since there is a big amount of resources such as edge devices and gateways in IoT systems. They evaluated their prototype using a small scale evaluation, which was positive. The results showed that their DDF framework provides an easy alternative for designing and developing distributed IoT systems, despite having some open issues such as not having a distributed discovery of devices and networks.
@@ -199,15 +199,14 @@ The mentioned frameworks and tools were divided into the following categories, a
     \begin{tabular}{| c | c | c | c | c | c | c | c |}
         \hline
         \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
-        Certainty & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$  & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ \\
         \hline
-        Belsa et al.\cite{Belsa2018} & * & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
+        Belsa et al.\cite{Belsa2018} & Several & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
-        Ivy \cite{ivy} & * & Centralized & - & Cloud & Medium & Purely visual language &  \\
+        Ivy \cite{ivy} & Several & Centralized & - & Cloud & Medium\tnote{7} & Purely visual language &  \\
         \hline
         Ghiani et al. \cite{personalization_of_context_dependent_apps} & Home Automation & Centralized & - & Cloud & - & Form-based programming & \textbullet \\
         \hline
-        ViSiT \cite{visit} & * & Centralized & - & Cloud & High & Hybrid text and visual systems & \textbullet \\
+        ViSiT \cite{visit} & Several & Centralized & - & Cloud & High & Hybrid text and visual systems & \textbullet \\
         \hline
         Valsamakis and Savidis \cite{Valsamakis2017} & Ambient Assisted Living & Centralized & - & Cloud & - & Hybrid text and visual system & \textbullet \\
         \hline
@@ -217,9 +216,9 @@ The mentioned frameworks and tools were divided into the following categories, a
         \hline
         Smart Block \cite{smart_block} & Home Automation & Centralized & - & Cloud & - & Hybrid text and visual system & \textbullet \\
         \hline
-        PWCT \cite{pwct} & * & Centralized & GNU GPL v2.0 & -\tnote{1} & High & Hybrid text and visual system &  \\
+        PWCT \cite{pwct} & Several & Centralized & GNU GPL v2.0 & -\tnote{1} & High & Hybrid text and visual system &  \\
         \hline
-        DDF \cite{ddf} & N/A & Decentralized & Apache 2.0 & Fog & High & Hybrid text and visual system & \textbullet \\
+        DDF \cite{ddf} & - & Decentralized & Apache 2.0 & Fog & High & Hybrid text and visual system & \textbullet \\
         \hline
         GIMLE \cite{gimle} & Industry & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
@@ -229,7 +228,7 @@ The mentioned frameworks and tools were divided into the following categories, a
         \hline
         Eterovic et al. \cite{vpl_uml} & Home Automation & -\tnote{4} & - & - & - & Hybrid text and visual system & - \\
         \hline
-        FRED \cite{fred} & * & Centralized & -\tnote{5} & Cloud & High & Hybrid text and visual system & \textbullet \\
+        FRED \cite{fred} & Several & Centralized & -\tnote{5} & Cloud & High & Hybrid text and visual system & \textbullet \\
         \hline
         WoTFlow \cite{wotflow_dnr} & - & Decentralized & - & Fog and Edge & - & Hybrid text and visual system & \textbullet \\
         \hline
@@ -250,6 +249,7 @@ The mentioned frameworks and tools were divided into the following categories, a
         \item[4] No information given regarding the architecture of the environment created, only the VPL. 
         \item[5] No information about license is given, but further research discovered that it has paid plans and no source code available.
         \item[6] CharIoT uses the Giotto stack, https://iotexpedition.org/about.html, from where we retrieved this information.
+        \item[7] Certainty regarding this information is low. 
     \end{tablenotes}
     \end{threeparttable}
     \label{tab:slr_table_results}
@@ -286,28 +286,28 @@ The results from the found survey \cite{survey_vpl_iot} were analyzed. The retri
     \begin{tabular}{| c | c | c | c | c | c | c | c |}
         \hline
         \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
-        Certainty & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$  & $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ & $\star$ $\star$ $\star$ $\star$ $\star$ \\
         \hline
-        Node-Red \cite{node_red} & * & Centralized & Apache 2.0 & Cloud and Edge & High & Hybrid text and visual system & \textbullet \\
+        Node-Red \cite{node_red} & Several & Centralized & Apache 2.0 & Cloud and Edge & High & Hybrid text and visual system & \textbullet \\
         \hline
         NETLab Toolkit \cite{netlabtoolkit} & - & - & GNU GPL & - & - & Hybrid text and visual system & \textbullet \\
         \hline
-        NooDL \cite{noodl} & * & - & NooDL End User License\tnote{1} & - & - & Hybrid text and visual system &  \\
+        NooDL \cite{noodl} & Several & - & NooDL End User License\tnote{1} & - & - & Hybrid text and visual system &  \\
         \hline
-        DGLux5 \cite{noodl} & * & - & DGLux Engineering License & - & High & Purely visual language &  \\
+        DGLux5 \cite{noodl} & Several & - & DGLux Engineering License & - & High\tnote{2} & Purely visual language &  \\
         \hline
-        AT\&T Flow Designer \cite{attflowdesigner} & * & - & GNU GPL3 & Cloud & High & Hybrid text and visual system & \textbullet \\
+        AT\&T Flow Designer \cite{attflowdesigner} & Several & - & GNU GPL3 & Cloud\tnote{2} & High\tnote{2} & Hybrid text and visual system & \textbullet \\
         \hline
-        GraspIO \cite{graspio} & Education & - & BSD & Cloud & - & Purely visual language &  \\
+        GraspIO \cite{graspio} & Education & - & BSD & Cloud\tnote{2} & - & Purely visual language &  \\
         \hline
-        Wyliodrin \cite{wyliodrin} & * & - & GNU GPL3 & - & - & Hybrid text and visual system & \textbullet \\
+        Wyliodrin \cite{wyliodrin} & Several & - & GNU GPL3 & - & - & Hybrid text and visual system & \textbullet \\
         \hline
-        Zenodys \cite{zenodys} & * & - & GNU GPL3 & - & High & Hybrid text and visual system & \textbullet \\
+        Zenodys \cite{zenodys} & Several & - & GNU GPL3 & - & High\tnote{2} & Hybrid text and visual system & \textbullet \\
         \hline
     \end{tabular}
     }
     \begin{tablenotes}\footnotesize
         \item[1] Available at \url{https://www.noodl.net/eula}
+        \item[2] Certainty regarding this information is low.
     \end{tablenotes}
     \end{threeparttable}
     \label{tab:expanded_research_results}
