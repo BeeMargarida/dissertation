@@ -14,7 +14,7 @@ A Systematic Literature Review was made to gather information on the state of th
 During this Systematic Literature Review, a specific methodology was followed to reduce bias and produce the best results \cite{SLR_guidelines}.
 We started by defining the research questions to be answered as well as choosing data sources to search for publications.
 
-\subsubsection{Research Questions}\label{sec:research_questions}
+\subsubsection{Research Questions}\label{sec:slr_research_questions}
 
 In this Systematic Literature Review we intent to answer the following questions:
 
@@ -319,7 +319,14 @@ The tools presented in this Systematic Literature Review passed the evaluation p
 
 \subsubsection{Evolution Analysis}\label{sec:articles_nr_analysis}
 
-\textcolor{red}{Add Graphic with the evolution of nr of articles in the years; try to get a pattern}
+In order to understand the evolution of visual programming languages applied to IoT, the publication years of the tools found in Section \ref{sec:slr_results} as well as the launch years of the survey tools of Section \ref{sec:slr_expanded_research} were grouped. Figure \ref{fig:slr_evolution} contains the evolution, where it can be observed that there was a bigger amount of work related toi this topic in the years 2017 and 2018. The year 2019 still doesn't have conclusive data.
+
+\begin{figure}[h]
+\caption{Publications and tools of VPL tools applied to IoT per year}
+\label{fig:slr_evolution}
+\centering
+\includegraphics[width=1\textwidth]{slr_evolution.png}
+\end{figure}
 
 \subsubsection{Result Analysis}\label{sec:result_analysis}
 
@@ -333,14 +340,14 @@ The tools presented in this Systematic Literature Review passed the evaluation p
     \item [Web-based] The majority of tools analyzed are web-based, being accessible with the use of a browser. Only one tool didn't provide an environment, only a specification of a visual programming language.
 \end{description}
 
-\subsubsection{Research Questions}
+\subsubsection{Research Questions}\label{sec:answer_slr_research_questions}
 
-\textcolor{blue}{Responder às research questions com os resultados}
-\textcolor{red}{TODO}
+The research questions layed out in Section \ref{sec:slr_research_questions} served as a way of directing the research of this Systematic Literature Review and obtain answers to relevant questions regarding the available tools that apply visual programming languages to the IoT domain. These answers are:
+
 \begin{description}
-    \item [SRQ1: What relevant VPLs applied to IoT orchestration exist?]
-    \item [SRQ2: What is the tier and architecture of the tools found in RQ1?]
-    \item [SRQ3: What was the evolution of VPLs applied to IoT orchestration along the years?]
+    \item [SRQ1: What relevant VPLs applied to IoT orchestration exist?] From the analysed tools in Section \ref{sec:slr_results} and \ref{sec:slr_expanded_research}, there are around 28 visual programming tools applied to IoT orchestration. 
+    \item [SRQ2: What is the tier and architecture of the tools found in RQ1?] Tables \ref{tab:slr_table_results} and \ref{tab:expanded_research_results} give an overview of the characteristics of all the tools found. In these tables and subsequent analysis in Section \ref{sec:result_analysis} it is concluded that the majority of the tools have a centralized architecture and work in the Cloud tier.
+    \item [SRQ3: What was the evolution of VPLs applied to IoT orchestration along the years?] As it can be observed in Section \ref{sec:articles_nr_analysis} and more specifically in Figure \ref{fig:slr_evolution}, there are visual programming tools applied to the orchestration of IoT since 2003, and in 2017 and 2018 there was a bigger number of publications with focus on building these type of tools.  
 \end{description}
 
 
