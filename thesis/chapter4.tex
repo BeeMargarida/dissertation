@@ -2,17 +2,18 @@
 
 \section*{}
 
-This chapter describes the problem, as it can be seen in Section \ref{sec:current_issues}. In Section \ref{sec:desiderata} it is presented the wanted features for the proposed solution and in Section \ref{sec:scope} the scope of the project is defined. Section \ref{sec:research_questions}contains the research questions to be answered by this dissertation. The experimental methodology is outlined in Section \ref{sec:exp_meth}. Chapter \ref{sec:planning} contains a Gantt chart with a planning of this dissertation. Finally, this chapter is summarized by Section \ref{sec:stat_summary} with an overview of the topics mentioned before.
+This chapter describes the problem, as it can be seen in Section \ref{sec:current_issues}. In Section \ref{sec:desiderata} it is presented the wanted features for the proposed solution and in Section \ref{sec:scope} the scope of the project is defined. Section \ref{sec:main_hypothesis} contains the hypothesis this dissertation presents. The experimental methodology is outlined in Section \ref{sec:exp_meth}. Chapter \ref{sec:planning} contains a Gantt chart with a planning of this dissertation. Finally, this chapter is summarized by Section \ref{sec:stat_summary} with an overview of the topics mentioned before.
 
 \section{Current Issues}\label{sec:current_issues}
 
-Chapter \ref{chap:sota} contains several solutions that provide decentralized architecture in visual programming tools applied to the internet of things paradigm. However, some of this tools are specific to a certain paradigm, like Smart Cities or industry. \textcolor{red}{Check this after SOTA}
+Chapter \ref{chap:sota} contains several solutions that provide decentralized architecture in visual programming tools applied to the internet of things paradigm. However, some of this tools solve specific problems or make assumptions regarding scale of the system and the devices constraints.
 We can define the problem in these issues:
 \begin{enumerate}
-    \item \textbf{Discovery of computation capabilities}: the current work lacks the automatic discovery of the computational capabilities of the devices in the network. This information is normally manually introduced by the developer.
     \item \textbf{Leveraging devices in the network}: since most tools use a centralized architecture, including Node-RED, they do not leverage the devices in the network. Fog Computing introduces a decentralized solution, one that can be applied to Node-RED by distributing the computational tasks across the edge devices.
-    \item \textbf{Communicate computational capabilities}: current tools require the developer to manually introduce the resources of each device in the network, which is not a scalable solution. This information is vital for the successful distribution of computation across the devices.
+    \item \textbf{Communication of computational capabilities}: some of the current tools require the developer to manually introduce the resources of each device in the network, which is not a scalable solution. Others have a specific list of services, manually inserted, that the devices can provide. Information about the computational capabilities of the devices in the network is vital for the successful distribution of computation across the devices.
     \item \textbf{Detecting non-availability}: when a device fails or becomes unavailable, it is important for the system to automatically realize and adapt. The majority of current solutions do not possess this feature, which is vital if a system aims to dynamically adapt to changes in the environment.
+    \item \textbf{Code generation of sub-flows}: in order to truly leverage constrained devices, it is important to convert sub-flows or "tasks" into runnable code. Devices that support simple firmware capable of executing code can be used to execute blocks of code, despite their limited capabilities.
+    \item \textbf{Provide self-adaption of the system}: devices can fail, as well as the connection between them or even the network. It is important for the system to discover and identify these changes and adapt to them at runtime, in order to keep functioning.
 \end{enumerate}
 
 \section{Desiderata}\label{sec:desiderata}
@@ -32,7 +33,7 @@ The focus of this dissertation is the development of a prototype that allows for
 
 %\section{Use Cases}\label{sec:use_cases}
 
-\section{Main Hypothesis}\label{sec:stat_research_questions}
+\section{Main Hypothesis}\label{sec:main_hypothesis}
 
 This dissertation is built around the following hypothesis:
 
@@ -50,7 +51,7 @@ The attributes presented in the hypothesis will be measure against a system usin
 
 \section{Experimental Methodology}\label{sec:exp_meth}
 
-In the interest of validating whether or not the solution implemented achieves the \emph{desiderata} and solves the current issues, there will be developed test scenarios with the use of simulations. Each one of the test scenarios will be verified against the attributes mentioned in Section \ref{sec:stat_research_questions}, with the objective of proving the proposed hypothesis.
+In the interest of validating whether or not the solution implemented achieves the \emph{desiderata} and solves the current issues, there will be developed test scenarios with the use of simulations. Each one of the test scenarios will be verified against the attributes mentioned in Section \ref{sec:main_hypothesis}, with the objective of proving the proposed hypothesis.
 
 
 \section{Planning}\label{sec:planning}
@@ -65,4 +66,4 @@ In order to help managing the amount of work needed in the next few months, a \t
 
 \section{Summary}\label{sec:stat_summary}
 
-\textcolor{yellow}{\textbf{**TODO**}}
+Section \ref{sec:current_issues} starts by presenting issues and lack of features not fully present in the current tools presented in the State of the Art Chapter \ref{chap:sota}. Section \ref{sec:desiderata} presents a \textit{desiderata} that aims to fix the issues presented in Section \ref{sec:current_issues}. The hypothesis of this dissertation is presented in Section \ref{sec:main_hypothesis}, as well as an experimental methodology to prove it, in Section \ref{sec:exp_meth}. Finally, Section \ref{sec:planning} contains a Gantt Chart with the planning of the execution of this dissertation.
