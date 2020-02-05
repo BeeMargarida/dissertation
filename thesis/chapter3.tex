@@ -366,6 +366,8 @@ In summary, the majority of tools found don't possess a license, employ a centra
 
 Section \ref{sec:slr} mentions some tools that aim to offer a decentralized solution to visual programming environments applied to Internet-of-Things systems \cite{ddf} \cite{ddflow} \cite{wotflow_dnr}.
 
+\subsection{DDF}\label{sec:decentralized_sota_ddf}
+
 The work made by in WoTFlow \cite{wotflow_dnr}, DDF \cite{ddf} and subsequent works \cite{fog_at_the_edge} \cite{exogenous_coordination} consists of a system built on Node-RED framework and focused on the use case of Smart Cities. Their goal is to make a tool more suitable for the development of fog-based applications that are dependent on the context of the edge devices they operate on. 
 
 In DDF \cite{ddf}, they started by extending Node-RED and implementing D-NR (Distributed Node-RED), which contains processes that are able to run across devices in local networks and servers in the Cloud. The application, called flow, is built in the visual programming environment, which is running in a development server. All the other devices running D-NR subscribe to a MQTT topic that contains the status of the flow. When a flow is deployed, all devices running D-NR are notified and subsequently analyze the given flow. Based on a set of constrains, they decide which nodes they may need to deploy locally and which sub-flow (parts of a flow) must be shared with other devices. Each device has a set of characteristics, from its computational resources such as bandwidth, available storage to its location. The developer can insert constraints into the flow, by specifying which device a sub-flow must be deployed in or the computational resources needed. However, these constraints and the characteristics of each device must be manually inserted in the system by developers or system operators. 
@@ -380,6 +382,8 @@ In more recent work \cite{exogenous_coordination}, support for CPSCN (Cyber Phys
 \centering
 \includegraphics[width=0.8\textwidth]{dnr_exogenous_coordination.png}
 \end{figure}
+
+\subsection{\textit{FogFlow \& uFlow}}\label{sec:decentralized_sota_uflow}
 
 Other approach was made in the publication from Szydlo et al. \cite{flow_based_programming_fog}, where they focused on the transformation and decomposition of data flow. Parts of the flow can be translated into the executable parts, such as Lua code. Their contribution includes the concepts of data flow transformation, a new runtime environment called \textit{uFlow} that can be executed on a variety of resource-constrained embedded devices and the integration with the Node-RED platform. 
 
@@ -401,6 +405,8 @@ In 2019, they continued their work with the publication \cite{fog_flow}, where t
 \includegraphics[width=0.8\textwidth]{fogflow.png}
 \end{figure}
 
+\subsection{\textit{FogFlow}}\label{sec:decentralized_sota_fogflow}
+
 There is another tool with the same name \textit{FogFlow}, but created by Cheng et al. \cite{fogflow_github}. In the first publication related to this tool \cite{fog_flow_easy}, the contributions made were the implementation of a standard-base programming model for Fog Computing and a scalable context management. The first contribution consists in extending the dataflow programming model with hints, ir order to facilitate the development of fog applications. The scalable context management introduces a distributed approach, which allows to overcome the limits in a centralized context, achieving much better performance in terms of throughput, response time and scalability. The \textit{FogFlow} framework focuses in a Smart City Platform use case, separated in three areas: (1) Service Management, normally hosted in the cloud, (2) Data Processing, present in cloud and edge devices and (3) Context Management, which is separated in an device discovery unit hosted in the cloud and IoT brokers scattered in edge and cloud.
 
 In more recent work \cite{fog_flow_tool}, \textit{FogFlow} was improved in order to provide infrastructure providers an environment that allows them to build decentralized IoT systems faster, with increased stability and scalability. The architecture can be seen in Figure \ref{fig:fogflow_tool}, where the IoT system is represented by dynamic data flows that are orchestrated between sensors (Producers) and actuators (Consumers). The application is first designed using the \textit{FogFlow} Task Designer, a hybrid text and visual programming environment, which results in an abstraction called Service Template. This abstraction contains specifics about the resources needed for each part of the system. Once the Service Template is submitted, the framework will determine how to instantiate it using the context data available. Each task is associated with an operator, which consists of a Docker image, and its assignment is based on how many resources are available on each edge node, the location of data sources and the prediction of workload. Edge nodes are autonomous since they are able to make their own decisions based on their local context, without relying on the central cloud.
@@ -411,6 +417,8 @@ In more recent work \cite{fog_flow_tool}, \textit{FogFlow} was improved in order
 \centering
 \includegraphics[width=0.8\textwidth]{fogflow_tool.png}
 \end{figure}
+
+\subsection{DDFlow}\label{sec:decentralized_sota_ddflow}
 
 DDFlow \cite{ddflow}, first mentioned in Section \ref{sec:slr_results}, presents another distributed approach by extending Node-RED with a system runtime that supports dynamic scaling and adaption of application deployments. The coordinator of the distributed system maintains the state and assigns tasks to available devices, minimizing end-to-end latency. Dataflow notions of \textit{node} and \textit{wire} are expanded, with a \textit{node} in DDFlow representing an instantiation of a task that is deployed in a device, receiving inputs and generating outputs. \textit{Nodes} can be constrained in their assignment by optional parameters, \textit{Device} and \textit{Region}, inserted by the developer. A \textit{wire} connects two or more nodes and can have three types: \textit{Stream} (one-to-one), \textit{Broadcast} (one-to-many) and \textit{Unite} (many-to-one). 
 
@@ -424,6 +432,8 @@ In the evaluation made to DDFlow, the system is able to recover from network deg
 \centering
 \includegraphics[width=0.8\textwidth]{ddflow.png}
 \end{figure}
+
+\subsection{Conclusions}\label{sec:decentralized_sota_conclusions}
 
 From the tools analyzed, it can be concluded that the state of the art in decentralized architectures in visual programming tools applied to IoT is incomplete. All the tools leverage the devices in the network but in different ways. DFF \cite{ddf} assumes that all devices run Node-RED, which limits the type of devices that can be leveraged, since it needs to have minimum resources to run such program. \textit{FogFlow} and \textit{uFlow} \cite{fog_flow} \cite{flow_based_programming_fog} is the only tool that specifies how it truly leverages constrained devices, with the transformation of sub-flows into Lua code, with DDFlow \cite{ddflow} assuming that all devices have a list of specific Services they can provide, that should match the node assigned to them.
 
