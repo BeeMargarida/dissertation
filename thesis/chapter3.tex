@@ -48,18 +48,16 @@ The search was performed in October of 2019 and the results produced are the one
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption{Systematic Literature Review search results per database}
-    \begin{tabular}{| c | c | c |}
-        \hline
+    \begin{tabular}{ c  c  c }
+        \toprule
         \textbf{Database} & \textbf{Total Results} & \textbf{Extracted Results}\\
-        \hline
+        \midrule
         IEEE & 410 & 379 \\
-        \hline
         ACM & 171,768 & 2021 \\
-        \hline
         Scopus & 540 & 500 \\
-        \hline
+        \bottomrule
     \end{tabular}
+    \caption{Systematic Literature Review search results per database}
     \label{tab:slr_search_results}
 \end{table}{}
 
@@ -91,22 +89,19 @@ To classify if a publication is relevant to the research field, 4 assessments we
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption{Parameters for measuring the quality of a publication}
     \resizebox{\textwidth}{!}{%
-    \begin{tabular}{| l | l |}
-        \hline
+    \begin{tabular}{ l  l }
+        \toprule
         \textbf{Quality Assessment Query} & \textbf{Quality Indicator (0-2)}\\
-        \hline
+        \midrule
         Is the publication relevant to us? & BARELY-PARTIALLY-SATISFACTORILY \\
-        \hline
         Does the publication include and define research objectives adequately? & NO-PARTIALLY-YES \\
-        \hline
         Are limitations and challenges well defined? & NO-PARTIALLY-YES \\
-        \hline
         Is the proposed contribution well described? & NO-PARTIALLY-YES \\
-        \hline
+        \bottomrule
     \end{tabular}
     }
+    \caption{Parameters for measuring the quality of a publication}
     \label{tab:quality_assessment}
 \end{table}{}
 
@@ -130,22 +125,19 @@ The results from the evaluation process can be seen in Table \ref{tab:evaluation
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption{Publications per step}
     \resizebox{\textwidth}{!}{
-    \begin{tabular}{| l | r | r |}
-        \hline
+    \begin{tabular}{ l  r  r }
+        \toprule
         \textbf{Step} & \textbf{Nº of publications} & \textbf{Nº of excluded publications}\\
-        \hline
+        \midrule
         Search & 2698 & N/A\\
-        \hline
         Duplicates & 2626 & 72\\
-        \hline
         Exclusion/Inclusion criteria (Titles and Abstracts) & 65 & 2561\\
-        \hline
         Exclusion/Inclusion criteria (Introduction and Conclusion) & 22 & 43\\
-        \hline
+        \bottomrule
     \end{tabular}
     }
+    \caption{Publications per step}
     \label{tab:evaluation_process_results}
 \end{table}{}
 
@@ -195,55 +187,37 @@ The mentioned frameworks and tools were divided into the following categories, a
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption[VPLs applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one. The $\star$ symbol represents certainty in the evaluation made.}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
-    \begin{tabular}{| c | c | c | c | c | c | c | c |}
-        \hline
+    \begin{tabular}{ c  c  c  c  c  c  c  c }
+        \toprule
         \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
-        \hline
+        \midrule
         Belsa et al.~\cite{Belsa2018} & Several & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
-        \hline
         Ivy~\cite{ivy} & Several & Centralized & - & Cloud & Medium\tnote{7} & Purely visual language &  \\
-        \hline
         Ghiani et al.~\cite{personalization_of_context_dependent_apps} & Home Automation & Centralized & - & Cloud & - & Form-based programming & \textbullet \\
-        \hline
         ViSiT~\cite{visit} & Several & Centralized & - & Cloud & High & Hybrid text and visual systems & \textbullet \\
-        \hline
         Valsamakis and Savidis~\cite{Valsamakis2017} & Ambient Assisted Living & Centralized & - & Cloud & - & Hybrid text and visual system & \textbullet \\
-        \hline
         WireMe~\cite{wireme} & Education, Home Automation & Centralized & - & Cloud & - & Hybrid text and visual system &  \\
-        \hline
         VIPLE~\cite{viple} & Education & Centralized & - & Cloud & - & Hybrid text and visual system & \\
-        \hline
         Smart Block~\cite{smart_block} & Home Automation & Centralized & - & Cloud & - & Hybrid text and visual system & \textbullet \\
-        \hline
         PWCT~\cite{pwct} & Several & Centralized & GNU GPL v2.0 & -\tnote{1} & High & Hybrid text and visual system &  \\
-        \hline
         DDF~\cite{ddf} & - & Decentralized & Apache 2.0 & Fog & High & Hybrid text and visual system & \textbullet \\
-        \hline
         GIMLE~\cite{gimle} & Industry & Centralized & - & Cloud & High & Hybrid text and visual system & \textbullet \\
-        \hline
         DDFlow~\cite{ddflow} & Security & Decentralized & - & Fog and Edge & - & Hybrid text and visual system & \textbullet \\
-        \hline
         Kefalakis et al.~\cite{visual_paradigm_iot_solutions_development} & - & Centralized & LGPL V3.0\tnote{3} & Cloud & - & Hybrid text and visual system &  \\
-        \hline
         Eterovic et al.~\cite{vpl_uml} & Home Automation & -\tnote{4} & - & - & - & Hybrid text and visual system & - \\
-        \hline
         FRED~\cite{fred} & Several & Centralized & -\tnote{5} & Cloud & High & Hybrid text and visual system & \textbullet \\
-        \hline
         WoTFlow~\cite{wotflow_dnr} & - & Decentralized & - & Fog and Edge & - & Hybrid text and visual system & \textbullet \\
-        \hline
         Besari et al.~\cite{pre_mobile_apps_rpi} \cite{mobile_apps_rpi} & Education & Centralized & - & Cloud & - & Hybrid text and visual system &  \\
-        \hline
         CharIoT~\cite{chariot} & Home Automation & Centralized\tnote{6} & - & Cloud and Edge\tnote{6} & High\tnote{6} & Form-based programming & \textbullet \\
-        \hline
         Desolda et al.~\cite{desolda} & Smart Museums & - & - & - & - & Hybrid text and visual system &  \\
-        \hline
         Eun et al.~\cite{eud_platform} & Home Automation & Centralized & - & - & - & Form-based programming & \textbullet \\
-        \hline
+        \bottomrule
     \end{tabular}
     }
+    \caption[VPLs applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one. The $\star$ symbol represents certainty in the evaluation made.}
+    \hrule width0.5\textwidth
     \begin{tablenotes}\footnotesize
         \item[1] Used for several purposes, didn't specify the tier it is located in regarding IoT.
         \item[2] Since it uses Node-RED, this information was based on its architecture. 
@@ -282,31 +256,25 @@ The results from the found survey~\cite{survey_vpl_iot} were analyzed. The retri
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption[Characterization of VPls applied to IoT from survey.]{Characterization of VPls applied to IoT from survey~\cite{survey_vpl_iot}. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one. The $\star$ symbol represents certainty in the evaluation made.}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
-    \begin{tabular}{| c | c | c | c | c | c | c | c |}
-        \hline
+    \begin{tabular}{ c  c  c  c  c  c  c  c }
+        \toprule
         \textbf{Tool} & \textbf{Scope} & \textbf{Architecture} & \textbf{License} & \textbf{Tier}  & \textbf{Scalability} & \textbf{Programming} & \textbf{Web-based}\\
-        \hline
+        \midrule
         Node-Red~\cite{node_red} & Several & Centralized & Apache 2.0 & Cloud and Edge & High & Hybrid text and visual system & \textbullet \\
-        \hline
         NETLab Toolkit~\cite{netlabtoolkit} & - & - & GNU GPL & - & - & Hybrid text and visual system & \textbullet \\
-        \hline
         NooDL~\cite{noodl} & Several & - & NooDL End User License\tnote{1} & - & - & Hybrid text and visual system &  \\
-        \hline
         DGLux5~\cite{noodl} & Several & - & DGLux Engineering License & - & High\tnote{2} & Purely visual language &  \\
-        \hline
         AT\&T Flow Designer~\cite{attflowdesigner} & Several & - & GNU GPL3 & Cloud\tnote{2} & High\tnote{2} & Hybrid text and visual system & \textbullet \\
-        \hline
         GraspIO~\cite{graspio} & Education & - & BSD & Cloud\tnote{2} & - & Purely visual language &  \\
-        \hline
         Wyliodrin~\cite{wyliodrin} & Several & - & GNU GPL3 & - & - & Hybrid text and visual system & \textbullet \\
-        \hline
         Zenodys~\cite{zenodys} & Several & - & GNU GPL3 & - & High\tnote{2} & Hybrid text and visual system & \textbullet \\
-        \hline
+        \bottomrule
     \end{tabular}
     }
+    \caption[Characterization of VPls applied to IoT from survey.]{Characterization of VPls applied to IoT from survey~\cite{survey_vpl_iot}. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
+    \hrule width0.5\textwidth
     \begin{tablenotes}\footnotesize
         \item[1] Available at \url{https://www.noodl.net/eula}
         \item[2] Certainty regarding this information is low.
@@ -442,23 +410,21 @@ The mentioned tools were characterized based on their mentions or support for th
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \caption[Decentralized VPLs applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one. The $\star$ symbol represents certainty in the evaluation made.}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
-    \begin{tabular}{| c | c | c | c | c | c |}
-        \hline
+    \begin{tabular}{ c  c  c  c  c  c }
+        \toprule
         \textbf{Tool} & \textbf{Leverage devices} & \textbf{Capabilities communication} & \textbf{Open-source} & \textbf{Computation decomposition}  & \textbf{Run-time adaptation}\\
-        \hline
+        \midrule
         DDF~\cite{ddf}~\cite{wotflow_dnr}~\cite{fog_at_the_edge}~\cite{exogenous_coordination} & Limited\tnote{1} & \textbullet & \textbullet & Limited\tnote{2} & \textbullet \\
-        \hline
         \textit{FogFlow} \& \textit{uFlow}~\cite{flow_based_programming_fog}~\cite{fog_flow} & \textbullet & Limited\tnote{3} &  & Limited\tnote{2} & Limited\tnote{3}\\
-        \hline
         \textit{FogFlow}~\cite{fogflow_github}~\cite{fog_flow_easy}~\cite{fog_flow_tool} & \textbullet & - & \textbullet & Limited\tnote{2} & \textbullet\\
-        \hline
         \textit{DDFlow}~\cite{ddflow} & Limited\tnote{4} & \textbullet &  & Limited\tnote{2} & \textbullet\\
-        \hline
+        \bottomrule
     \end{tabular}
     }
+    \caption[Decentralized VPLs applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
+    \hrule width0.5\textwidth
     \begin{tablenotes}\footnotesize
         \item[1] Assumes that all devices run Node-RED, which limits the type of devices.
         \item[2] Don't specify the algorithm used.

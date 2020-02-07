@@ -46,6 +46,9 @@
 \usepackage{threeparttable}
 \usepackage{adjustbox}
 \usepackage{minitoc}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{booktabs}
 
 %% Include color package
 \usepackage{color}
@@ -154,21 +157,6 @@
   \listoftables
   \include{abbrevs}  % the list of abbreviations used
 \end{Prolog}
-
-
-\newcommand{\asidewaystable}[6]{
-  \begin{sidewaystable}
-  	\centering
-  	\begin{tabularx}{\textwidth}{#1}
-      \toprule
-      #2
-      \midrule
-      \tablecontent{#3}
-      \bottomrule
-    \end{tabularx}
-  	\caption[#6]{#5} \label{#4}
-  \end{sidewaystable}
-}
 
 %%----------------------------------------
 %% Body
