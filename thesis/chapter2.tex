@@ -40,10 +40,10 @@ According to Buuya~\cite{IoT_principles_and_paradigms}, Fog Computing has severa
 It is possible to see an example of the architecture of an IoT system using the Fog paradigm in Figure \ref{fig:fog_architecture}. The Fog Computing connects the cloud to the edge devices, normally with the use of access points and gateways. 
 
 \begin{figure}[h]
-\caption[Fog Computing Architecture]{Fog Computing Architecture~\cite{IoT_principles_and_paradigms}}
 \label{fig:fog_architecture}
 \centering
 \includegraphics[width=0.8\textwidth]{fog_computing_architecture.png}
+\caption[Fog Computing Architecture]{Fog Computing Architecture~\cite{IoT_principles_and_paradigms}}
 \end{figure}
 
 Despite all the advantages, Fog Computing has several requirements and difficulties. To make a successful and efficient distribution of computation and communication, it requires knowledge about the resources of the connected devices. The complexity is also bigger than Cloud Computing since it needs to work with heterogeneous devices with different capacities. 
@@ -83,19 +83,19 @@ It is a web-based tool consisting of a run time built with the Node.js framework
 The Node-RED interface has three components: (1)~Palette, (2)~Workspace and (3)~Sidebar. The Palette contains all the nodes installed and available to use, divided into categories. They can be used by dragging them into the workspace and additional features for each node are accessible by double-clicking them. The Workspace is where the flows are created and modified. It is possible to have several \emph{flows} and \emph{sub-flows} accessible with the use of tabs. Lastly, the Sidebar contains information about the nodes, the debug console, node configuration manager and the context data. Figure \ref{fig:node_red_window} showcases the visual interface of Node-RED and its elements.
 
 \begin{figure}[h]
-\caption{Node-RED environment}
 \label{fig:node_red_window}
 \centering
 \includegraphics[width=1\textwidth]{node_red_window.png}
+\caption{Node-RED environment}
 \end{figure}
 
 One example of a \emph{flow} can be seen in picture \ref{fig:node_red_example}, where a request is being made in intervals of 5 minutes to an HTTP URL that returns a CSV with the feed of significant earthquakes in the last 7 days. The data from the CSV is then printed to the debug console and, if the magnitude is equal or bigger than 7, the message "PANIC!" is printed to the console. 
 
 \begin{figure}[!ht]
-\caption{Example of a Node-RED flow}
 \label{fig:node_red_example}
 \centering
 \includegraphics[width=1\textwidth]{node_red_example.png}
+\caption{Example of a Node-RED flow}
 \end{figure}
 
 Regarding the architecture of Node-RED, the \texttt{Node} base class is a subclass of Node.js event APIs \texttt{EventEmitter}. This class implements an observer design pattern that maintains a subscriber list of all the nodes connected to it by \emph{wires} and emits events to them. When a node finishes processing data from external sources or another node, it calls the methods \texttt{send()} with a Javascript object. In its turn, this method calls the \texttt{EventEmitter emit()} method that sends named events to the subscribed nodes. 
