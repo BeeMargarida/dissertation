@@ -6,13 +6,13 @@ This chapter describes the problem, as can be seen in Section \ref{sec:current_i
 
 \section{Current Issues}\label{sec:current_issues}
 
-Chapter \ref{chap:sota} contains several solutions that provide decentralized architecture in visual programming tools applied to the Internet-of-Things paradigm. However, some of this tools solve specific problems or make assumptions regarding scale of the system and the devices constraints.
+Chapter \ref{chap:sota} contains several solutions that provide a decentralized architecture in visual programming tools applied to the Internet-of-Things paradigm. However, some of these tools solve specific problems or make assumptions regarding the scale of the system and the constraints of the devices.
 We can define the problem in these issues:
 \begin{enumerate}
     \item \textbf{Leveraging devices in the network}: since most tools use a centralized architecture, including Node-RED, they do not leverage the devices in the network. Fog Computing introduces a decentralized solution, one that can be applied to Node-RED by distributing the computational tasks across the edge devices.
     \item \textbf{Communication of computational capabilities}: some of the current tools require the developer to manually introduce the resources of each device in the network, which is not a scalable solution. Others have a specific list of services, manually inserted, that the devices can provide. Information about the computational capabilities of the devices in the network is vital for the successful distribution of computation across the devices.
     \item \textbf{Detecting non-availability}: when a device fails or becomes unavailable, it is important for the system to automatically realize and adapt. The majority of current solutions do not possess this feature, which is vital if a system aims to dynamically adapt to changes in the environment.
-    \item \textbf{Code generation of sub-flows}: in order to truly leverage constrained devices, it is important to convert sub-flows or "tasks" into runnable code. Devices that support simple firmware capable of executing code can be used to execute blocks of code, despite their limited capabilities.
+    \item \textbf{Code generation of sub-flows}: to truly leverage constrained devices, it is important to convert sub-flows or "tasks" into runnable code. Devices that support simple firmware capable of executing code can be used to execute blocks of code, despite their limited capabilities.
     \item \textbf{Provide self-adaption of the system}: devices can fail, as well as the connection between them or even the network. It is important for the system to discover and identify these changes and adapt to them at run-time, in order to keep functioning.
 \end{enumerate}
 
@@ -24,12 +24,12 @@ Desiderata is a Latin word that translates to "\emph{things wanted}". In the con
     \item [D1: Communicate computational capabilities of devices connected] so that this information can be sent to an orchestrator that will decompose the total computation workload based on this data.
     \item [D2: Decomposition and partition of computation] so that the total computational requested can be distributed through all the devices in the network, using information about the computational capabilities and availability of the devices in the network.
     \item [D3: Convert computational tasks into runnable code] so that each computational task can be executed in edge and fog devices, which contain limited resources.
-    \item [D4: Provide self-adaptation of the system] so that it can adapt to non-availability of resources or even appearances of new devices.
+    \item [D4: Provide self-adaptation of the system] so that it can adapt to the non-availability of resources or even appearances of new devices.
 \end{description}
 
 \section{Scope}\label{sec:scope}
 
-The focus of this dissertation is the development of a prototype that allows for a decentralized orchestration of an IoT system. Despite security being a critical feature, it is considered a secondary goal, allowing the dissertation to focus on the its primary goals. The scope of the project is a home automation system, where its devices have firmware capable of running Lua code and accepting custom code. They also need to be able to communicate their capabilities to an orchestrator.
+The focus of this dissertation is the development of a prototype that allows for a decentralized orchestration of an IoT system. Despite security being a critical feature, it is considered a secondary goal, allowing the dissertation to focus on its primary goals. The scope of the project is a home automation system, where its devices have firmware capable of running Lua code and accepting custom code. They also need to be able to communicate their capabilities to an orchestrator.
 
 %\section{Use Cases}\label{sec:use_cases}
 
@@ -44,19 +44,19 @@ This dissertation is built around the following hypothesis:
 The attributes presented in the hypothesis will be measure against a system using the current development branch of Node-RED. These attributes consist of:
 
 \begin{itemize}
-    \item \textbf{Resilience} means the system capability to adapt to failures and changes. It will be measured by injecting failures and measuring the Mean Time T Recover (MTTR).
-    \item \textbf{Efficiency} how fast the system can execute the logic of the system, as well as communicate. The efficiency of a system is measured by the sum of total latency of the system. 
-    \item \textbf{Scalability} specifies how a system can grow in terms of devices supported, while maintaining its features. This attribute will be tested by increasingly adding more devices and assessing the behavior of the system.
+    \item \textbf{Resilience} means the system's capability to adapt to failures and changes. It will be measured by injecting failures and measuring the Mean Time T Recover (MTTR).
+    \item \textbf{Efficiency} how fast the system can execute the logic of the system, as well as communicate. The efficiency of a system is measured by the sum of the total latency of the system. 
+    \item \textbf{Scalability} specifies how a system can grow in terms of devices supported while maintaining its features. This attribute will be tested by increasingly adding more devices and assessing the behavior of the system.
 \end{itemize}
 
 \section{Experimental Methodology}\label{sec:exp_meth}
 
-In the interest of validating whether or not the solution implemented achieves the \emph{desiderata} and solves the current issues, we will develop test scenarios that use simulations. Each one of the test scenarios will be verified against the attributes mentioned in Section \ref{sec:main_hypothesis}, with the objective of proving the proposed hypothesis.
+In the interest of validating whether or not the solution implemented achieves the \emph{desiderata} and solves the current issues, we will develop test scenarios that use simulations. Each one of the test scenarios will be verified against the attributes mentioned in Section \ref{sec:main_hypothesis} to prove the proposed hypothesis.
 
 
 \section{Planning}\label{sec:planning}
 
-In order to help managing the amount of work needed in the next few months, a \textit{Gantt Chart} was built. It is possible to consult it in Figure \ref{fig:gantt}. 
+To manage the amount of work needed in the next few months, a \textit{Gantt Chart} was built. It is possible to consult it in Figure \ref{fig:gantt}. 
 \begin{figure}[h]
     \caption{\textit{Gantt Chart} for this dissertation}
     \label{fig:gantt}
