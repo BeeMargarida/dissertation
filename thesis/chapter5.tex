@@ -2,10 +2,11 @@
 
 \section*{}
 
-Nullam eleifend condimentum nibh. Integer leo nibh, consequat eget,
-mollis et, sagittis ac, felis. Duis viverra pede in pede. Phasellus
-molestie placerat leo. Praesent at tellus a augue congue molestie.
-Integer eu ante pellentesque, viverra orci vitae, facilisis
-risus. Nunc eget pulvinar orci.
-
-
+\subsection{Challenges}
+\begin{itemize}
+    \item Problemas de memória e espaço dos ESPs para execução de scripts de micropython com 3+ nós (ESPs lançam erros de alocamento de memória se o script enviado é maior que um certo nº de bytes ou ao fazer redeploy de scripts de médio tamanho). - Alternativas: failsafe (implementado e funcional), pyc (não existe para micropython mas existe o .mpy. No entanto, precisa de ser executado para gerar um .mpy a partir de um .pt, o que não se aplica à solução atual), ota (não existem boas soluções para micropython)
+    \item Necessidade de implementar novos nós para situações de teste
+    \item Node-red não suporta comunicação de mqtt entre nós de raíz. Node-red teve de ser adaptado para que a comunicação entre nós fosse feita desta maneira.
+    \item Modificar scritps e suporte para o port para Unix do micropython - muitas diferenças, limitações e criação de muitos bugs.
+    \item Limitações das bilbiotecas usadas de micropython, especificamente nas bibliotecas de mqtt e operações assíncronas.
+\end{itemize}{}
