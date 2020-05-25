@@ -2,7 +2,7 @@
 
 \section*{}
 
-\textbf{Scenarios}:
+\textbf{Setups/Environments}:
 (I only have 5 nodes capable of processing in micropython - mqtt-in, mqtt-out, if, and \& temperature-humidity)
 \begin{enumerate}
     \item A room has 2 sensors that give temperature readings every 5  seconds. A message is sent to a topic with the comparison's result of the temperature against a threshold of 20.
@@ -16,8 +16,7 @@
     \item Turn off all devices and check that the system sends an error message. (not sure if this one is interesting)
     \item Check that all the nodes' predicates are complied.
     \item Check that all the nodes' priorities were taken into account, and only violated if necessary
-    \item Make devices slow and check if the system does not break.
-    \item Turn off the internet and check how the system reacts (it will break, so I don't know if this one is interesting).
+    \item Make devices slow and check if the system does not break.    \item Turn off the internet and check how the system reacts (it will break, so I don't know if this one is interesting).
 \end{itemize}
 
 \textbf{Sanity checks (more specific)}:
@@ -25,6 +24,25 @@
     \item In scenario 1, with 3 ESPs running, 2 of them with DHTs, each temperature node will be assigned to a different ESP. When the ESP without the DHT is disconnected, the system will recover and assign its nodes to one of the remaining ESP. The system will recover.
     \item In scenario 2 with 10 containers simulating devices, 5 with the tag "first-room" and the other 5 with the tag "second-room" (these are predicates). When devices are disconnected from the "first-room", the nodes with that tag will be assigned to devices with the tag "first-room" and the system will recover.
 \end{itemize}
+
+
+
+
+% node
+% bestIndex = 0
+
+% for device in devices:
+%     if not all node predicates in device tags: return
+%     intersectionIndex = (nº of node priorities in device tags)/(nº node priorities)
+    
+%     matchIndex = 
+%         intersectionIndex * 0.5 + 
+%         (1/( nodes assigned to the device) + 1) * 0.4 +
+%         (nº of node priorities in device tags/ device tags) * 0.1
+    
+%     if matchIndex > bestIndex:
+%         bestIndex = matchIndex
+%         device is the best choice for node
 
 % \section{Assessment}
 

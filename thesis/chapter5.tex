@@ -2,15 +2,17 @@
 
 \section*{}
 
-This chapter describes how the problem presented in Chapter \ref{chap:problem_statement} was solved by stating the solution implemented and the reasons for the choices taken.  
+This chapter describes how the problem presented in Chapter \ref{chap:problem_statement} was solved by stating the solution implemented and the reasons for the choices taken.  \textbf{\textcolor{red}{End with the sections' descriptions}}
 
 \section{Devices setup for decentralization support}\label{sec:devices_decentralization}
 
-The first goal of this decentralization was to find a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite the capability limitations of these devices.
+The first problem approached in this thesis was finding a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite the capability limitations of these devices. In order to limit the number of type of different devices capable for this aim, only ESP8266 and ESP32 chips were used, since they have connectivity capabilities such as an WiFi chip.
 
 \subsection{Solution overview}
 
 % It uses micropython and external libraries such as uasyncio and micropython-mqtt.
+
+\textcolor{blue}{Talk about why micropython was chosen, the server script, the libraries used (mqtt\_as and uasyncio) and the enpoints created for code execution, ping and metrics.}
 
 \subsection{Limitations}
 
@@ -21,20 +23,34 @@ The first goal of this decentralization was to find a way to take advantage of d
 
 \section{Node-RED decentralization of computation}\label{sec:node_red_decentralization}
 
-\subsection{Code generation}
+\subsection{Code generation}\label{sec:code_generation}
 
-\subsection{MQTT node communication support}
+\textcolor{blue}{Talk about each node code generation, the support for multiple node scripts in one script. Talk about limitation that different nodes on one script, even consecutive nodes, require to communicate with each other by MQTT topics}
 
-\subsection{Custom nodes}
+\subsection{MQTT node communication support}\label{sec:mqtt_support}
 
-\subsection{Decentralization of computation}
+ Node-RED nodes communicate using events, where a Node uses the wires it has a output and triggers the \texttt{receive()} method of the recipients of those wires. This method triggers the event \texttt{emit} which will the caught by a specific method of each node, implementing its own logic.
 
-\subsection{Dynamic state management}
+This implementation is local and could not be used in a decentralized architecture where nodes will be executed outside the Node-RED instance. It was necessary to implement a way of communication between nodes external to Node-RED that could be supported by low capability devices, which MQTT fits as a good solution.
 
-\subsection{Limitations}
+Node entities were changed to support MQTT instead of events, subscribing to topics created at run-time that match the wires between the nodes. Support for subflows was also implemented.
+
+\textcolor{blue}{Insert here image that shows a flow with wires and the respective flow with examples of topics}
+
+\subsection{Custom nodes}\label{sec:custom_nodes}
+
+\textcolor{blue}{temperature-Humidity, if, and, mqtt-in, mqtt-out and orchestrator nodes}
+
+\subsection{Computation Decentralization}\label{sec:node_red_computation_decentralization}
+
+\textcolor{blue}{Talk about the metrics used to assign nodes to devices (predicates and priorities, similar to kubernetes), the saving of the assignment of nodes. Explain the reassignment if memory errors occurred when sending scripts to the devices or if a device is not responding.}
+
+\subsection{Dynamic state management}\label{sec:dynamic_state_management}
+
+\subsection{Limitations}\label{sec:limitations}
 
 \begin{itemize}
     \item Number of nodes that support micropython code generation is small
-    \item Duplicate messages when redeploying the totallity of the flow (maybe fixable later)
+    \item Duplicate messages when redeploying the totality of the flow (maybe fixable later)
     \item Nodes do not stop working when the Node-RED instance is stopped
 \end{itemize}
