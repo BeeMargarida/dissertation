@@ -4,9 +4,19 @@
 
 This chapter describes how the problem presented in Chapter \ref{chap:problem_statement} was solved by stating the solution implemented and the reasons for the choices taken.  \textbf{\textcolor{red}{End with the sections' descriptions}}
 
+\section{Overview}\label{sec:solution_overview}
+
+The goal of this dissertation is to modify Node-RED in order to decentralize its architecture, taking advantage of the capabilities of external devices, no matter how limited they are.
+
+The solution implemented was to use the Node-RED instance to orchestrate the decentralization and send tasks to other devices in the network, which Node-RED knows previously. To make this possible, Node-RED needs to communicate with these devices via WiFi to send tasks and check their state of operation. Due to the devices' limitations, they cannot run an instance of Node-RED, so Node-RED needs to convert tasks in Javascript to other language that can be interpreted by these devices. The implemented solution requires a Micropython port and a HTTP server that receives and executes a micropython script created by the Node-RED. This script contains the tasks assigned to a device, translated into micropython.
+
+After orchestrating and assigning tasks to devices, Node-RED must keep track of the state of these devices. If one fails and becomes unaccessible, Node-RED must adapt and assign the failed device's task to another.
+
+\textcolor{blue}{Insert graphic with the overall organization and functionality of the architecture found}
+
 \section{Devices setup for decentralization support}\label{sec:devices_decentralization}
 
-The first problem approached in this thesis was finding a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite the capability limitations of these devices. In order to limit the number of type of different devices capable for this aim, only ESP8266 and ESP32 chips were used, since they have connectivity capabilities such as an WiFi chip.
+The first problem approached in this thesis was finding a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite their capability limitations. In order to limit the number of type of different devices capable for this aim, only ESP8266 and ESP32 chips were used, since they have connectivity capabilities such as an WiFi chip.
 
 \subsection{Solution overview}
 
@@ -23,19 +33,29 @@ The first problem approached in this thesis was finding a way to take advantage 
 
 \section{Node-RED decentralization of computation}\label{sec:node_red_decentralization}
 
+\subsection{MQTT node communication support}\label{sec:mqtt_support}
+
+Node-RED nodes communicate using events, where a node only communicates with nodes it is wired to. The communication is one way, with the node only sending data to the nodes it is connected to by output. These output wires are used to access the nodes the message must be sent to, and their \texttt{receive()} method is called. This method triggers the event \texttt{emit} which will the caught by a specific method of each node, implementing its own logic.
+
+\textcolor{blue}{Insert code block with example? Or an image explaining?}
+
+This implementation is local and Javascript specific, making it impossible to be used in a decentralized architecture where nodes will be executed outside the Node-RED instance. It was necessary to implement a way of communicating between nodes external to Node-RED that could be supported by low capacity devices. The solution found was MQTT, which fits as a good solution by its low cost and high popularity.
+
+Node entities were changed to support MQTT instead of events, subscribing to topics created at run-time that match the wires between the nodes. Support for sub-flows was also implemented.
+
+\textcolor{blue}{Insert here image that shows a flow with wires and the respective flow with examples of topics}
+
 \subsection{Code generation}\label{sec:code_generation}
 
 \textcolor{blue}{Talk about each node code generation, the support for multiple node scripts in one script. Talk about limitation that different nodes on one script, even consecutive nodes, require to communicate with each other by MQTT topics}
 
-\subsection{MQTT node communication support}\label{sec:mqtt_support}
+As explained above, due to the limitations of the devices used, it was necessary to translate Node-RED nodes, written in Javascript, to micropython code. Along with that, it was also necessary to support multiple nodes in one script, making it necessary to create a generalized script that could fit any type of node.
 
- Node-RED nodes communicate using events, where a Node uses the wires it has a output and triggers the \texttt{receive()} method of the recipients of those wires. This method triggers the event \texttt{emit} which will the caught by a specific method of each node, implementing its own logic.
+The implemented solution consists of each node having specific methods related to their functionality and one point of input and output. Since the communication is made by MQTT, as specified in Section \ref{sec:mqtt_support}, the only input a Node can have is in its topics. The same for the output logic. A exception to this is in nodes that are sources, meaning that they generate input and don't receive it. 
 
-This implementation is local and could not be used in a decentralized architecture where nodes will be executed outside the Node-RED instance. It was necessary to implement a way of communication between nodes external to Node-RED that could be supported by low capability devices, which MQTT fits as a good solution.
+The creation the script is made after the assignment of nodes to devices, and each device has its respective script created. The process consists of creating the script with the code of all the assigned nodes and a general code that ties up the script. This general code is responsible for subscribing to all the input topics of all the nodes, stopping the script's processes and forwarding the MQTT messages to the respective node.
 
-Node entities were changed to support MQTT instead of events, subscribing to topics created at run-time that match the wires between the nodes. Support for subflows was also implemented.
-
-\textcolor{blue}{Insert here image that shows a flow with wires and the respective flow with examples of topics}
+\textcolor{blue}{Insert Node-RED flow example and the respective micropython script}
 
 \subsection{Custom nodes}\label{sec:custom_nodes}
 
