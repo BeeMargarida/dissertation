@@ -8,11 +8,15 @@ This chapter describes how the problem presented in Chapter \ref{chap:problem_st
 
 The goal of this dissertation is to modify Node-RED in order to decentralize its architecture, taking advantage of the capabilities of external devices, no matter how limited they are.
 
-The solution implemented was to use the Node-RED instance to orchestrate the decentralization and send tasks to other devices in the network, which Node-RED knows previously. To make this possible, Node-RED needs to communicate with these devices via WiFi to send tasks and check their state of operation. Due to the devices' limitations, they cannot run an instance of Node-RED, so Node-RED needs to convert tasks in Javascript to other language that can be interpreted by these devices. The implemented solution requires a Micropython port and a HTTP server that receives and executes a micropython script created by the Node-RED. This script contains the tasks assigned to a device, translated into micropython.
+The solution implemented was to use the Node-RED instance to orchestrate the decentralization and send tasks to other devices in the network. The devices make themselves known by announcing their address and capabilities to a registry node running in Node-RED. Consequently, Node-RED assigns nodes to devices and communicates each node's assignment via WiFi. Due to the devices' limitations, they cannot run an instance of Node-RED, so Node-RED needs to convert tasks in Javascript to other language that can be interpreted by these devices. The implemented solution requires a Micropython port and a HTTP server that receives and executes a micropython script created by the Node-RED. This script contains the tasks assigned to a device, translated into micropython. 
 
-After orchestrating and assigning tasks to devices, Node-RED must keep track of the state of these devices. If one fails and becomes unaccessible, Node-RED must adapt and assign the failed device's task to another.
+After the first deployment of the system, the Node-RED instance manages the state of each device, allowing the system to re-orchestrate if any of the devices becomes unavailable.
 
 \textcolor{blue}{Insert graphic with the overall organization and functionality of the architecture found}
+
+\section{Device registry}\label{sec:registry}
+
+\textcolor{blue}{Talk about the announcements logic in the devices and the registry node in Node-RED}
 
 \section{Devices setup for decentralization support}\label{sec:devices_decentralization}
 
@@ -22,7 +26,7 @@ The first problem approached in this thesis was finding a way to take advantage 
 
 % It uses micropython and external libraries such as uasyncio and micropython-mqtt.
 
-\textcolor{blue}{Talk about why micropython was chosen, the server script, the libraries used (mqtt\_as and uasyncio) and the enpoints created for code execution, ping and metrics.}
+\textcolor{blue}{Talk about why micropython was chosen, the announcements logic, the server script, the libraries used (mqtt\_as and uasyncio) and the enpoints created for code execution, ping and metrics.}
 
 \subsection{Limitations}
 
@@ -53,7 +57,7 @@ As explained above, due to the limitations of the devices used, it was necessary
 
 The implemented solution consists of each node having specific methods related to their functionality and one point of input and output. Since the communication is made by MQTT, as specified in Section \ref{sec:mqtt_support}, the only input a Node can have is in its topics. The same for the output logic. A exception to this is in nodes that are sources, meaning that they generate input and don't receive it. 
 
-The creation the script is made after the assignment of nodes to devices, and each device has its respective script created. The process consists of creating the script with the code of all the assigned nodes and a general code that ties up the script. This general code is responsible for subscribing to all the input topics of all the nodes, stopping the script's processes and forwarding the MQTT messages to the respective node.
+The creation the script is made after the assignment of nodes to devices, and each device has its respective script created. The process consists of creating the script with the code of all the assigned nodes and a general code that ties up the script. This general code is responsible for subscribing to all the input topics of all the nodes, stopping the script's processes and forwarding the MQTT messages to the respective node's code.
 
 \textcolor{blue}{Insert Node-RED flow example and the respective micropython script}
 
