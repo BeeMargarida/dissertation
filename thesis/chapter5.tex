@@ -16,7 +16,11 @@ After the first deployment of the system, the Node-RED instance manages the stat
 
 \section{Device registry}\label{sec:registry}
 
-\textcolor{blue}{Talk about the announcements logic in the devices and the registry node in Node-RED}
+When a device becomes available it sends information about itself to a MQTT topic. This information contains the device's IP address, their capabilities and their status - if the device has failed before. In its turn, Node-RED contains a Node called \textit{Registry} that listens to the announcements MQTT topics and saves the devices information. If this node is connected to a orchestrator node, each new device is communicated so that the orchestration can be updated.
+
+When a device has an Out of Memory error, it triggers a fail-safe, where it reboots the HTTP server, stop running any script and restarts all communications. After this action, the device announces itself again but with a flag that indicates that it has failed. This way, Node-RED knows that a device is active but not running any code, and that it possible failed due to too much work. In that case, Node-RED will assign less nodes to the device, reducing the chances of causing another Out of Memory error.
+
+\textcolor{blue}{What is there more to add? Maybe this section is not here, add to other place}
 
 \section{Devices setup for decentralization support}\label{sec:devices_decentralization}
 
@@ -63,7 +67,7 @@ The creation the script is made after the assignment of nodes to devices, and ea
 
 \subsection{Custom nodes}\label{sec:custom_nodes}
 
-\textcolor{blue}{temperature-Humidity, if, and, mqtt-in, mqtt-out and orchestrator nodes}
+\textcolor{blue}{temperature-Humidity, if, and, mqtt-in, mqtt-out, orchestrator, registry, failure}
 
 \subsection{Computation Decentralization}\label{sec:node_red_computation_decentralization}
 
@@ -76,5 +80,6 @@ The creation the script is made after the assignment of nodes to devices, and ea
 \begin{itemize}
     \item Number of nodes that support micropython code generation is small
     \item Duplicate messages when redeploying the totality of the flow (maybe fixable later)
+    \item Re-orchestration only supported when deploying the entire instance (all flows)
     \item Nodes do not stop working when the Node-RED instance is stopped
 \end{itemize}
