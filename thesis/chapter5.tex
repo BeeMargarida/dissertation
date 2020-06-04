@@ -8,7 +8,7 @@ This chapter describes how the problem presented in Chapter \ref{chap:problem_st
 
 The goal of this dissertation is to modify Node-RED in order to decentralize its architecture, taking advantage of the capabilities of external devices, no matter how limited they are.
 
-The solution implemented was to use the Node-RED instance to orchestrate the decentralization and send tasks to other devices in the network. The devices make themselves known by announcing their address and capabilities to a registry node running in Node-RED. Consequently, Node-RED assigns nodes to devices and communicates each node's assignment via WiFi. Due to the devices' limitations, they cannot run an instance of Node-RED, so Node-RED needs to convert tasks in Javascript to other language that can be interpreted by these devices. The implemented solution requires a Micropython port and a HTTP server that receives and executes a micropython script created by the Node-RED. This script contains the tasks assigned to a device, translated into micropython. 
+The solution implemented was to use the Node-RED instance to orchestrate the decentralization and send tasks to other devices in the network. The devices make themselves known by announcing their address and capabilities to a registry node running in Node-RED. Consequently, Node-RED assigns nodes to devices and communicates each node's assignment via WiFi. Due to the devices' limitations, they cannot run an instance of Node-RED, so Node-RED needs to convert nodes in Javascript to other language that can be interpreted by these devices. The implemented solution requires a Micropython port and a HTTP server that receives and executes a micropython script created by the Node-RED. This script contains the tasks assigned to a device, translated into micropython. 
 
 After the first deployment of the system, the Node-RED instance manages the state of each device, allowing the system to re-orchestrate if any of the devices becomes unavailable.
 
@@ -24,9 +24,13 @@ When a device has an Out of Memory error, it triggers a fail-safe, where it rebo
 
 \section{Devices setup for decentralization support}\label{sec:devices_decentralization}
 
-The first problem approached in this thesis was finding a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite their capability limitations. In order to limit the number of type of different devices capable for this aim, only ESP8266 and ESP32 chips were used, since they have connectivity capabilities such as an WiFi chip.
+The first problem approached in this thesis was finding a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite their capability limitations. In order to limit the number of type of different devices capable for this aim, only ESP8266 and ESP32 chips were used, since they have connectivity capabilities such as an WiFi chip. In terms of testing, the environment in the devices was replicated in Docker container running the Unix port of micropython.
 
 \subsection{Solution overview}
+
+As it was mentioned before in Section \ref{sec:solution_overview}, the devices in the system run a micropython port that allows to run scripts written in micropython. This solution is lightweight and extensible enough that allows to perform several types of tasks. Since these devices need to receive different types of tasks throughout their execution, an HTTP server was implemented, responsible for receiving scripts of code, saving and executes them. Besides this functionality, it was also implemented an endpoint that returns the state of the device, as well as the announcing mechanism, explained in Section \ref{sec:registry}.
+
+Several micropython libraries were used, more specifically uasyncio and micropython-mqtt. The uasyncio library allowed the implementation of asynchronous operations, critical for executing the given code as well as maintaining the HTTP server running and non-blocking.
 
 % It uses micropython and external libraries such as uasyncio and micropython-mqtt.
 
