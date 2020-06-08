@@ -2,6 +2,15 @@
 
 \section*{}
 
+\section{Methodology}\label{sec:methodology}
+
+\textcolor{blue}{Talk about which measurements will be made, and which types of scenarios - virtual and physical.}
+
+\section{Scenarios and Experiments}\label{sec:scenarios_experiments}
+
+\textcolor{blue}{Add some intro to this enumeration, I guess}
+\textcolor{red}{Refactor this enumeration, with some explaining of some terms}
+
 \textbf{Environmental Setups}:
 \begin{enumerate}
     \item A room has 3 sensors that give temperature and humidity readings every minute. There’s a virtual sensor that compares the results (of both temperature and humidity) and triggers depending on some configured thresholds. An AC uses those readings to decide (a) if it switches on/off, (b) its operating mode: cool, heat, and dehumidify. The Minimal Working System (MWS) consists in (a) one temperature sensor, (b) one humidity sensor, (c) one node capable of making the decision, and (d) working communication channels amongst them
@@ -35,7 +44,7 @@
                         \end{enumerate}
                     \item \textbf{Out of memory fail-safe}
                         \begin{itemize}
-                            \item \textbf{Scenario A.} With 20 devices, each one with different processing capabilities. During orchestration, some devices will develop an out-of-memory error because they can't process all the processing tasks assigned to them, specifically the size of the script given. The orchestrator decides to send less tasks to these devices. The system will converge in a working solution. \textit{This scenario will be implemented with a modified device script. When devices receive a script, it will generate errors if the size of the script passes a specific threshold, which will be different between devices. This simulates the memory constraints of devices when receiving tasks.}
+                            \item \textbf{Scenario A.} With 20 devices, each one with different processing capabilities. During orchestration, some devices will develop an out-of-memory error because they can't process all the processing tasks assigned to them, specifically the size of the script given. The orchestrator decides to send less tasks to these devices. The system will converge in a working solution. \textit{This scenario will be implemented with a modified device script. When devices receive a script, it will generate errors in specific devices when writing the script. This simulates the memory constraints of devices when receiving tasks.}
                             \item \textbf{Scenario B.} With 20 devices, some of them have a memory leak with an unknown cause. After random time Random(t0,t1), these problematic devices stop working with an out-of-memory error. The orchestrator thinks that the devices can't handle the quantity of processing tasks assigned to them, so in the re-orchestration it will assign fewer tasks. Since these devices will always break, the orchestrator will eventually not consider these devices in the assignment of nodes. \textit{This scenario will be implemented with a modified device script that will trigger an out-of-memory error after a random period after executing the given tasks.}
                             \item \textbf{Scenario C.} With 20 devices, there is a device that is sensitive to a particular node, which causes the device to give out an out-of-memory error. The orchestrator will potentially assign this node to the specific device. When the device gives out the out-of-memory error, the orchestrator will eventually converge in a solution where the node is not assigned to the particular device, and the system will converge.  \textit{These out-of-memory errors will be simulated with the use of a failure node that forces an \texttt{MemoryException} in the device.}
                         \end{itemize}
@@ -44,27 +53,11 @@
         \end{enumerate}
 \end{enumerate}
 
+\textcolor{blue}{Add scenario with hardware}
 
+\section{Discussion}\label{sec:evaluation_discussion}
 
+\textcolor{blue}{For each experiment, analyse the data and discuss the results - many graphs, more tables and lots of text - fun times and very little time!}
 
-% node
-% bestIndex = 0
+\section{Conclusions}\label{sec:evaluation_conclusions}
 
-% for device in devices:
-%     if not all node predicates in device tags: return
-%     intersectionIndex = (nº of node priorities in device tags)/(nº node priorities)
-    
-%     matchIndex = 
-%         intersectionIndex * 0.5 + 
-%         (1/( nodes assigned to the device) + 1) * 0.4 +
-%         (nº of node priorities in device tags/ device tags) * 0.1
-    
-%     if matchIndex > bestIndex:
-%         bestIndex = matchIndex
-%         device is the best choice for node
-
-% \section{Assessment}
-
-% \section{Research Questions}
-
-% \section{Conclusions}

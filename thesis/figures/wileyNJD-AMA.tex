@@ -1,0 +1,59 @@
+\documentclass[AMA,STIX1COL]{WileyNJD-v2}
+
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{threeparttable}
+\graphicspath{{figures/}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\articletype{Research Article}%
+
+\received{}
+\revised{}
+\accepted{}
+        
+\raggedbottom
+
+\begin{document}
+
+\title{Decentralized Orchestration in IoT with Visual Programming: A Systematic Literature Review}
+
+\author[1]{Margarida Silva}
+\author[1,2]{João Pedro Dias*}
+\author[1,3]{André Restivo}
+\author[1,2]{Hugo Sereno Ferreira}
+
+\authormark{Margarida Silva \textsc{et al}}
+
+
+\address[1]{\orgdiv{DEI}, \orgname{Faculty of Engineering, University of Porto}, \orgaddress{\state{Porto}, \country{Portugal}}}
+\address[2]{\orgname{INESC TEC}, \orgaddress{\state{Porto}, \country{Portugal}}}
+\address[3]{\orgname{LIACC}, \orgaddress{\state{Porto}, \country{Portugal}}}
+
+\corres{*João Pedro Dias, DEI - FEUP, Rua Dr. Roberto Frias, Porto, Portugal \email{jpmdias@fe.up.pt}}
+
+%\presentaddress{This is sample for present address text this is sample for present address text}
+
+\abstract[Summary]{Internet-of-Things (IoT) systems are considered one of the most notable examples of complex, large-scale systems. Some authors have proposed visual programming solutions to address part of this inherent complexity, but most of these systems depend on a centralized unit to carry out most -- if not all -- the orchestration between devices and system components, hindering the degree of scalability and distribution that can be attained. In this work, we carry out a systematic literature review of the current solutions that provide visual and decentralized orchestration to define and operate IoT systems. Our work reflects upon a total of 29 proposals that address these issues up to a certain degree. We provide an in-depth discussion of these works, and find out that only four of these solutions attempt to tackle this issue as a whole, though still leaving a set of open research challenges. We finally argue that this challenges, if addressed, could make IoT systems more fault-tolerant, with impact on their dependability, performance, and scalability.}
+
+\keywords{Internet-of-Things, Orchestration, Visual Programming, Decentralized Computation, Large-Scale Systems}
+
+\maketitle
+
+\input{parts/1-introduction}
+
+\input{parts/2-background}
+
+\input{parts/3-methodology}
+
+\input{parts/4-results}
+
+\input{parts/5-discussion}
+
+\input{parts/6-conclusions}
+
+
+\bibliography{wileyNJD-AMA}
+
+\end{document}
