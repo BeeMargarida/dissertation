@@ -37,20 +37,20 @@ The first problem approached in this thesis was finding a way to take advantage 
 
 \subsubsection{Solution overview}
 
-As it was mentioned before in Section \ref{sec:solution_overview}, the devices in the system run a micropython port that allows to run scripts written in micropython. This solution is lightweight and extensible enough that allows to perform several types of tasks. Since these devices need to receive different types of tasks throughout their execution, an HTTP server was implemented, responsible for receiving scripts of code, saving and executes them. Besides this functionality, it was also implemented an endpoint that returns the state of the device, as well as the announcing mechanism, explained in Section \ref{sec:registry}.
+As it was mentioned before in Section \ref{sec:solution_overview}, the devices in the system run a micropython port that allows the execution of scripts written in micropython. This solution is lightweight and extensible. Since these devices need to receive different types of tasks throughout their execution, their firmware includes an HTTP server responsible for receiving scripts of code, saving and executing them. Besides this functionality, it was also implemented an endpoint that returns the state of the device, as well as the announcing mechanism, explained in Section \ref{sec:registry}.
 
-Several micropython libraries were used, more specifically uasyncio and micropython-mqtt. The uasyncio library allowed the implementation of asynchronous operations, critical for executing the given code as well as maintaining the HTTP server running and non-blocking.
+Several micropython libraries were used, more specifically uasyncio and micropython-mqtt. The uasyncio library allowed the implementation of asynchronous operations, critical for the execution of the given script as well as maintaining the HTTP server running and non-blocking.
 
-% It uses micropython and external libraries such as uasyncio and micropython-mqtt.
+The firmware also includes a fail-safe mechanism, safeguarding against \textit{out-of-memory} errors that may happen during the lifespan of the device. This mechanism resets all running tasks and recovers the HTTP server and communication channels. This an important feature due to the high probability of these error's occurrence, since the devices have limited memory. 
 
-\textcolor{blue}{Talk about why micropython was chosen, the announcements logic, the server script, the libraries used (mqtt\_as and uasyncio) and the enpoints created for code execution, ping and metrics.}
-
-\subsubsection{Limitations}
+However, the solution is not perfect and has several limitations, such as:
 
 \begin{itemize}
-    \item Only supports mqtt qos 0 and 1, due to limitation of MQTT library used (the only one that has recent support and more complete)
-    \item If a given script is too big, there will be memory problems with ESP8266 -> failsafe not possible
+    \item Support only for mqtt QOS 0 and 1, due to limitations in the MQTT library used. 
+    \item ESP8266 memory limitations, where the fail-safe is not possible if the given a script too big.
 \end{itemize}
+
+\textcolor{blue}{Maybe add an image explaining the firmware, idk}
 
 \subsection{Node-RED decentralization of computation}\label{sec:node_red_decentralization}
 
