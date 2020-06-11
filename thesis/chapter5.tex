@@ -54,6 +54,8 @@ However, the solution is not perfect and has several limitations, such as:
 
 \subsection{Node-RED decentralization of computation}\label{sec:node_red_decentralization}
 
+Node-RED is a centralized tool by design, which takes advantage of events to allow communication between nodes in a flow. To implement a decentralized architecture, some changes were made to the Node-RED runtime. These changes consisted in implementing a new way of communication between nodes, detailed in Section \ref{sec:mqtt_support}, as well as implementing specific nodes responsible for the orchestration and registry of devices. \textcolor{blue}{complete later}
+
 \subsubsection{MQTT node communication support}\label{sec:mqtt_support}
 
 Node-RED nodes communicate using events, where a node only communicates with nodes it is wired to. The communication is one way, with the node only sending data to the nodes it is connected to by output. These output wires are used to access the nodes the message must be sent to, and their \texttt{receive()} method is called. This method triggers the event \texttt{emit} which will the caught by a specific method of each node, implementing its own logic.
