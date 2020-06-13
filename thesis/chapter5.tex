@@ -80,14 +80,25 @@ The creation the script is made after the assignment of nodes to devices, and ea
 
 \textcolor{blue}{Insert Node-RED flow example and the respective micropython script}
 
+\textcolor{red}{Talk about the limitation of communication of two nodes with direct communication being assigned to the same device and still having to communicate to each other via MQTT instead of just calling each other through code.}
+
 \subsubsection{Custom nodes}\label{sec:custom_nodes}
 
-\textcolor{blue}{temperature-Humidity, if, and, mqtt-in, mqtt-out, orchestrator, registry, failure, nothing}
+As mentioned before, the orchestration and registry logic are contained in two custom nodes. Besides this two nodes, several others were created in order to test the system and simplify the code generation and others that already existed were altered. 
+
+The nodes created are: (a) If Node, that receives an input and verifies if it complies with all the given rules, returning true or false, (b) And Node, that receives a given number of inputs and verifies if all of them are true or false, returning the corresponding boolean, (c) Temperature-Humidity Node, that read the temperature and humidity from a DHT sensor present in a specific pin, (d) Failure Node, that raises a MemoryError exception, (e) Nothing Node, that simply redirects the received message in its input to its output, and (f) MQTT In and Out Nodes, that subscribe and publish MQTT topics, respectively.
 
 \subsubsection{Computation Decentralization}\label{sec:node_red_computation_decentralization}
 
-\textcolor{blue}{Talk about the metrics used to assign nodes to devices (predicates and priorities, similar to kubernetes),  the greedy algorithm used to assign nodes to devices. Explain the reassignment if memory errors occurred when sending scripts to the devices or if a device is not responding. Explain when the assignment is made ((a) boot-up after 3 seconds - to give time for the registry to receive all the announcements from the devices, (b) deployment of entire flow, (c) announcement of a new device, (d) failure/recovery of a device with the dynamic state management mechanism}
+The focal point of this dissertation is the decentralization of computation. Given a set of tasks, it must assign them to available devices, ensuring that they will be performed.
 
+To implement this assignment, each device has a set of capabilities, which communicate what the device is capable of doing or accessing, \textit{e.g.} executing micropython code, assessing a DHT sensor, etc. This capabilities are communicated to the orchestrator by the registry, which receives this information by the devices themselves, as is explained in the Section \ref{sec:registry}. 
+
+Besides this, each node has two properties: Predicates and Priorities. Similar to the Kubernetes logic of assigning containers to machines, the predicates dictate constraints that cannot be violated, and priorities are requests that are advisable and recommended but can be violated if impossible to comply. 
+
+The assigning algorithm uses the devices capabilities and each node's predicates and priorities to assign nodes to devices. With a a greedy approach, ir filters the devices that comply with each node's predicates and assigns the one with a higher value of a heuristic. This heuristic takes into account the number of priorities the device can provide, as well as the number of already assigned nodes the device has. The goal is to assign each node to the best possible device, spreading the tasks through all the available devices.
+
+\textcolor{blue}{Insert here assigning algorithm pseudocode}
 % node
 % bestIndex = 0
 
@@ -104,9 +115,25 @@ The creation the script is made after the assignment of nodes to devices, and ea
 %         bestIndex = matchIndex
 %         device is the best choice for node
 
+After assigning all nodes to a specific device, a micropython script is generated to each device, as explained in Section \ref{sec:code_generation}. Due to the limitations in memory of the devices, the quantity of nodes assigned to a device may be excessive to its capabilities. In that case, the device will fail-safe and return an error to the assignment request. The orchestrator will receive this information and repeat the process, assigning less nodes to the devices that returned a memory error. If a device does not return any response, the orchestrator will assume that the device is unavailable and not assign any node to it.
+
+\textcolor{blue}{Add an example of an assignment (JSON file) or/and a visual alternative with blocks and labels. With devices with capabilities and the assigned nodes predicates and priorities.}
+
+The process explained above is triggered by four types of events: (1) start of the system, when there is already a defined flow in the configuration, the assignment start after a period of 3 seconds, to give time for the devices to be registered by the registry node; (2) deployment of the entire flow using the Node-RED editor or API; (3) appearance of a new device, with the announcement of it to the registry node; (4) failure or recovery of a device, communicated by the dynamic state management mechanism, detailed in Section \ref{sec:dynamic_state_management}.
+
+\textcolor{blue}{Maybe add an image of the process, with the possible steps that can trigger an announcement, or the flow of the process}
+
+However, due to the use of a greedy algorithm, there are some limitations in the assignment. Besides not resulting in the best possible solution, there is specific situations that can result in the impossibility of complying with the constraints imposed by nodes. For example, given a scenario where the number of devices is small for the quantity of nodes, resulting in the devices being at the limit of their memory capabilities. If there is a node which constraints can only be complied by one device, but that one device already has the maximum number of nodes it can handle, the assignment is not possible.
+
+\textcolor{red}{Falar tmb (?) que o algoritmo não tem em conta o facto de dois nós seguidos ficarem no mesmo dispositivo - isto agora não tem mt impacto pq toda a comunicação é feita por MQTT mas uma possibilidade era 2 nós seguidos ficarem no mesmo dispositivo e comunicarem chamando a função do outro em vez de ser por MQTT}
+
 \subsubsection{Dynamic state management}\label{sec:dynamic_state_management}
 
-\textcolor{blue}{Talk about the ping pattern, how the system handles when a device fails or recovers}
+After the assignment process, each device is doing their part to allow the system to work as expected. However, given the simplicity of the devices used, such as ESP8266s and ESP32s, they are prone to failures, with possible causes ranging form power loss to faulty hardware, among others.
+
+Due to this limitations, the orchestrator periodically pings the devices in the system, registering any change in their state. If a state is noticed, the orchestrator will repeat the process of assignment taking into account the changes in the device's availability. This detects not only non-availability but also if a device becomes active again after a failure.
+
+\textcolor{blue}{Don't know what to add more}
 
 \subsubsection{Limitations}\label{sec:limitations}
 
@@ -115,5 +142,6 @@ The creation the script is made after the assignment of nodes to devices, and ea
     \item Duplicate messages when redeploying the totality of the flow (maybe fixable later)
     \item Re-orchestration only supported when deploying the entire instance (all flows)
     \item Nodes do not stop working when the Node-RED instance is stopped
-    \item \textcolor{blue}{add more}
+    \item Script generated does not take into account nodes that communicate directly, forcing all communications through MQTT instead of a node calling the method of another with the output as argument.
+    \item Assignment algorithm does not take into account the assignment of sequential nodes in the same device.
 \end{itemize}
