@@ -52,10 +52,10 @@ With the use of 20 physical devices, both ESP8266 and ESP32, implement a line to
 This experience is implemented in several environments:
 \begin{enumerate}
     \item \textbf{Node-RED original}. Runs the experiment in the original Node-RED, using the default option (events) as the communication channel between nodes.
-    \item \textbf{Node-RED modified + MQTT}. Run the experiment in Node-RED, using MQTT as the communication channel between nodes.
+    \item \textbf{Node-RED + MQTT}. Run the experiment in Node-RED, using MQTT as the communication channel between nodes.
     \item \textbf{Node-RED modified + Dockers (same host)} Runs the experiment in the modified version of Node-RED, with each node assigned to a different virtual device, running in a Docker container. The virtual devices are in the same host machine running the MQTT server instance.
     \item \textbf{Node-RED modified + Dockers (different host)} Runs the experiment in the modified version of Node-RED, with each node assigned to a different virtual device, running in a Docker container. The MQTT server instance is in a different host machine from the one running the virtual devices. All machines are connected through Wi-Fi.
-    \item \textbf{MQTT + Physical} Runs the experiment in physical devices without the developed firmware. Each device runs a simple micropython script that executes the wanted behaviour, communicating by MQTT. No Node-RED is used.
+    \item \textbf{Physical + MQTT} Runs the experiment in physical devices without the developed firmware. Each device runs a simple micropython script that executes the wanted behaviour, communicating by MQTT. No Node-RED is used.
     \item \textbf{Node-RED modified + MQTT + Physical + Firmware} Runs the experiment with the developed solution, with each node assigned to a different physical device running the developed micropython firmware. All communicating is made using MQTT.
 \end{enumerate}
 
@@ -69,7 +69,48 @@ This experience is implemented in several environments:
 
 \subsection{Scenario 2}\label{sec:discussion_scenario2}
 
-\textcolor{blue}{Talk about the results of the scenario2 experiments, with graphs, prints of the scenario in Node-RED and conclusions}
+As mentioned previously, several experiences were made to compare the developed solution to existing ones. To this end goal, a simple experiment of passing a message through several devices was implemented and the time the message takes to pass through all the devices was measured. The implementation of the scenario in the Node-RED tool is shown in Figure \ref{fig:scenario2_node_red}. The \textit{nothing} nodes execution consists of only redirecting their input to their output. The message consisting of the current timestamp is inserted into the system by the \textit{inject} node with user input, and the same message is showcased by the \textit{debug} node, the green one.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{scenario2.png}
+\caption[Solution's overview]{Node-RED implementation of scenario 2}\label{fig:scenario2_node_red}
+\end{figure}
+
+This same setup was replicated in several environments, as mentioned before. Each experiment was replicated 10 times, resulting in the data seen in Table \ref{tab:scenario2_table} and visually detailed in Figure \ref{fig:scenario2_candlestick}.
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \resizebox{0.8\textwidth}{!}{%
+    \begin{tabular}{ l  c  c  c  c }
+        \toprule
+        \textbf{Label} & \textbf{Min} & \textbf{Q2} & \textbf{Q3} & \textbf{Max}\\
+        \midrule
+        Node-RED original & 3 & 10 & 13.25 & 15 \\
+        Node-RED + MQTT & 134 & 430.5 & 711.25 & 883 \\
+        Node-RED modified + Dockers (same host) & 1217 & 1318 & 1573.75 & 1665 \\
+        Node-RED modified + Dockers (different host) & 1445 & 2536 & 2708 & 3059 \\
+        Physical + MQTT & 3616 & 4142 & 4372 & 4452 \\
+        Node-RED modified + MQTT + Physical + Firmware & 4168 & 4569 & 5087.75 & 5940 \\
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Scenario 2 results}
+    \label{tab:scenario2_table}
+\end{table}{}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{scenario2_graph.pdf}
+\caption[Scenario 2 results]{Scenario 2 results}\label{fig:scenario2_candlestick}
+\end{figure}
+
+With the given results, we can conclude several things. 
+
+\textcolor{blue}{Talk about how the communication stack hinders the speed of the solution - aka, different host, as well as the micropython firmware also hinders}
+
+\textcolor{red}{Add other tables with the timestamps in the annex}
 
 \subsection{Overview}\label{sec:discussion_overview}
 
