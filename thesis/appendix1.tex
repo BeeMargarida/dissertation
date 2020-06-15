@@ -1,5 +1,139 @@
-\chapter{Paper Submitted} \label{ap:paper}
+\chapter{Scenario 2 Results} \label{ap:scenario2_tables}
 
-This appendix includes the paper submitted... 
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[h]
+    \centering
+    \begin{tabular*}{\textwidth}{ l @{\extracolsep{\fill}} l  l }
+        \toprule
+        \textbf{Start} & \textbf{End} & \textbf{Delta}\\
+        \midrule
+        1591876328759 & 1591876328770 & 11 \\
+        1591876329440 & 1591876329448 & 8 \\
+        1591876329991 & 1591876329994 & 3 \\
+        1591876330539 & 1591876330554 & 15 \\
+        1591876331106 & 1591876331120 & 14 \\
+        1591876331658 & 1591876331667 & 9 \\
+        1591876332192 & 1591876332200 & 8 \\
+        1591876332710 & 1591876332721 & 11 \\
+        1591876333222 & 1591876333237 & 15 \\
+        1591876333779 & 1591876333787 & 8 \\
+        \bottomrule
+    \end{tabular*}
+    \caption{Node-RED original results}
+    \label{tab:node_red_original}
+\end{table}{}
 
-%\includepdf[pages=-]{appendixes/paper}
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \begin{tabular*}{\textwidth}{ l @{\extracolsep{\fill}} l  l }
+        \toprule
+        \textbf{Start} & \textbf{End} & \textbf{Delta}\\
+        \midrule
+        1591877265187 & 1591877265346 & 159 \\
+        1591877266172 & 1591877267055 & 883 \\
+        1591877267564 & 1591877267698 & 134 \\
+        1591877268318 & 1591877268955 & 637 \\
+        1591877269424 & 1591877269783 & 359 \\
+        1591877270361 & 1591877271117 & 756 \\
+        1591877271635 & 1591877272012 & 377 \\
+        1591877272630 & 1591877273132 & 502 \\
+        1591877273645 & 1591877273996 & 351 \\
+        1591877274541 & 1591877275277 & 736 \\
+        \bottomrule
+    \end{tabular*}
+    \caption{Node-RED + MQTT results}
+    \label{tab:node_red_mqtt}
+\end{table}{}
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \begin{tabular*}{\textwidth}{ l @{\extracolsep{\fill}} l  l }
+        \toprule
+        \textbf{Start} & \textbf{End} & \textbf{Delta}\\
+        \midrule
+        1591877987030 & 1591877988695 & 1665 \\
+        1591877989911 & 1591877991177 & 1266 \\
+        1591877992272 & 1591877993595 & 1323 \\
+        1591877994286 & 1591877995817 & 1531 \\
+        1591877996305 & 1591877997618 & 1313 \\
+        1591877998049 & 1591877999307 & 1258 \\
+        1591877999734 & 1591878001322 & 1588 \\
+        1591878001638 & 1591878002855 & 1217 \\
+        1591878003397 & 1591878004643 & 1246 \\
+        1591878005113 & 1591878006703 & 1590 \\
+        \bottomrule
+    \end{tabular*}
+    \caption{Node-RED modified + Dockers (same host) results}
+    \label{tab:node_red_docker_same}
+\end{table}{}
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \begin{tabular*}{\textwidth}{ l @{\extracolsep{\fill}} l  l }
+        \toprule
+        \textbf{Start} & \textbf{End} & \textbf{Delta}\\
+        \midrule
+        1591908868087 & 1591908870410 & 2323 \\
+        1591908871443 & 1591908873803 & 2360 \\
+        1591908874380 & 1591908877085 & 2705 \\
+        1591908877629 & 1591908880338 & 2709 \\
+        1591908880878 & 1591908883937 & 3059 \\
+        1591908884472 & 1591908887147 & 2675 \\
+        1591908887651 & 1591908889096 & 1445 \\
+        1591908889803 & 1591908892200 & 2397 \\
+        1591908892693 & 1591908894158 & 1465 \\
+        1591908894846 & 1591908897623 & 2777 \\
+        \bottomrule
+    \end{tabular*}
+    \caption{Node-RED modified + Dockers (different host) results}
+    \label{tab:node_red_docker_different}
+\end{table}{}
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[ht]
+    \centering
+    \begin{tabular*}{\textwidth}{ l @{\extracolsep{\fill}} l  l }
+        \toprule
+        \textbf{Start} & \textbf{End} & \textbf{Delta}\\
+        \midrule
+        1591904836329 & 1591904840130 & 3801 \\
+        1591904844918 & 1591904849155 & 4237 \\
+        1591904850127 & 1591904854579 & 4452 \\
+        1591904855324 & 1591904859754 & 4430 \\
+        1591904860483 & 1591904864559 & 4076 \\
+        1591904865164 & 1591904869180 & 4016 \\
+        1591904869770 & 1591904873905 & 4135 \\
+        1591904874557 & 1591904878706 & 4149 \\
+        1591904879318 & 1591904882934 & 3616 \\
+        1591904888813 & 1591904893230 & 4417 \\
+        \bottomrule
+    \end{tabular*}
+    \caption{Physical + MQTT results}
+    \label{tab:physical_mqtt}
+\end{table}{}
+
+\captionsetup{belowskip=12pt,aboveskip=4pt}
+\begin{table}[h]
+    \centering
+    \begin{tabular*}{\textwidth}{ l @{\extracolsep{\fill}} l  l }
+        \toprule
+        \textbf{Start} & \textbf{End} & \textbf{Delta}\\
+        \midrule
+        1591878582050 & 1591878587990 & 5940 \\
+        1591878589026 & 1591878593492 & 4466 \\
+        1591878594105 & 1591878598640 & 4535 \\
+        1591878599238 & 1591878603841 & 4603 \\
+        1591878604570 & 1591878608765 & 4195 \\
+        1591878609340 & 1591878614220 & 4880 \\
+        1591878615030 & 1591878620187 & 5157 \\
+        1591878620870 & 1591878625038 & 4168 \\
+        1591878625718 & 1591878630967 & 5249 \\
+        1591878631560 & 1591878635880 & 4320 \\
+        \bottomrule
+    \end{tabular*}
+    \caption{Node-RED modified + MQTT + Physical + Firmware}
+    \label{tab:nr_mqtt_physical_firmware}
+\end{table}{}
