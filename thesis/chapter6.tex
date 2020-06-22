@@ -23,14 +23,15 @@ The first scenario aims to test the features of the developed solution with a mo
 
 \textbf{Scenario 1}:
 \begin{enumerate}
-    \item \textbf{Sanity check.} All tasks are simple readings and forwarding, no compensation or other fault-tolerance strategy. Each sensor does its own thing. Orchestration is centralized. We expect all roundtrips to take less than the smallest part that can be resolved (measurement capability, which we estimate to be <1s).
+    \item \textbf{Sanity check.} All tasks are simple readings and forwarding, no compensation or other fault-tolerance strategy. Each sensor does its own thing. Orchestration is centralized. We expect all roundtrips to take less than the smallest part that can be resolved (measurement capability, which we estimate to be <1s). This will be executed using both Docker containers and physical devices.
     \item \textbf{Re-orchestration.}
         \begin{itemize}
             \item \textbf{Experiment A.} MWS is achieved via multiple possible configurations by selective (provoked) device failure (fail-stop);
             \item \textbf{Experiment B.} Inconsistent device behaviour, e.g. appear and disappear in shorter intervals lower that the time needed for orchestrating convergence (OCT), that leads to activity impacting the MWS;
-            \item \textbf{Experiment C.} With 20 devices, each one with different processing capabilities. During orchestration, some devices will develop an out-of-memory error because they can't process all the processing tasks assigned to them, specifically the size of the script given. The orchestrator decides to send less tasks to these devices. The system will converge in a working solution. \textit{This scenario will be implemented with a modified device script. When devices receive a script, it will generate a memory error if the length of the script passes a certain threshold. This simulates the memory constraints of devices when receiving a file to big.}
-            \item \textbf{Experiment D.} With 20 devices, some of them have a memory leak with an unknown cause. After random time Random(t0,t1), these problematic devices stop working with an out-of-memory error. The orchestrator thinks that the devices can't handle the quantity of processing tasks assigned to them, so in the re-orchestration it will assign fewer tasks. Since these devices will always break, the orchestrator will eventually not consider these devices in the assignment of nodes. \textit{This scenario will be implemented with a modified device script that will trigger an out-of-memory error after a random period after executing the given tasks.}
-            \item \textbf{Experiment E.} With 20 devices, there is a device that is sensitive to a particular node, which causes the device to give out an out-of-memory error. The orchestrator will potentially assign this node to the specific device. When the device gives out the out-of-memory error, the orchestrator will eventually converge in a solution where the node is not assigned to the particular device, and the system will converge.  \textit{These out-of-memory errors will be simulated with the use of a failure node that forces an \texttt{MemoryException} in the device.}
+            \item \textbf{Experiment C.} With 4 devices, each one with different processing capabilities. During orchestration, some devices will develop an out-of-memory error because they can't process all the processing tasks assigned to them, specifically the size of the script given. The orchestrator decides to send less tasks to these devices. The system will converge in a working solution. \textit{This scenario will be implemented with a modified device script. When devices receive a script, it will generate a memory error if the length of the script passes a certain threshold. This simulates the memory constraints of devices when receiving a file to big.}
+            \item \textbf{Experiment D.} With 4 devices, some of them have a memory leak with an unknown cause. After random time Random(t0,t1), these problematic devices stop working with an out-of-memory error. The orchestrator thinks that the devices can't handle the quantity of processing tasks assigned to them, so in the re-orchestration it will assign fewer tasks. Since these devices will always break, the orchestrator will eventually not consider these devices in the assignment of nodes. \textit{This scenario will be implemented with a modified device script that will trigger an out-of-memory error after a random period after executing the given tasks.}
+            \item \textbf{Experiment E.} With 4 devices, there is a device that is sensitive to a particular node, which causes the device to give out an out-of-memory error. The orchestrator will potentially assign this node to the specific device. When the device gives out the out-of-memory error, the orchestrator will eventually converge in a solution where the node is not assigned to the particular device, and the system will converge.  \textit{These out-of-memory errors will be simulated with the use of a failure node that forces an \texttt{MemoryException} in the device.}
+            \item \item \textbf{Experiment F.} With 50 devices, each second the device has a probability to fail. This failure can go from 0 to 10 seconds, randomly chosen. The orchestrator must deal with the random failure of the devices and re-orchestrate the system. This experiment is considered a stress test, causing repeated failures and forcing constant re-orchestration.
         \end{itemize}
         Verifies that:
         \begin{enumerate}
@@ -44,7 +45,6 @@ The first scenario aims to test the features of the developed solution with a mo
                     \item Priority is given to the maximum level of decentralization, but some centralization can be used.
                 \end{enumerate}
         \end{enumerate}
-    \item \textbf{Latency.} Make devices selectively slow and check the consequences; might impact OCT and MWS. ? \textcolor{red}{was not implemented}
 \end{enumerate}
 
 \textbf{Scenario 2}:
@@ -65,13 +65,144 @@ This experience is implemented in several environments:
 
 \subsection{Scenario 1}\label{sec:discussion_scenario1}
 
-\textcolor{blue}{Talk about the results of the scenario1 experiments, with graphs, prints of the scenario in Node-RED and conclusions}
+As mentioned previously, the first scenario consists of a system that controls an A/C. This system takes into account readings of 3 temperature and humidity sensors to define if the room's temperature is too hot, cold of humid and sends commands to the A/C with the respective actions. The Node-RED implementation of this system can be seen in Figure \ref{fig:scenario1_node_red}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{scenario1.png}
 \caption[Node-RED implementation of scenario 1]{Node-RED implementation of scenario 1}\label{fig:scenario1_node_red}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%% SC %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Sanity Check}
+
+The first experiment made to the developed solution tested the overall functionality of the tool and its efficiency. Using 4 Docker containers with the micropython Unix port with the developed firmware, the scenario presented in Figure \ref{fig:scenario1_node_red} was partitioned and assigned evenly to them. The assignment can be observed in Figure \ref{fig:sanity_check_nr_nodes}, where it was allocated 9 nodes for each device.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check/nr_nodes.pdf}
+\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:sanity_check_nr_nodes}
+\end{figure}
+
+The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be observed in Figure \ref{fig:sanity_check_alloc_ram}. The flash size, presented in Figure \ref{fig:sanity_check_flash_size}, only decreases around 150000 bytes, when the device receives a script to execute, This quantity matches the overall payload received by the devices, which can be consulted in Figure \ref{fig:sanity_check_last_payload}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check/alloc_ram.pdf}
+\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:sanity_check_alloc_ram}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check/flash_size.pdf}
+\caption[Devices' flash size]{Devices' flash size}\label{fig:sanity_check_flash_size}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check/last_payload.pdf}
+\caption[Devices' payloads size]{Devices' payloads size}\label{fig:sanity_check_last_payload}
+\end{figure}
+
+The total time the devices are available can be consulted in Figure \ref{fig:sanity_check_uptime}. Since this scenario occurs without any device failure, the uptime is linear.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check/uptime.pdf}
+\caption[Devices' uptime]{Devices' uptime}\label{fig:sanity_check_uptime}
+\end{figure}
+
+Once the devices execute the script given to them, each node allocated to a device start to communicate with each other, publishing and consuming MQTT messages. To verify that the system works, the messages of all communicating topics were captured. This messages prove that the system works, since all nodes are receiving their inputs and producing outputs. The number of communications can be consulted in Figure \ref{fig:sanity_nr_communications}. As it can be observed, the number of communications in device \texttt{8f96fa542f8b} is bigger than any other. This is due to the fact that in this device two temperature-humidity nodes were allocated, which publish 3 messages, a number communication events bigger than any other node. The device \texttt{4b86a2021b77} contains the other temperature-humidity node.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check/nr_communications.pdf}
+\caption[Number of MQTT communications of each device]{Number of MQTT communications of each device}\label{fig:sanity_nr_communications}
+\end{figure}
+
+\textcolor{red}{Include node assignment of nodes? JSON? Or modify the node-red flow and say the device each node was assigned to?}
+
+%%%%%%%%%%%%%%%%%%%%%% SC Phys %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Sanity Check with physical devices}
+
+\textcolor{blue}{TODO}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/nr_nodes.pdf}
+\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:sanity_check_phys_nr_nodes}
+\end{figure}
+    
+    
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/alloc_ram.pdf}
+\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:sanity_check_phys_alloc_ram}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/flash_size.pdf}
+\caption[Devices' flash size]{Devices' flash size}\label{fig:sanity_check_phys_flash_size}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/last_payload.pdf}
+\caption[Devices' payloads size]{Devices' payloads size}\label{fig:sanity_check_phys_last_payload}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/uptime.pdf}
+\caption[Devices' uptime]{Devices' uptime}\label{fig:sanity_check_phys_uptime}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%% Exp A %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Experiment A}
+
+\textcolor{blue}{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%% Exp A Phys %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Experiment A with physical devices}
+
+\textcolor{blue}{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%% Exp B %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Experiment B}
+
+\textcolor{blue}{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%% Exp C %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Experiment C}
+
+\textcolor{blue}{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%% Exp D %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Experiment D}
+
+\textcolor{blue}{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%% Exp E %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Experiment E}
+
+\textcolor{blue}{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%% Exp F %%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Experiment F}
+
+\textcolor{blue}{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Scenario 2}\label{sec:discussion_scenario2}
 
