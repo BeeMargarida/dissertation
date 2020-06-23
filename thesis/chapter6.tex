@@ -73,6 +73,8 @@ As mentioned previously, the first scenario consists of a system that controls a
 \caption[Node-RED implementation of scenario 1]{Node-RED implementation of scenario 1}\label{fig:scenario1_node_red}
 \end{figure}
 
+The sanity check experiments will prove that the devices can satisfy the nodes, meaning that the system works as its meant to once the assignment is completed. With this premise, this will not verified in the other experiments.
+
 %%%%%%%%%%%%%%%%%%%%%% SC %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Sanity Check}
@@ -149,6 +151,8 @@ The usage of RAM in physical devices, presented in Figure \ref{fig:sanity_check_
 
 The flash size  of the physical devices, in Figure \ref{fig:sanity_check_phys_flash_size}, are more smaller than the physical ones, as expected. It can be observed in Figure \ref{fig:sanity_check_phys_last_payload} that the device with the biggest payload, \texttt{192.168.1.165}, ends up having the smaller flash size, which is logical. The overall size of the payloads are very similar to the ones in the previous experiment. 
 
+The uptime in Figure \ref{fig:sanity_check_phys_uptime} is similar to the previous experiment, since no device failed.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/flash_size.pdf}
@@ -161,7 +165,7 @@ The flash size  of the physical devices, in Figure \ref{fig:sanity_check_phys_fl
 \caption[Devices' payloads size]{Devices' payloads size}\label{fig:sanity_check_phys_last_payload}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/uptime.pdf}
 \caption[Devices' uptime]{Devices' uptime}\label{fig:sanity_check_phys_uptime}
@@ -172,6 +176,36 @@ The flash size  of the physical devices, in Figure \ref{fig:sanity_check_phys_fl
 \subsubsection{Experiment A}
 
 \textcolor{blue}{TODO}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration/nr_nodes.pdf}
+\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:reorchestration_nr_nodes}
+\end{figure}
+    
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration/alloc_ram.pdf}
+\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:reorchestration_alloc_ram}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration/flash_size.pdf}
+\caption[Devices' flash size]{Devices' flash size}\label{fig:reorchestration_flash_size}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration/last_payload.pdf}
+\caption[Devices' payloads size]{Devices' payloads size}\label{fig:reorchestration_last_payload}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration/uptime.pdf}
+\caption[Devices' uptime]{Devices' uptime}\label{fig:reorchestration_uptime}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%% Exp A Phys %%%%%%%%%%%%%%%%%%%%%%
 
