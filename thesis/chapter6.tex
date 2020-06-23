@@ -121,6 +121,8 @@ Once the devices execute the script given to them, each node allocated to a devi
 \caption[Number of MQTT communications of each device]{Number of MQTT communications of each device}\label{fig:sanity_nr_communications}
 \end{figure}
 
+It can be concluded from this sanity check experiment that the solution developed works, not only by spreading the computation throughout the available devices, but it also results in a functional system.
+
 \textcolor{red}{Include node assignment of nodes? JSON? Or modify the node-red flow and say the device each node was assigned to?}
 
 %%%%%%%%%%%%%%%%%%%%%% SC Phys %%%%%%%%%%%%%%%%%%%%%%
@@ -129,18 +131,23 @@ Once the devices execute the script given to them, each node allocated to a devi
 
 \textcolor{blue}{TODO}
 
+The sanity check experiment was repeated using physical devices, more specifically 4 ESP32. Similar to the virtual devices, the assignment of nodes to devices spread the number of nodes equally, with each device having 9 nodes to their responsibility. This assignment result can be seen in Figure \ref{fig:sanity_check_phys_nr_nodes}
+
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/nr_nodes.pdf}
 \caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:sanity_check_phys_nr_nodes}
 \end{figure}
-    
+
+The usage of RAM in physical devices, presented in Figure \ref{fig:sanity_check_phys_alloc_ram}, is smaller than the one used by virtual devices. This can be explained with the possible optimization differences in the Micropython ports, as well as the changes implemented in libraries to support the Unix port.
     
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/alloc_ram.pdf}
 \caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:sanity_check_phys_alloc_ram}
 \end{figure}
+
+The flash size  of the physical devices, in Figure \ref{fig:sanity_check_phys_flash_size}, are more smaller than the physical ones, as expected. It can be observed in Figure \ref{fig:sanity_check_phys_last_payload} that the device with the biggest payload, \texttt{192.168.1.165}, ends up having the smaller flash size, which is logical. The overall size of the payloads are very similar to the ones in the previous experiment. 
 
 \begin{figure}[H]
 \centering
