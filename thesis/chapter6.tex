@@ -10,14 +10,14 @@ This section evaluates how the solution developed proves the hypothesis proposed
 
 \section{Scenarios and Experiments}\label{sec:scenarios_experiments}
 
-The testing of the proposed solution diverged in two different scenarios. The first simulates physical devices with the use of Docker containers running the Unix port of micropython, allowing the construction of scalable scenarios with minimal costs. The second scenario uses physical devices, such as ESP8266 and ESP32, connected to the same Wi-Fi.
+The testing of the proposed solution diverged in two different scenarios. The first simulates physical devices with the use of Docker containers running the Unix port of MicroPython, allowing the construction of scalable scenarios with minimal costs. The second scenario uses physical devices, such as ESP8266 and ESP32, connected to the same Wi-Fi.
 
 \begin{enumerate}
     \item A room has 3 sensors that give temperature and humidity readings every minute. There’s a virtual sensor that compares the results (of both temperature and humidity) and triggers depending on some configured thresholds. An AC uses those readings to decide (a) if it switches on/off, (b) its operating mode: cool, heat, and dehumidify. The Minimal Working System (MWS) consists in (a) one temperature sensor, (b) one humidity sensor, (c) one node capable of making the decision, and (d) working communication channels amongst them.
     \item 20 devices, where each device redirects its input to its output. \textcolor{red}{improve}
 \end{enumerate}
 
-The first scenario aims to test the features of the developed solution with a moderately simple Node-RED flow, taking advantage of the nodes developed for micropython code generation support. The second scenario allows the comparison of the developed solution to the already existing solutions.
+The first scenario aims to test the features of the developed solution with a moderately simple Node-RED flow, taking advantage of the nodes developed for MicroPython code generation support. The second scenario allows the comparison of the developed solution to the already existing solutions.
 
 \textcolor{red}{Refactor this enumeration, with some explaining of some terms}
 
@@ -53,10 +53,10 @@ This experience is implemented in several environments:
 \begin{enumerate}
     \item \textbf{Node-RED original}. Runs the experiment in the original Node-RED, using the default option (events) as the communication channel between nodes.
     \item \textbf{Node-RED + MQTT}. Run the experiment in Node-RED, using MQTT as the communication channel between nodes.
-    \item \textbf{Node-RED modified + Dockers (same host)} Runs the experiment in the modified version of Node-RED, with each node assigned to a different virtual device, running in a Docker container. The Docker containers are running the firmware created in a Unix micropython port. The virtual devices are in the same host machine running the MQTT server instance.
-    \item \textbf{Node-RED modified + Dockers (different host)} Runs the experiment in the modified version of Node-RED, with each node assigned to a different virtual device, running in a Docker container. The Docker containers are running the firmware created in a Unix micropython port. The MQTT server instance is in a different host machine from the one running the virtual devices. All machines are connected through Wi-Fi.
-    \item \textbf{Physical + MQTT} Runs the experiment in physical devices without the developed firmware. Each device runs a simple micropython script that executes the wanted behaviour, communicating by MQTT. No Node-RED is used.
-    \item \textbf{Node-RED modified + MQTT + Physical + Firmware} Runs the experiment with the developed solution, with each node assigned to a different physical device running the developed micropython firmware. All communicating is made using MQTT.
+    \item \textbf{Node-RED modified + Dockers (same host)} Runs the experiment in the modified version of Node-RED, with each node assigned to a different virtual device, running in a Docker container. The Docker containers are running the firmware created in a Unix MicroPython port. The virtual devices are in the same host machine running the MQTT server instance.
+    \item \textbf{Node-RED modified + Dockers (different host)} Runs the experiment in the modified version of Node-RED, with each node assigned to a different virtual device, running in a Docker container. The Docker containers are running the firmware created in a Unix MicroPython port. The MQTT server instance is in a different host machine from the one running the virtual devices. All machines are connected through Wi-Fi.
+    \item \textbf{Physical + MQTT} Runs the experiment in physical devices without the developed firmware. Each device runs a simple MicroPython script that executes the wanted behaviour, communicating by MQTT. No Node-RED is used.
+    \item \textbf{Node-RED modified + MQTT + Physical + Firmware} Runs the experiment with the developed solution, with each node assigned to a different physical device running the developed MicroPython firmware. All communicating is made using MQTT.
 \end{enumerate}
 
 \section{Discussion}\label{sec:evaluation_discussion}
@@ -77,7 +77,7 @@ As mentioned previously, the first scenario consists of a system that controls a
 
 \subsubsection{Sanity Check}
 
-The first experiment made to the developed solution tested the overall functionality of the tool and its efficiency. Using 4 Docker containers with the micropython Unix port with the developed firmware, the scenario presented in Figure \ref{fig:scenario1_node_red} was partitioned and assigned evenly to them. The assignment can be observed in Figure \ref{fig:sanity_check_nr_nodes}, where it was allocated 9 nodes for each device.
+The first experiment made to the developed solution tested the overall functionality of the tool and its efficiency. Using 4 Docker containers with the MicroPython Unix port with the developed firmware, the scenario presented in Figure \ref{fig:scenario1_node_red} was partitioned and assigned evenly to them. The assignment can be observed in Figure \ref{fig:sanity_check_nr_nodes}, where it was allocated 9 nodes for each device.
 
 \begin{figure}[h]
 \centering
@@ -127,7 +127,7 @@ It can be concluded from this sanity check experiment that the solution develope
 
 %%%%%%%%%%%%%%%%%%%%%% SC Phys %%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Sanity Check with physical devices}
+\subsubsection{Sanity Check with Physical Devices}
 
 \textcolor{blue}{TODO}
 
@@ -139,7 +139,7 @@ The sanity check experiment was repeated using physical devices, more specifical
 \caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:sanity_check_phys_nr_nodes}
 \end{figure}
 
-The usage of RAM in physical devices, presented in Figure \ref{fig:sanity_check_phys_alloc_ram}, is smaller than the one used by virtual devices. This can be explained with the possible optimization differences in the Micropython ports, as well as the changes implemented in libraries to support the Unix port.
+The usage of RAM in physical devices, presented in Figure \ref{fig:sanity_check_phys_alloc_ram}, is smaller than the one used by virtual devices. This can be explained with the possible optimization differences in the MicroPython ports, as well as the changes implemented in libraries to support the Unix port.
     
 \begin{figure}[h]
 \centering
@@ -250,13 +250,13 @@ This same setup was replicated in several environments, as mentioned before. Eac
 \caption[Scenario 2 results]{Scenario 2 results}\label{fig:scenario2_candlestick}
 \end{figure}
 
-The Figure \ref{fig:scenario2_candlestick} demonstrates that the developed solution is considerably less efficient in communicating message between nodes. However, given the other experiences, it is possible to conclude that this lack of efficiency is caused not by the firmware created but because of the stack of communication the message as to go through, as well as the nature of micropython. 
+The Figure \ref{fig:scenario2_candlestick} demonstrates that the developed solution is considerably less efficient in communicating message between nodes. However, given the other experiences, it is possible to conclude that this lack of efficiency is caused not by the firmware created but because of the stack of communication the message as to go through, as well as the nature of MicroPython. 
 
-When the decentralization is applied inside Node-RED, without running any micropython, it is possible to see that the introduction of a Mosquitto broker running in the same host causes some latency. The introduction of Dockers running the firmware in the same host as the Node-RED instance and Mosquitto broker causes more latency, making it possible to conclude that micropython of the developed firmware also delay de communication. By repeating the same experience as before but with the Mosquitto broker in another machine, it is noticeable that the times are more spread out and the overall latency of the system is bigger. Given the stacks of Wi-Fi that the message as to go through, this result is logical.
+When the decentralization is applied inside Node-RED, without running any MicroPython, it is possible to see that the introduction of a Mosquitto broker running in the same host causes some latency. The introduction of Dockers running the firmware in the same host as the Node-RED instance and Mosquitto broker causes more latency, making it possible to conclude that MicroPython of the developed firmware also delay de communication. By repeating the same experience as before but with the Mosquitto broker in another machine, it is noticeable that the times are more spread out and the overall latency of the system is bigger. Given the stacks of Wi-Fi that the message as to go through, this result is logical.
 
-Lastly, the experiment was repeated in physical devices, first by running a simple code in he micropython flashed devices and insertion of the message using the Mosquitto client, and second by using the whole developed system, with the modified Node-RED and firmware in the devices. The results allows us to conclude that the devices produce the worst time, but firmware developed introduces little latency, visible by the comparison of both their results.
+Lastly, the experiment was repeated in physical devices, first by running a simple code in he MicroPython flashed devices and insertion of the message using the Mosquitto client, and second by using the whole developed system, with the modified Node-RED and firmware in the devices. The results allows us to conclude that the devices produce the worst time, but firmware developed introduces little latency, visible by the comparison of both their results.
 
-It is possible to conclude that the developed solution's node communication is slower than the original Node-RED mostly due to the nature of Wi-Fi communications and the micropython port used.   
+It is possible to conclude that the developed solution's node communication is slower than the original Node-RED mostly due to the nature of Wi-Fi communications and the MicroPython port used.   
 
 \textcolor{red}{Add other tables with the timestamps in the annex}
 

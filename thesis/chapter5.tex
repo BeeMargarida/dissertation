@@ -8,7 +8,7 @@ This chapter describes how the problem presented in Chapter \ref{chap:problem_st
 
 The goal of this dissertation is to modify Node-RED in order to decentralize its architecture, taking advantage of the capabilities of external devices, no matter how limited they are.
 
-The solution implemented was to use the Node-RED instance to orchestrate the decentralization and send tasks to other devices in the network. The devices make themselves known by announcing their address and capabilities to a registry node running in Node-RED. Consequently, Node-RED assigns nodes to devices and communicates each node's assignment via HTTP. Due to the devices' limitations, they cannot run an instance of Node-RED, so Node-RED needs to convert nodes in Javascript to other language that can be interpreted by these devices. The implemented solution requires a Micropython port and a HTTP server that receives and executes a micropython script created by the Node-RED. This script contains the tasks assigned to a device, translated into micropython. 
+The solution implemented was to use the Node-RED instance to orchestrate the decentralization and send tasks to other devices in the network. The devices make themselves known by announcing their address and capabilities to a registry node running in Node-RED. Consequently, Node-RED assigns nodes to devices and communicates each node's assignment via HTTP. Due to the devices' limitations, they cannot run an instance of Node-RED, so Node-RED needs to convert nodes in Javascript to other language that can be interpreted by these devices. The implemented solution requires a MicroPython port and a HTTP server that receives and executes a MicroPython script created by the Node-RED. This script contains the tasks assigned to a device, translated into MicroPython. 
 
 After the first deployment of the system, the Node-RED instance manages the state of each device, allowing the system to re-orchestrate if any change in their state is detected.
 
@@ -21,11 +21,11 @@ After the first deployment of the system, the Node-RED instance manages the stat
 \textcolor{blue}{Explain and improve graphic}
 
 
-\section{Implementation details}\label{sec:implementation_details}
+\section{Implementation Details}\label{sec:implementation_details}
 
 The implemented solution consists of two co-dependent modules that are necessary for the functionally of the system. The first module consists of the changes implemented to Node-RED run-time to allow for its decentralization, detailed in Section \ref{sec:node_red_decentralization}. The second module consists of the solution found to take advantage of external devices with limited capabilities, explained in Section \ref{sec:devices_decentralization}.
 
-\subsection{Device registry}\label{sec:registry}
+\subsection{Device Registry}\label{sec:registry}
 
 When a device becomes available it sends information about itself to a MQTT topic. This information contains the device's IP address, their capabilities and their status - if the device has failed before. In its turn, Node-RED contains a Node called \textit{Registry} that listens to the announcements MQTT topics and saves the devices information. If this node is connected to a orchestrator node, each new device is communicated so that the orchestration can be updated.
 
@@ -33,15 +33,15 @@ When a device has an Out of Memory error, it triggers a fail-safe, where it rebo
 
 \textcolor{red}{Not sure where to put this. What is there more to add?}
 
-\subsection{Devices setup for decentralization support}\label{sec:devices_decentralization}
+\subsection{Devices Setup for Decentralization Support}\label{sec:devices_decentralization}
 
-The first problem approached in this thesis was finding a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite their capability limitations. In order to limit the number of type of different devices capable for this aim, only ESP8266 and ESP32 chips were used, since they have connectivity capabilities such as an WiFi chip. In terms of testing, the environment in the devices was replicated in Docker container running the Unix port of micropython.
+The first problem approached in this thesis was finding a way to take advantage of devices with few computational resources, integrating them in a IoT system. The goal was to make these devices execute scripts of code and communicate with other devices, despite their capability limitations. In order to limit the number of type of different devices capable for this aim, only ESP8266 and ESP32 chips were used, since they have connectivity capabilities such as an WiFi chip. In terms of testing, the environment in the devices was replicated in Docker container running the Unix port of MicroPython.
 
-\subsubsection{Solution overview}
+\subsubsection{Solution Overview}
 
-As it was mentioned before in Section \ref{sec:solution_overview}, the devices in the system run a micropython port that allows the execution of scripts written in micropython. This solution is lightweight and extensible. Since these devices need to receive different types of tasks throughout their execution, their firmware includes an HTTP server responsible for receiving scripts of code, saving and executing them. Besides this functionality, it was also implemented an endpoint that returns the state of the device, as well as the announcing mechanism, explained in Section \ref{sec:registry}.
+As it was mentioned before in Section \ref{sec:solution_overview}, the devices in the system run a MicroPython port that allows the execution of scripts written in MicroPython. This solution is lightweight and extensible. Since these devices need to receive different types of tasks throughout their execution, their firmware includes an HTTP server responsible for receiving scripts of code, saving and executing them. Besides this functionality, it was also implemented an endpoint that returns the state of the device, as well as the announcing mechanism, explained in Section \ref{sec:registry}.
 
-Several micropython libraries were used, more specifically uasyncio and micropython-mqtt. The uasyncio library allowed the implementation of asynchronous operations, critical for the execution of the given script as well as maintaining the HTTP server running and non-blocking.
+Several MicroPython libraries were used, more specifically uasyncio and MicroPython-mqtt. The uasyncio library allowed the implementation of asynchronous operations, critical for the execution of the given script as well as maintaining the HTTP server running and non-blocking.
 
 The firmware also includes a fail-safe mechanism, safeguarding against \textit{out-of-memory} errors that may happen during the lifespan of the device. This mechanism resets all running tasks and recovers the HTTP server and communication channels. This an important feature due to the high probability of these error's occurrence, since the devices have limited memory. 
 
@@ -54,11 +54,11 @@ However, the solution is not perfect and has several limitations, such as:
 
 \textcolor{blue}{Maybe add an image explaining the firmware, idk}
 
-\subsection{Node-RED decentralization of computation}\label{sec:node_red_decentralization}
+\subsection{Node-RED Decentralization of Computation}\label{sec:node_red_decentralization}
 
 Node-RED is a centralized tool by design, which takes advantage of events to allow communication between nodes in a flow. To implement a decentralized architecture, some changes were made to the Node-RED runtime. These changes consisted in implementing a new way of communication between nodes, detailed in Section \ref{sec:mqtt_support}, as well as implementing specific nodes responsible for the orchestration and registry of devices. \textcolor{blue}{complete later}
 
-\subsubsection{MQTT node communication support}\label{sec:mqtt_support}
+\subsubsection{MQTT Node Communication Support}\label{sec:mqtt_support}
 
 Node-RED nodes communicate using events, where a node only communicates with nodes it is wired to. The communication is one way, with the node only sending data to the nodes it is connected to by output. These output wires are used to access the nodes the message must be sent to, and their \texttt{receive()} method is called. This method triggers the event \texttt{emit} which will the caught by a specific method of each node, implementing its own logic.
 
@@ -70,21 +70,21 @@ Node entities were changed to support MQTT instead of events, subscribing to top
 
 \textcolor{blue}{Insert here image that shows a flow with wires and the respective flow with examples of topics}
 
-\subsubsection{Code generation}\label{sec:code_generation}
+\subsubsection{Code Generation}\label{sec:code_generation}
 
 \textcolor{blue}{Talk about each node code generation, the support for multiple node scripts in one script. Talk about limitation that different nodes on one script, even consecutive nodes, require to communicate with each other by MQTT topics}
 
-As explained above, due to the limitations of the devices used, it was necessary to translate Node-RED nodes, written in Javascript, to micropython code. Along with that, it was also necessary to support multiple nodes in one script, making it necessary to create a generalized script that could fit any type of node.
+As explained above, due to the limitations of the devices used, it was necessary to translate Node-RED nodes, written in Javascript, to MicroPython code. Along with that, it was also necessary to support multiple nodes in one script, making it necessary to create a generalized script that could fit any type of node.
 
 The implemented solution consists of each node having specific methods related to their functionality and one point of input and output. Since the communication is made by MQTT, as specified in Section \ref{sec:mqtt_support}, the only input a Node can have is in its topics. The same for the output logic. A exception to this is in nodes that are sources, meaning that they generate input and don't receive it. 
 
 The creation the script is made after the assignment of nodes to devices, and each device has its respective script created. The process consists of creating the script with the code of all the assigned nodes and a general code that ties up the script. This general code is responsible for subscribing to all the input topics of all the nodes, stopping the script's processes and forwarding the MQTT messages to the respective node's code.
 
-\textcolor{blue}{Insert Node-RED flow example and the respective micropython script}
+\textcolor{blue}{Insert Node-RED flow example and the respective MicroPython script}
 
 \textcolor{red}{Talk about the limitation of communication of two nodes with direct communication being assigned to the same device and still having to communicate to each other via MQTT instead of just calling each other through code.}
 
-\subsubsection{Custom nodes}\label{sec:custom_nodes}
+\subsubsection{Custom Nodes}\label{sec:custom_nodes}
 
 As mentioned before, the orchestration and registry logic are contained in two custom nodes. Besides this two nodes, several others were created in order to test the system and simplify the code generation and others that already existed were altered. 
 
@@ -94,7 +94,7 @@ The nodes created are: (a) If Node, that receives an input and verifies if it co
 
 The focal point of this dissertation is the decentralization of computation. Given a set of tasks, it must assign them to available devices, ensuring that they will be performed.
 
-To implement this assignment, each device has a set of capabilities, which communicate what the device is capable of doing or accessing, \textit{e.g.} executing micropython code, assessing a DHT sensor, etc. This capabilities are communicated to the orchestrator by the registry, which receives this information by the devices themselves, as is explained in the Section \ref{sec:registry}. 
+To implement this assignment, each device has a set of capabilities, which communicate what the device is capable of doing or accessing, \textit{e.g.} executing MicroPython code, assessing a DHT sensor, etc. This capabilities are communicated to the orchestrator by the registry, which receives this information by the devices themselves, as is explained in the Section \ref{sec:registry}. 
 
 Besides this, each node has two properties: Predicates and Priorities. Similar to the Kubernetes logic of assigning containers to machines, the predicates dictate constraints that cannot be violated, and priorities are requests that are advisable and recommended but can be violated if impossible to comply. 
 
@@ -117,7 +117,7 @@ The assigning algorithm uses the devices capabilities and each node's predicates
 %         bestIndex = matchIndex
 %         device is the best choice for node
 
-After assigning all nodes to a specific device, a micropython script is generated to each device, as explained in Section \ref{sec:code_generation}. Due to the limitations in memory of the devices, the quantity of nodes assigned to a device may be excessive to its capabilities. In that case, the device will fail-safe and return an error to the assignment request. The orchestrator will receive this information and repeat the process, assigning less nodes to the devices that returned a memory error. If a device does not return any response, the orchestrator will assume that the device is unavailable and not assign any node to it.
+After assigning all nodes to a specific device, a MicroPython script is generated to each device, as explained in Section \ref{sec:code_generation}. Due to the limitations in memory of the devices, the quantity of nodes assigned to a device may be excessive to its capabilities. In that case, the device will fail-safe and return an error to the assignment request. The orchestrator will receive this information and repeat the process, assigning less nodes to the devices that returned a memory error. If a device does not return any response, the orchestrator will assume that the device is unavailable and not assign any node to it.
 
 \textcolor{blue}{Add an example of an assignment (JSON file) or/and a visual alternative with blocks and labels. With devices with capabilities and the assigned nodes predicates and priorities.}
 
@@ -129,7 +129,7 @@ However, due to the use of a greedy algorithm, there are some limitations in the
 
 \textcolor{red}{Falar tmb (?) que o algoritmo não tem em conta o facto de dois nós seguidos ficarem no mesmo dispositivo - isto agora não tem mt impacto pq toda a comunicação é feita por MQTT mas uma possibilidade era 2 nós seguidos ficarem no mesmo dispositivo e comunicarem chamando a função do outro em vez de ser por MQTT}
 
-\subsubsection{Dynamic state management}\label{sec:dynamic_state_management}
+\subsubsection{Dynamic State Management}\label{sec:dynamic_state_management}
 
 After the assignment process, each device is doing their part to allow the system to work as expected. However, given the simplicity of the devices used, such as ESP8266s and ESP32s, they are prone to failures, with possible causes ranging form power loss to faulty hardware, among others.
 
@@ -140,7 +140,7 @@ Due to this limitations, the orchestrator periodically pings the devices in the 
 \subsubsection{Limitations}\label{sec:limitations}
 
 \begin{itemize}
-    \item Number of nodes that support micropython code generation is small
+    \item Number of nodes that support MicroPython code generation is small
     \item Duplicate messages when redeploying the totality of the flow (maybe fixable later)
     \item Re-orchestration only supported when deploying the entire instance (all flows)
     \item Nodes do not stop working when the Node-RED instance is stopped
