@@ -72,8 +72,6 @@ Node entities were changed to support MQTT instead of events, subscribing to top
 
 \subsubsection{Code Generation}\label{sec:code_generation}
 
-\textcolor{blue}{Talk about each node code generation, the support for multiple node scripts in one script. Talk about limitation that different nodes on one script, even consecutive nodes, require to communicate with each other by MQTT topics}
-
 As explained above, due to the limitations of the devices used, it was necessary to translate Node-RED nodes, written in Javascript, to MicroPython code. Along with that, it was also necessary to support multiple nodes in one script, making it necessary to create a generalized script that could fit any type of node.
 
 The implemented solution consists of each node having specific methods related to their functionality and one point of input and output. Since the communication is made by MQTT, as specified in Section \ref{sec:mqtt_support}, the only input a Node can have is in its topics. The same for the output logic. A exception to this is in nodes that are sources, meaning that they generate input and don't receive it. 

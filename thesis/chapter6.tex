@@ -61,7 +61,7 @@ This experience is implemented in several environments:
 
 \section{Discussion}\label{sec:evaluation_discussion}
 
-\textcolor{blue}{For each experiment, analyse the data and discuss the results - many graphs, more tables and lots of text - fun times and very little time!}
+\textcolor{blue}{Complete...}
 
 \subsection{Scenario 1}\label{sec:discussion_scenario1}
 
@@ -87,7 +87,7 @@ The first experiment made to the developed solution tested the overall functiona
 \caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:sanity_check_nr_nodes}
 \end{figure}
 
-The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be observed in Figure \ref{fig:sanity_check_alloc_ram}. The flash size, presented in Figure \ref{fig:sanity_check_flash_size}, only decreases around 150000 bytes, when the device receives a script to execute, This quantity matches the overall payload received by the devices, which can be consulted in Figure \ref{fig:sanity_check_last_payload}.
+The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be observed in Figure \ref{fig:sanity_check_alloc_ram}. The flash size, presented in Figure \ref{fig:sanity_check_flash_size}, only decreases around 150000 bytes, when the device receives a script to execute. This quantity matches the overall payload received by the devices, which can be consulted in Figure \ref{fig:sanity_check_last_payload}.
 
 \begin{figure}[h]
 \centering
@@ -105,6 +105,14 @@ The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be obser
 \centering
 \includegraphics[width=\textwidth]{experiences/1-sanity_check/last_payload.pdf}
 \caption[Devices' payloads size]{Devices' payloads size}\label{fig:sanity_check_last_payload}
+\end{figure}
+
+As mentioned before, once the orchestrator defines the nodes assignment, a script is built and send to the devices. The confirmation of this delivery is necessary for the system to conclude the assignment phase and start the constant verification of the state of the system. The time it takes to deliver the script was timed and it can be consulted in Figure \ref{fig:sanity_check_script_delivery_time}. The usage of virtual devices running in the same host as the Node-RED instance allows for smaller times, which are measured in milliseconds.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/1-sanity_check/delivery_time_table.pdf}
+\caption[Scripts' delivery time]{Scripts' delivery time}\label{fig:sanity_check_script_delivery_time}
 \end{figure}
 
 The total time the devices are available can be consulted in Figure \ref{fig:sanity_check_uptime}. Since this scenario occurs without any device failure, the uptime is linear.
@@ -151,6 +159,14 @@ The usage of RAM in physical devices, presented in Figure \ref{fig:sanity_check_
 
 The flash size  of the physical devices, in Figure \ref{fig:sanity_check_phys_flash_size}, are more smaller than the physical ones, as expected. It can be observed in Figure \ref{fig:sanity_check_phys_last_payload} that the device with the biggest payload, \texttt{192.168.1.165}, ends up having the smaller flash size, which is logical. The overall size of the payloads are very similar to the ones in the previous experiment. 
 
+The script delivery time for physical devices is bigger than the virtual devices, as it can be seen in Figure \ref{fig:sanity_check_phys_script_delivery_time}. Since they are not running in the same machine, the WiFi stack as well as the devices' hardware hinder the speed of communication.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/1-sanity_check_phys/delivery_time_table.pdf}
+\caption[Scripts' delivery time]{Scripts' delivery time}\label{fig:sanity_check_phys_script_delivery_time}
+\end{figure}
+
 The uptime in Figure \ref{fig:sanity_check_phys_uptime} is similar to the previous experiment, since no device failed.
 
 \begin{figure}[H]
@@ -176,6 +192,8 @@ The uptime in Figure \ref{fig:sanity_check_phys_uptime} is similar to the previo
 \subsubsection{Experiment A}
 
 \textcolor{blue}{TODO}
+
+This experiment aims to test the system's ability to re-orchestrate when a device fails or becomes available. During the occurrence of the experiment, devices were turned off one by one until only one was left running. The expected behaviour is that the system detects that a device has become unavailable and re-orchestrates, assigning nodes to the available devices. In the end, only one device is running and all the nodes are assigned to it.
 
 \begin{figure}[h]
 \centering
@@ -212,6 +230,42 @@ The uptime in Figure \ref{fig:sanity_check_phys_uptime} is similar to the previo
 \subsubsection{Experiment A with physical devices}
 
 \textcolor{blue}{TODO}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/nr_nodes.pdf}
+\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:reorchestration_phys_nr_nodes}
+\end{figure}
+    
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/alloc_ram.pdf}
+\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:reorchestration_phys_alloc_ram}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/flash_size.pdf}
+\caption[Devices' flash size]{Devices' flash size}\label{fig:reorchestration_phys_flash_size}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/last_payload.pdf}
+\caption[Devices' payloads size]{Devices' payloads size}\label{fig:reorchestration_phys_last_payload}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/delivery_time_graph.pdf}
+\caption[Scripts' delivery time]{Scripts' delivery time}\label{fig:reorchestration_phys_script_delivery_time}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/uptime.pdf}
+\caption[Devices' uptime]{Devices' uptime}\label{fig:reorchestration_phys_uptime}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%% Exp B %%%%%%%%%%%%%%%%%%%%%%
 
