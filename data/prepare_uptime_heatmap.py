@@ -26,7 +26,7 @@ with open(sys.argv[1]) as f, open(sys.argv[2], 'w', newline='') as csvfile:
             for r in data:
                 if (val not in last_entry or last_entry[val] <= int(r[0])) and int(r[0]) <= t1 and r[idx + 1]:
                     last_entry[val] = int(r[0])
-                    row[val] = r[idx + 1]
+                    row[val] = str(round(int(r[idx + 1])/1000,2))
         last_entry = dict()
         writer.writerow(row)
         delta = delta + 5000
