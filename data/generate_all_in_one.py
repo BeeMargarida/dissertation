@@ -256,7 +256,7 @@ for n, row in enumerate(z):
             )
 
 ranges_min=[50000,1850000,39450000,13500]
-ranges_max=[200000,3000000,39600000,16000]
+ranges_max=[200000,2100000,39600000,16000]
 shapes=[]
 for g in range(1,5):
     for t in x_h:
