@@ -14,19 +14,19 @@ with open(sys.argv[1]) as f, open(sys.argv[2], 'w', newline='') as csvfile:
 
     last_entry = dict()
 
-    t0 = 1592334347000
+    t0 = 1592685206500
     delta = 0
 
     for i in range(0,250):
         print("IT", i)
         t1 = t0 + delta
-        row = {'Time': int(((t1-1592334347000)/1000))}
+        row = {'Time': int(((t1-1592685206500)/1000))}
         for idx, val in enumerate(header):
             row[val] = 0
             for r in data:
                 if (val not in last_entry or last_entry[val] <= int(r[0])) and int(r[0]) <= t1 and r[idx + 1]:
                     last_entry[val] = int(r[0])
-                    row[val] = str(round(int(r[idx + 1])/1000,2))
+                    row[val] = str(int(int(r[idx + 1])/1000))
         last_entry = dict()
         writer.writerow(row)
         delta = delta + 5000
