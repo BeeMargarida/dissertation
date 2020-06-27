@@ -156,7 +156,13 @@ The requirements to achieve this are two-fold: first, a \textit{node} should act
 \label{code:greedyassignment}
 \end{algorithm}
 
-The assigning algorithm uses the devices capabilities and each node's Predicates and Priorities to assign \textit{nodes} to devices. With a greedy approach, the algorithm filters the devices that comply with each node's predicates and assigns the one with a higher value of a heuristic, \cf Algorithm~\ref{code:greedyassignment}. This heuristic takes into account the number of priorities the device can provide, as well as the number of already assigned \textit{nodes} the device has. The goal is to assign each \textit{node} to the best possible device, spreading the tasks through all the available devices.
+The assigning algorithm uses the devices capabilities and each node's Predicates and Priorities to assign \textit{nodes} to devices. With a greedy approach, the algorithm filters the devices that comply with each node's predicates and assigns the one with a higher value of a heuristic, \cf Algorithm~\ref{code:greedyassignment}. This heuristic takes into account the number of priorities the device can provide, as well as the number of already assigned \textit{nodes} the device has. The goal is to assign each \textit{node} to the best possible device, spreading the tasks through all the available devices. An example of a possible assignment can be seen in Figure \ref{fig:assigment_example}, where the assignment matches the nodes' priorities with the devices' tags while spreading the nodes over the available devices.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{assignment example.pdf}
+\caption[Node assignment example]{Node assignment example}\label{fig:assigment_example}
+\end{figure}
 
 After assigning all \textit{nodes} to a specific device, a code script is generated for each device (\cf Section~\ref{sec:code_generation}). Due to the constrained memory of the devices, the quantity of \textit{nodes} assigned to a device may exceed their resources. In that case, the device will \textsc{fail-safe} and return an error to the assignment request. The orchestrator will receive this information and repeat the process, assigning less \textit{nodes} to the devices that returned an \textsc{Out-of-Memory} error. If a device does not return any response, the orchestrator will assume that the device is unavailable and not assign any \textit{node} to it.
 
