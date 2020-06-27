@@ -217,9 +217,13 @@ Since the first assignment can already be correct by default, meaning that these
 
 \subsubsection{Experiment F}
 
-\textcolor{blue}{TODO}
+This experiment consists of pushing the system to its limits by introducing constant failures in its devices. Every second, each device has a 5\% probability of becoming unavailable from 0 to 10 seconds. During this period, the device is unresponsive to the orchestrator requests and, when recovered, announces itself.
 
-\textcolor{red}{Possibly will have to repeat this experiment, since I can't find a pattern to note...its all a blob of events}
+The results of the experiment can be consulted in Figures \ref{fig:stress_test_nodes} and \ref{fig:stress_test_status}. From Figure \ref{fig:stress_test_nodes} it can be concluded that the system is constantly (re)orchestrating itself, and once the majority of devices failed, the system becomes unstable. It is important to note that, similar to previous devices, once a device fails, the number of nodes does not update to 0. With this in mind, it can be concluded that devices with the same number of nodes during the total execution of the system failed early on and continued to fail, not allowing another assignment by the orchestrator.
+
+Around the 100 seconds, it can be noted in Figure \ref{fig:stress_test_status} a period where all devices were available. However, the node assignment in Figure \ref{fig:stress_test_nodes} does not converge during that time period. The reason for this behaviour is that the system will (re)orchestrate when a device becomes available. Since each device announces itself individually, each announcement triggers a new orchestration. This process takes time and results in several failed orchestrations due to outdated data of the status of the devices. 
+
+This is a limitation of the system, making it vulnerable to a possible DoS attack in the form of an excess of status activity from the devices. This constant orchestration is also taxing for the devices, causing an overload of received assignments that will never make the system function as a whole.
 
 \begin{figure*}[h]
     \centering
