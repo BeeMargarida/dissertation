@@ -85,7 +85,160 @@ This was accomplished by adding specific code generation methods to each orchest
 
 The code generation happens after the \textit{Orchestrator node} defines an assignment between \textit{nodes} and devices. This generation creates a device-specific Python scripts that follows the result of the task assignment procedure (script which can correspond to several \textit{nodes}), adding wrapping code that ties up the script. This wrapping code is responsible for subscribing to all the input topics of all the nodes, stopping the script's processes and forwarding the MQTT messages to the respective node's code.
 
-\todo[inline]{Insert Node-RED flow example and the respective MicroPython script}
+An example of a Node-RED flow and its respective python script can be seen in Figure \ref{fig:code_generation_flow} and Listing \ref{lst:code_generation}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{code-generation-flow.png}
+    \caption{Simple Node-RED flow.}
+    \label{fig:code_generation_flow}
+\end{figure}
+
+\begin{lstlisting}[language=Python, caption={Code generated from the flow presented in Figure \ref{fig:code_generation_flow}.}, captionpos=b, label={lst:code_generation}]
+import gc
+import sys
+import ujson
+import uasyncio as asyncio
+mqtt_client = None
+capabilities = []
+client_id = None
+nodes_str = "mqttin:3d70bdef542242 mqttout:40d7b1d7aca938 if:fd3cf13026958"
+nodes_id = ["3d70bdef542242","40d7b1d7aca938","fd3cf13026958"]
+input_topics = ["input","topic1_node","topic0_node"]
+output_topics = ["topic0_node","topic1_node"]
+
+import ubinascii
+input_topics_3d70bdef542242 = ["input"]
+output_topics_3d70bdef542242 = ["topic0_node"]
+node_datatype_3d70bdef542242 = "auto"
+node_qos_3d70bdef542242 = 2
+
+def on_input_3d70bdef542242(topic, msg, retained):
+    try:
+        if node_datatype_3d70bdef542242 == "base64":
+            msg = str(ubinascii.b2a_base64(msg))
+        elif node_datatype_3d70bdef542242 == "utf8":
+            msg = msg.encode("utf-8")
+        elif node_datatype_3d70bdef542242 == "json":
+            msg = ujson.loads(str(msg))
+    finally:
+        msg = dict(
+            topic=topic,
+            payload=msg,
+            device_id=client_id
+            qos=node_qos_3d70bdef542242,
+            retain=retained
+        )
+        loop = asyncio.get_event_loop()
+        loop.create_task(
+            on_output(
+                ujson.dumps(msg),
+                output_topics_3d70bdef542242
+            )
+        )
+
+import ujson
+input_topics_40d7b1d7aca938 = ["topic1_node"]
+output_topics_40d7b1d7aca938 = ["output"]
+
+def on_input_40d7b1d7aca938(topic, msg, retained):
+    try:
+        msg = ujson.loads(msg)
+    else:
+        msg = dict(
+            topic=topic,
+            payload=msg["payload"],
+            device_id=client_id
+        )            
+    loop = asyncio.get_event_loop()
+    loop.create_task(
+        on_output(
+            ujson.dumps(msg),
+            output_topics_40d7b1d7aca938
+        )
+    )
+
+input_topics_fd3cf13026958 = ["topic0_node"]
+output_topics_fd3cf13026958 = ["topic1_node"]
+property_fd3cf13026958 = "payload"
+
+def if_rule_fd3cf13026958_0(a, b = 10):
+    a = int(a)
+    return a >= b
+def if_function_fd3cf13026958(a):
+    res = if_rule_fd3cf13026958_0(a)
+    return '%s' % res
+
+def get_property_value_fd3cf13026958(msg):
+    properties = property_fd3cf13026958.split(".")
+    payload = ujson.loads(msg)
+
+    for property in properties:
+        try:
+            payload = ujson.loads(payload)
+            if payload[property]:
+                payload = payload[property]
+            else:
+                break
+        except:
+            break
+    return payload
+
+def on_input_fd3cf13026958(topic, msg, retained):
+    msg = get_property_value_fd3cf13026958(msg)
+    res = if_function_fd3cf13026958(msg)
+    res = dict(
+        payload=res,
+        device_id=client_id
+    )
+    loop = asyncio.get_event_loop()
+    loop.create_task(
+        on_output(
+            ujson.dumps(res),
+            output_topics_fd3cf13026958
+        )
+    )
+    return
+
+def on_input(topic, msg, retained):
+    topic = topic.decode()
+    if topic in input_topics_3d70bdef542242:
+        on_input_3d70bdef542242(topic, msg, retained)
+    elif topic in input_topics_40d7b1d7aca938:
+        on_input_40d7b1d7aca938(topic, msg, retained)
+    elif topic in input_topics_fd3cf13026958:
+        on_input_fd3cf13026958(topic, msg, retained)
+
+async def conn_han(client):
+    for input_topic in input_topics:
+        await client.subscribe(input_topic, 1)
+
+async def on_output(msg, output):
+    for output_topic in output:
+        await mqtt_client.publish(output_topic, msg, qos = 1)
+
+def get_nodes():
+    return nodes_str
+
+def stop():
+    for id in nodes_id:
+        func_name = "stop_" + id
+        if func_name in globals():
+            getattr(sys.modules[__name__], func_name)()
+
+async def exec(mqtt_c, capabilities_array, c_id):
+    global mqtt_client
+    global capabilities
+    global client_id
+    mqtt_client = mqtt_c
+    capabilities = capabilities_array
+    client_id = c_id
+    for id in nodes_id:
+        func_name = "exec_" + id
+        if func_name in globals():
+            getattr(sys.modules[__name__], func_name)()
+    return
+\end{lstlisting}
 
 However, there are limitations to this solution. If two consecutive \textit{nodes} are assigned to the same device, the communication between them is still dependent on MQTT. This is not an ideal solution, since one \textit{node} could call the other through code, passing its output as arguments.
 
@@ -160,7 +313,7 @@ The assigning algorithm uses the devices capabilities and each node's Predicates
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{assignment example.pdf}
+\includegraphics[width=\linewidth]{assignment_example.pdf}
 \caption[Node assignment example]{Node assignment example}\label{fig:assigment_example}
 \end{figure}
 
