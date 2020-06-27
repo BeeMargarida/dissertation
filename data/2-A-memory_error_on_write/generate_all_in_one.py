@@ -17,9 +17,91 @@ df_payload.sort_values(by=['Time'], inplace=True)
 initial_time = 1592665552000
 x = [(i - initial_time)/1000 for i in df_payload['Time']]
 
-fig = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.04,
-                    row_heights=[400, 400], x_title="Time (s)",
-                    subplot_titles=["Uptime (s)","Number of nodes allocated per device"])
+fig = make_subplots(rows=3, cols=1, shared_xaxes=True, vertical_spacing=0.04,
+                    row_heights=[400, 400, 400], x_title="Time (s)",
+                    subplot_titles=["Payload Size (bytes)", "Uptime (s)", "Number of nodes allocated per device"])
+
+# PAYLOAD
+fig.add_trace(
+    go.Scatter(x=x, y=df_payload['481714f496e4'], yaxis="y1", mode='lines+markers',
+               name='Device 1', line=dict(color='#636efa', width=2), connectgaps=True),
+    row=1, col=1
+)
+
+fig.add_trace(
+    go.Scatter(x=x, y=df_payload['6f2c053265f6'], yaxis="y1", mode='lines+markers',
+               name='Device 2', line=dict(color='#ef553b', width=2), connectgaps=True),
+    row=1, col=1
+)
+
+fig.add_trace(
+    go.Scatter(x=x, y=df_payload['78034b84ad0f'], yaxis="y1", mode='lines+markers',
+               name='Device 3', line=dict(color='#00cc96', width=2), connectgaps=True),
+    row=1, col=1
+)
+
+fig.add_trace(
+    go.Scatter(x=x, y=df_payload['8d2d383ac982'], yaxis="y1", mode='lines+markers',
+               name='Device 4', line=dict(color='#ab63fa', width=2), connectgaps=True),
+    row=1, col=1
+)
+
+fig.add_shape(
+    # Line Vertical
+    dict(
+        type="line",
+        xref="x",
+        yref="y1",
+        x0=79.2,
+        y0=0,
+        x1=79.2,
+        y1=27000,
+        line=dict(
+            color="Black",
+            width=1
+        )
+    ))
+
+fig.add_shape(
+    # Line Vertical
+    dict(
+        type="line",
+        xref="x",
+        yref="y1",
+        x0=112.2,
+        y0=0,
+        x1=112.2,
+        y1=27000,
+        line=dict(
+            color="Black",
+            width=1
+        )
+    ))
+
+fig.add_annotation(
+    dict(
+        x=79,
+        y=26000,
+        xref="x",
+        yref="y1",
+        text="Device 2 failure",
+        showarrow=False,
+        xanchor="right",
+        align="right"
+    )
+)
+fig.add_annotation(
+    dict(
+        x=113,
+        y=26000,
+        xref="x",
+        yref="y1",
+        text="Device 2 recovery",
+        showarrow=False,
+        xanchor="left",
+        align="right"
+    )
+)
 
 # UPTIME
 x_h = []
@@ -48,10 +130,10 @@ fig.add_trace(
         ygap=1,
         text=z,
         colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(140, 149, 255)']],
-        yaxis="y1",
+        yaxis="y2",
         showscale=False
     ),
-    row=1, col=1
+    row=2, col=1
 )
 
 for n, row in enumerate(z):
@@ -62,11 +144,11 @@ for n, row in enumerate(z):
                 x=x_h[m]+2.5,
                 y=y[n],
                 xref='x',
-                yref='y1',
+                yref='y2',
                 showarrow=False,
                 font=dict(size=8)
             )
-          )
+            )
 # NR NODES
 cols = ["Device 1", "Device 2", "Device 3", "Device 4"]
 
@@ -85,10 +167,10 @@ fig.add_trace(
         xgap=1,
         ygap=1,
         colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(140, 149, 255)']],
-        yaxis="y2",
+        yaxis="y3",
         showscale=False
     ),
-    row=2, col=1
+    row=3, col=1
 )
 
 for n, row in enumerate(z):
@@ -99,11 +181,32 @@ for n, row in enumerate(z):
                 x=x_h[m]+2.5,
                 y=y[n],
                 xref='x',
-                yref='y2',
+                yref='y3',
                 showarrow=False,
                 font=dict(size=8)
-              )
             )
+            )
+
+ranges_min = [0]
+ranges_max = [26000]
+shapes = []
+for g in range(1, 2):
+    for t in x_h:
+        shapes.append(
+            dict(
+                type="line",
+                xref="x",
+                yref="y%s" % g,
+                x0=t,
+                y0=ranges_min[g - 1],
+                x1=t,
+                y1=ranges_max[g - 1],
+                line=dict(
+                    color="dimgrey",
+                    width=0.1
+                )
+            )
+        )
 
 # Add figure title
 fig.update_layout(
@@ -113,7 +216,7 @@ fig.update_layout(
     xaxis=dict(
         dtick=5
     ),
-    height=500,
+    height=1000,
     width=1000,
     margin=dict(
         t=45,
@@ -129,9 +232,10 @@ fig.update_layout(
         xanchor='center',
         yanchor='top'
     ),
+    shapes=shapes,
     plot_bgcolor='rgba(0,0,0,0)'
 )
 
 fig.update_xaxes(range=[-5, 200])
-#fig.show()
+# fig.show()
 fig.write_image("memory_write.pdf")

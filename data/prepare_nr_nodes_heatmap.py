@@ -14,13 +14,13 @@ with open(sys.argv[1]) as f, open(sys.argv[2], 'w', newline='') as csvfile:
 
     last_entry = dict()
 
-    t0 = 1592685206500
+    t0 = 1592665552000
     delta = 0
 
     for i in range(0,250):
         print("IT", i)
         t1 = t0 + delta
-        row = {'Time': int(((t1-1592685206500)/1000))}
+        row = {'Time': int(((t1-1592665552000)/1000))}
         for idx, val in enumerate(header):
             row[val] = 0
             for r in data:

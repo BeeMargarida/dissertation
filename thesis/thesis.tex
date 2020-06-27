@@ -49,8 +49,23 @@
 \usepackage{rotating}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{todonotes}
+\usepackage{amsmath}
 
 \usepackage{float}
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwBlock{Init}{init}{end}
+\SetKwComment{Comment}{// }{}
+\SetCommentSty{itshape}
+\SetKwBlock{OnInput}{onInput}{end}
+\SetKwBlock{OnTimeout}{onTimeout}{end}
+\DontPrintSemicolon
+\SetAlFnt{\small}
+
+\graphicspath{{figs/}}
 
 %% Include color package
 \usepackage{color}

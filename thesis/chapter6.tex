@@ -31,7 +31,7 @@ The first scenario aims to test the features of the developed solution with a mo
             \item \textbf{Experiment C.} With 4 devices, each one with different processing capabilities. During orchestration, some devices will develop an out-of-memory error because they can't process all the processing tasks assigned to them, specifically the size of the script given. The orchestrator decides to send less tasks to these devices. The system will converge in a working solution. \textit{This scenario will be implemented with a modified device script. When devices receive a script, it will generate a memory error if the length of the script passes a certain threshold. This simulates the memory constraints of devices when receiving a file to big.}
             \item \textbf{Experiment D.} With 4 devices, some of them have a memory leak with an unknown cause. After random time Random(t0,t1), these problematic devices stop working with an out-of-memory error. The orchestrator thinks that the devices can't handle the quantity of processing tasks assigned to them, so in the re-orchestration it will assign fewer tasks. Since these devices will always break, the orchestrator will eventually not consider these devices in the assignment of nodes. \textit{This scenario will be implemented with a modified device script that will trigger an out-of-memory error after a random period after executing the given tasks.}
             \item \textbf{Experiment E.} With 4 devices, there is a device that is sensitive to a particular node, which causes the device to give out an out-of-memory error. The orchestrator will potentially assign this node to the specific device. When the device gives out the out-of-memory error, the orchestrator will eventually converge in a solution where the node is not assigned to the particular device, and the system will converge.  \textit{These out-of-memory errors will be simulated with the use of a failure node that forces an \texttt{MemoryException} in the device.}
-            \item \item \textbf{Experiment F.} With 50 devices, each second the device has a probability to fail. This failure can go from 0 to 10 seconds, randomly chosen. The orchestrator must deal with the random failure of the devices and re-orchestrate the system. This experiment is considered a stress test, causing repeated failures and forcing constant re-orchestration.
+            \item \textbf{Experiment F.} With 50 devices, each second the device has a probability to fail. This failure can go from 0 to 10 seconds, randomly chosen. The orchestrator must deal with the random failure of the devices and re-orchestrate the system. This experiment is considered a stress test, causing repeated failures and forcing constant re-orchestration.
         \end{itemize}
         Verifies that:
         \begin{enumerate}
@@ -77,213 +77,122 @@ The sanity check experiments will prove that the devices can satisfy the nodes, 
 
 %%%%%%%%%%%%%%%%%%%%%% SC %%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Sanity Check}
+\subsubsection{Sanity Check}\label{sec:sanity_check_exp}
 
-The first experiment made to the developed solution tested the overall functionality of the tool and its efficiency. Using 4 Docker containers with the MicroPython Unix port with the developed firmware, the scenario presented in Figure \ref{fig:scenario1_node_red} was partitioned and assigned evenly to them. The assignment can be observed in Figure \ref{fig:sanity_check_nr_nodes}, where it was allocated 9 nodes for each device.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check/nr_nodes.pdf}
-\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:sanity_check_nr_nodes}
-\end{figure}
-
-The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be observed in Figure \ref{fig:sanity_check_alloc_ram}. The flash size, presented in Figure \ref{fig:sanity_check_flash_size}, only decreases around 150000 bytes, when the device receives a script to execute. This quantity matches the overall payload received by the devices, which can be consulted in Figure \ref{fig:sanity_check_last_payload}.
+The first experiment made to the developed solution tested the overall functionality of the tool and its efficiency. Using 4 Docker containers with the MicroPython Unix port with the developed firmware, the scenario presented in Figure \ref{fig:scenario1_node_red} was partitioned and assigned evenly to them. The assignment can be observed in Figure \ref{fig:sanity_check_graph}, where it was allocated 9 \textit{nodes} for each device.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check/alloc_ram.pdf}
-\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:sanity_check_alloc_ram}
+\includegraphics[width=\linewidth]{experiences/1-sanity_check/sanity_check.pdf}
+\caption[Sanity check experience measurements]{Sanity check experience measurements}\label{fig:sanity_check_graph}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check/flash_size.pdf}
-\caption[Devices' flash size]{Devices' flash size}\label{fig:sanity_check_flash_size}
-\end{figure}
+The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be observed in Figure \ref{fig:sanity_check_graph}. The flash size only decreases around 150000 bytes, when the device receives a script to execute. This quantity matches the overall payload received by the devices.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check/last_payload.pdf}
-\caption[Devices' payloads size]{Devices' payloads size}\label{fig:sanity_check_last_payload}
-\end{figure}
+As mentioned before, once the orchestrator defines the \textit{nodes} assignment, a script is built and send to the devices. The confirmation of this delivery is necessary for the system to conclude the assignment phase and start the constant verification of the state of the system. The time it takes to deliver the script was timed and it can be consulted in Figure \ref{fig:sanity_check_graph}. The usage of virtual devices running in the same host as the Node-RED instance allows for smaller times, which are measured in milliseconds.
 
-As mentioned before, once the orchestrator defines the nodes assignment, a script is built and send to the devices. The confirmation of this delivery is necessary for the system to conclude the assignment phase and start the constant verification of the state of the system. The time it takes to deliver the script was timed and it can be consulted in Figure \ref{fig:sanity_check_script_delivery_time}. The usage of virtual devices running in the same host as the Node-RED instance allows for smaller times, which are measured in milliseconds.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/1-sanity_check/delivery_time_table.pdf}
-\caption[Scripts' delivery time]{Scripts' delivery time}\label{fig:sanity_check_script_delivery_time}
-\end{figure}
-
-The total time the devices are available can be consulted in Figure \ref{fig:sanity_check_uptime}. Since this scenario occurs without any device failure, the uptime is linear.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check/uptime.pdf}
-\caption[Devices' uptime]{Devices' uptime}\label{fig:sanity_check_uptime}
-\end{figure}
-
-Once the devices execute the script given to them, each node allocated to a device start to communicate with each other, publishing and consuming MQTT messages. To verify that the system works, the messages of all communicating topics were captured. This messages prove that the system works, since all nodes are receiving their inputs and producing outputs. The number of communications can be consulted in Figure \ref{fig:sanity_nr_communications}. As it can be observed, the number of communications in device \texttt{8f96fa542f8b} is bigger than any other. This is due to the fact that in this device two temperature-humidity nodes were allocated, which publish 3 messages, a number communication events bigger than any other node. The device \texttt{4b86a2021b77} contains the other temperature-humidity node.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check/nr_communications.pdf}
-\caption[Number of MQTT communications of each device]{Number of MQTT communications of each device}\label{fig:sanity_nr_communications}
-\end{figure}
+Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other, publishing and consuming MQTT messages. To verify that the system works, the messages of all communicating topics were captured. This messages prove that the system works, since all \textit{nodes} are receiving their inputs and producing outputs. The number of communications can be consulted in Figure \ref{fig:sanity_check_graph}. As it can be observed, the number of communications in Device 1 is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages, a number communication events bigger than any other node. The Device 2 contains the other temperature-humidity node.
 
 It can be concluded from this sanity check experiment that the solution developed works, not only by spreading the computation throughout the available devices, but it also results in a functional system.
 
-\textcolor{red}{Include node assignment of nodes? JSON? Or modify the node-red flow and say the device each node was assigned to?}
+\textcolor{red}{Include \textit{node} assignment of nodes? JSON? Or modify the node-red flow and say the device each \textit{node} was assigned to?}
+
+\todo[inline]{Is it necessary to add the table/graph with the times it took to send the scripts to the devices?}
 
 %%%%%%%%%%%%%%%%%%%%%% SC Phys %%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Sanity Check with Physical Devices}
+\subsubsection{Sanity Check with Physical Devices}\label{sec:sanity_check_phys_exp}
 
-\textcolor{blue}{TODO}
-
-The sanity check experiment was repeated using physical devices, more specifically 4 ESP32. Similar to the virtual devices, the assignment of nodes to devices spread the number of nodes equally, with each device having 9 nodes to their responsibility. This assignment result can be seen in Figure \ref{fig:sanity_check_phys_nr_nodes}
+The sanity check experiment was repeated using physical devices, more specifically 4 ESP32. Similar to the virtual devices, the assignment of \textit{nodes} to devices spread the number of \textit{nodes} equally, with each device having 9 \textit{nodes} to their responsibility. This assignment result can be seen in Figure \ref{fig:sanity_check_phys_graph}.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/nr_nodes.pdf}
-\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:sanity_check_phys_nr_nodes}
+\includegraphics[width=\linewidth]{experiences/1-sanity_check_phys/sanity_check_hardware.pdf}
+\caption[Sanity check with physical devices experience measurements]{Sanity check with physical devices experience measurements}\label{fig:sanity_check_phys_graph}
 \end{figure}
 
-The usage of RAM in physical devices, presented in Figure \ref{fig:sanity_check_phys_alloc_ram}, is smaller than the one used by virtual devices. This can be explained with the possible optimization differences in the MicroPython ports, as well as the changes implemented in libraries to support the Unix port.
-    
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/alloc_ram.pdf}
-\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:sanity_check_phys_alloc_ram}
-\end{figure}
+The usage of RAM in physical devices is smaller than the one used by virtual devices. This can be explained with the possible optimization differences in the MicroPython ports, as well as the changes implemented in libraries to support the Unix port.
 
-The flash size  of the physical devices, in Figure \ref{fig:sanity_check_phys_flash_size}, are more smaller than the physical ones, as expected. It can be observed in Figure \ref{fig:sanity_check_phys_last_payload} that the device with the biggest payload, \texttt{192.168.1.165}, ends up having the smaller flash size, which is logical. The overall size of the payloads are very similar to the ones in the previous experiment. 
+The flash size of the physical devices is smaller than the physical ones, as expected. It can be observed in Figure \ref{fig:sanity_check_phys_graph} that the device with the biggest payload, Device 1, ends up having the smaller flash size, which is logical. The overall size of the payloads are very similar to the ones in the previous experiment. 
 
-The script delivery time for physical devices is bigger than the virtual devices, as it can be seen in Figure \ref{fig:sanity_check_phys_script_delivery_time}. Since they are not running in the same machine, the WiFi stack as well as the devices' hardware hinder the speed of communication.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/1-sanity_check_phys/delivery_time_table.pdf}
-\caption[Scripts' delivery time]{Scripts' delivery time}\label{fig:sanity_check_phys_script_delivery_time}
-\end{figure}
-
-The uptime in Figure \ref{fig:sanity_check_phys_uptime} is similar to the previous experiment, since no device failed.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/flash_size.pdf}
-\caption[Devices' flash size]{Devices' flash size}\label{fig:sanity_check_phys_flash_size}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/last_payload.pdf}
-\caption[Devices' payloads size]{Devices' payloads size}\label{fig:sanity_check_phys_last_payload}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{experiences/1-sanity_check_phys/uptime.pdf}
-\caption[Devices' uptime]{Devices' uptime}\label{fig:sanity_check_phys_uptime}
-\end{figure}
+The script delivery time for physical devices is bigger than the virtual devices. Since they are not running in the same machine, the WiFi stack as well as the devices' hardware hinder the speed of communication. The uptime is similar to the previous experiment, since no device failed.
 
 %%%%%%%%%%%%%%%%%%%%%% Exp A %%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Experiment A}
+\subsubsection{Experiment A}\label{sec:exp_a}
 
-\textcolor{blue}{TODO}
+This experiment aims to test the system's ability to re-orchestrate when a device fails or becomes available. During the occurrence of the experiment, devices were turned off one by one until only one was left running. The expected behaviour is that the system detects that a device has become unavailable and re-orchestrates, assigning \textit{nodes} to the available devices. In the end, only one device is running and all the \textit{nodes} are assigned to it.
 
-This experiment aims to test the system's ability to re-orchestrate when a device fails or becomes available. During the occurrence of the experiment, devices were turned off one by one until only one was left running. The expected behaviour is that the system detects that a device has become unavailable and re-orchestrates, assigning nodes to the available devices. In the end, only one device is running and all the nodes are assigned to it.
+It can be observed in Figure \ref{fig:experiment_a_graph} that the uptime of the devices stops increasing one by one, identifying the moment the device fails. Once a failure happens, the system (re)orchestrates, assigning the nodes of the device to the other available devices, increasing their number. This can also be observed in Figure \ref{fig:experiment_a_graph}. This increase in the number of nodes assigned to the available devices can also be observed in the payload size. When all devices fail except one, the one remaining is the only one that receives the payload, which is higher than any other previously received.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration/nr_nodes.pdf}
-\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:reorchestration_nr_nodes}
-\end{figure}
-    
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration/alloc_ram.pdf}
-\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:reorchestration_alloc_ram}
-\end{figure}
+The information regarding the number of nodes is not updated to 0 once the device fails, since it is no longer active to send the updated metric. 
+
+This experiment proves that the system identifies the failure of devices and takes actions to rectify it. This includes repeating the assignment process, taking into account the available devices.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration/flash_size.pdf}
-\caption[Devices' flash size]{Devices' flash size}\label{fig:reorchestration_flash_size}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration/last_payload.pdf}
-\caption[Devices' payloads size]{Devices' payloads size}\label{fig:reorchestration_last_payload}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration/uptime.pdf}
-\caption[Devices' uptime]{Devices' uptime}\label{fig:reorchestration_uptime}
+\includegraphics[width=\linewidth]{experiences/A-reorchestration/reorchestration.pdf}
+\caption[Experiment A measurements]{Experiment A measurements}\label{fig:experiment_a_graph}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%% Exp A Phys %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Experiment A with physical devices}
 
-\textcolor{blue}{TODO}
+This experiment is very similar to the previous one, the only difference is in the use of physical devices instead of virtual ones. The payloads and number of nodes assigned through the experiment is very similar to the ones achieved with virtual devices. The only thing to note is the fact that Device 2, the  last remaining active device, fails when receiving the bigger payload. This payload contains the code for all the nodes of the system, since no other device is available. 
+
+This exposes one of the limitations of using physical devices, the memory. The device does not have enough memory to handle that big of a script, so it \textsc{fail-safe}s, informing the system that there was an \textit{Out-of-Memory} error. In its turn, the system assigns less nodes to the device.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/nr_nodes.pdf}
-\caption[Number of nodes allocated to each device]{Number of nodes allocated to each device}\label{fig:reorchestration_phys_nr_nodes}
-\end{figure}
-    
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/alloc_ram.pdf}
-\caption[Devices' allocated RAM]{Devices' allocated RAM}\label{fig:reorchestration_phys_alloc_ram}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/flash_size.pdf}
-\caption[Devices' flash size]{Devices' flash size}\label{fig:reorchestration_phys_flash_size}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/last_payload.pdf}
-\caption[Devices' payloads size]{Devices' payloads size}\label{fig:reorchestration_phys_last_payload}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/delivery_time_graph.pdf}
-\caption[Scripts' delivery time]{Scripts' delivery time}\label{fig:reorchestration_phys_script_delivery_time}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/uptime.pdf}
-\caption[Devices' uptime]{Devices' uptime}\label{fig:reorchestration_phys_uptime}
+\includegraphics[width=\linewidth]{experiences/A-reorchestration_phys/reorchestration_phys.pdf}
+\caption[Experiment A with physical devices measurements]{Experiment A with physical devices measurements}\label{fig:experiment_a_phys_graph}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%% Exp B %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Experiment B}
 
-\textcolor{blue}{TODO}
+Similar to the two previous experiments, this one takes it a step further, not only testing the system's ability to recover when devices fail, but also when they recover. In Figure \ref{fig:experiment_b_graph}, Device 3 and 4 fail early on and the system recovers, spreading the nodes assigned to them to other devices. Device 4 recovers around the 100s, fails again and then recovers. This change was not caught by the system, since it was very fast, and the system only re(orchestrates) the second time Device 4 recovers. During the course of the experiment, Device 3 and 4 continue to fail and recover, and the system always adapts.
+
+This ability for the system to re(orchestrate) when a device recovers can be taxing to the functionality of the system. If a device is constantly failing and recovering, the system will always adapts itself, halting its functionality to orchestrate itself.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/B-reorchestration-inconsistent/reorchestration_inc.pdf}
+\caption[Experiment B measurements]{Experiment B measurements}\label{fig:experiment_b_graph}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%% Exp C %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Experiment C}
 
-\textcolor{blue}{TODO}
+This experiment aims to test the system's ability to recover and adapt to the devices' memory constraints. More specifically, memory errors that can arise when writing the received script into the device SPI.
+
+In the Figure \ref{fig:experiment_c_graph}, both the Device 2 and 4 are memory constrained. When the first assignment is made, around the 50 seconds, both these devices \textsc{fail-safe} due to \textit{Out-of-Memory} errors. The number of nodes presented in Figure \ref{fig:experiment_c_graph} are the ones assigned after devices 2 and 4 communicate to the orchestrator their limitations. 
+
+To assess if the system saves information about the limitations of the devices, one of them was turned of and later turned on. This event is identified in the Figure \ref{fig:experiment_c_graph}. As it can be observed, Device 2 uptime stops increasing around the time of the event and its nodes are distributed by the other devices, with the exception of Device 4, which is memory constrained. 
+After the recovery of Device 2, the system (re)orchestrates and the same number of nodes is assigned to the devices. However, Device 4 failed when Device 2 recovered. This implies that the system repeated the process assignment process again, ignoring the previously known information about memory constraints.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/C-memory_error_on_write/memory_write.pdf}
+\caption[Experiment C measurements]{Experiment C measurements}\label{fig:experiment_c_graph}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%% Exp D %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Experiment D}
 
-\textcolor{blue}{TODO}
+In this experiment the goal is to check into the system's ability to handle a damaged device that has a memory leak. This device, which in this situation is Device 2, will always generate an \textit{Out-of-Memory} error after a random period of time. The system should be able to exclude this device during the course of the assignment process.
+
+As it can be observed in Figure \ref{fig:experiment_d_graph}, Device 2 is consistently failing after the first assignment of nodes, around 75 seconds. The number of nodes assigned decreases, until no node is assigned and the device is excluded from consideration. This is an iterative process, in which the system will decrease the number of nodes it assigns to a device if the device communicates an \textit{Out-of-Memory} to the orchestrator. Eventually, if the device does not handle any node, the minimum number of nodes the device can handle is 0, excluding the device from the assignment process.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/D-memory_error_random/memory_random.pdf}
+\caption[Experiment D measurements]{Experiment D measurements}\label{fig:experiment_d_graph}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%% Exp E %%%%%%%%%%%%%%%%%%%%%%
 
@@ -291,11 +200,38 @@ This experiment aims to test the system's ability to re-orchestrate when a devic
 
 \textcolor{blue}{TODO}
 
+This experiment purpose is inject a node that causes \textit{Out-of-Memory} errors in specific devices. With this, the system should (re)orchestrate and converge in a solution where the specific nodes are assigned to devices not affected by them. In their turn, the devices affected by these nodes should have less nodes assigned to them. The system and devices do not know that a specific node is creating the \textit{Out-of-Memory} errors and interpret the error as a device problem.
+
+Since the first assignment can already be correct by default, meaning that these faulty nodes are assigned to devices not affected by them, some changes were made to force the system to (re)orchestrate. The devices were all turned off and on in in different order, this repeated 3 times. These events can be observed in Figure \ref{fig:experiment_e_graph} around the 125, 200 and 275 second timestamps.
+
+\textcolor{red}{Acho que este gráfico não dá bem para perceber o que se está a passar. Já agora, esta experiência em si é uma repetição das duas outras. Isto é, testa o que as duas anteriores já testaram.}
+\todo[inline]{Maybe remove this experiment. Graph can't convey what happens}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/E-memory_error_node_failure/memory_failure.pdf}
+\caption[Experiment E measurements]{Experiment E measurements}\label{fig:experiment_e_graph}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%% Exp F %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Experiment F}
 
 \textcolor{blue}{TODO}
+
+\textcolor{red}{Possibly will have to repeat this experiment, since I can't find a pattern to note...its all a blob of events}
+
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=\textwidth]{experiences/F-stress_test/nodes_heatmap.pdf}
+    \caption[Nodes assignment distribution]{Nodes assignment distribution}\label{fig:stress_test_nodes}
+\end{figure*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/F-stress_test/status.pdf}
+\caption[Number of devices active and inactive]{Number of devices active and inactive}\label{fig:stress_test_status}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
