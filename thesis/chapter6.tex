@@ -95,11 +95,15 @@ As mentioned before, once the orchestrator defines the \textit{nodes} assignment
 
 Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other, publishing and consuming MQTT messages. To verify that the system works, the messages of all communicating topics were captured. This messages prove that the system works, since all \textit{nodes} are receiving their inputs and producing outputs. The number of communications can be consulted in Figure \ref{fig:sanity_check_graph}. As it can be observed, the number of communications in Device 1 is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages, a number communication events bigger than any other node. The Device 2 contains the other temperature-humidity node.
 
+To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing Figure \ref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{experiences/1-sanity_check/sending_script_times_comp.pdf}
+\caption[Script delivery times]{Script delivery}\label{fig:delivery_times_comp}
+\end{figure}
+
 It can be concluded from this sanity check experiment that the solution developed works, not only by spreading the computation throughout the available devices, but it also results in a functional system.
-
-\textcolor{red}{Include \textit{node} assignment of nodes? JSON? Or modify the node-red flow and say the device each \textit{node} was assigned to?}
-
-\todo[inline]{Is it necessary to add the table/graph with the times it took to send the scripts to the devices?}
 
 %%%%%%%%%%%%%%%%%%%%%% SC Phys %%%%%%%%%%%%%%%%%%%%%%
 
