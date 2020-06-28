@@ -14,7 +14,7 @@ The testing of the proposed solution diverged in two different scenarios. The fi
 
 \begin{enumerate}
     \item A room has 3 sensors that give temperature and humidity readings every minute. There’s a virtual sensor that compares the results (of both temperature and humidity) and triggers depending on some configured thresholds. An AC uses those readings to decide (a) if it switches on/off, (b) its operating mode: cool, heat, and dehumidify. The Minimal Working System (MWS) consists in (a) one temperature sensor, (b) one humidity sensor, (c) one node capable of making the decision, and (d) working communication channels amongst them.
-    \item 20 devices, where each device redirects its input to its output. \textcolor{red}{improve}
+    \item A system contains 20 devices that are responsible for propagating an injected message to their output. In the end, the injected message must reach an output MQTT topic.
 \end{enumerate}
 
 The first scenario aims to test the features of the developed solution with a moderately simple Node-RED flow, taking advantage of the nodes developed for MicroPython code generation support. The second scenario allows the comparison of the developed solution to the already existing solutions.
@@ -61,7 +61,7 @@ This experience is implemented in several environments:
 
 \section{Discussion}\label{sec:evaluation_discussion}
 
-\textcolor{blue}{Complete...}
+The scenarios and respective experiments present in Section \ref{sec:scenarios_experiments} were implemented and several metrics all the components of the system were measured. We analyse the data collected and reach conclusions regarding their content.
 
 \subsection{Scenario 1}\label{sec:discussion_scenario1}
 
