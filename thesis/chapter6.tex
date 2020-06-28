@@ -2,11 +2,7 @@
 
 \section*{}
 
-This section evaluates how the solution developed proves the hypothesis proposed in Chapter \ref{chap:problem_statement}.
-
-\textcolor{blue}{Complete...}
-
-% First, an explanation of the scenarios will be made, as well as their relation to the features developed and their advantages. 
+This section evaluates how the solution developed proves the hypothesis proposed in Section \ref{sec:main_hypothesis} and fulfills the requirements presented in Section \ref{sec:desiderata}. Section \ref{sec:scenarios_experiments} proposes scenarios and experiments that will be used to evaluate the developed solution. Section \ref{sec:evaluation_discussion} discusses the results of the experiments and concludes the fulfillment of the requirement each test aims to assess. Section \ref{sec:evaluation_hypothesis} verifies if the main hypothesis is proved with the evaluation data. Finally, Section \ref{sec:evaluation_lessons_learned} reflects on the lessons learned during the evaluation process. 
 
 \section{Scenarios and Experiments}\label{sec:scenarios_experiments}
 
@@ -23,13 +19,13 @@ The first scenario aims to test the features of the developed solution with a mo
 
 \textbf{Scenario 1}:
 \begin{enumerate}
-    \item \textbf{Sanity check.} All tasks are simple readings and forwarding, no compensation or other fault-tolerance strategy. Each sensor does its own thing. Orchestration is centralized. We expect all roundtrips to take less than the smallest part that can be resolved (measurement capability, which we estimate to be <1s). This will be executed using both Docker containers and physical devices.
+    \item \textbf{Sanity check.} All tasks are simple readings and forwarding, no compensation or other fault-tolerance strategy. Each sensor does its own thing. Orchestration is centralized. We expect all round-trips to take less than the smallest part that can be resolved (measurement capability, which we estimate to be <1s). This will be executed using both Docker containers and physical devices.
     \item \textbf{Re-orchestration.}
         \begin{itemize}
             \item \textbf{Experiment A.} MWS is achieved via multiple possible configurations by selective (provoked) device failure (fail-stop);
             \item \textbf{Experiment B.} Inconsistent device behaviour, e.g. appear and disappear in shorter intervals lower that the time needed for orchestrating convergence (OCT), that leads to activity impacting the MWS;
-            \item \textbf{Experiment C.} With 4 devices, each one with different processing capabilities. During orchestration, some devices will develop an out-of-memory error because they can't process all the processing tasks assigned to them, specifically the size of the script given. The orchestrator decides to send less tasks to these devices. The system will converge in a working solution. \textit{This scenario will be implemented with a modified device script. When devices receive a script, it will generate a memory error if the length of the script passes a certain threshold. This simulates the memory constraints of devices when receiving a file to big.}
-            \item \textbf{Experiment D.} With 4 devices, some of them have a memory leak with an unknown cause. After random time Random(t0,t1), these problematic devices stop working with an out-of-memory error. The orchestrator thinks that the devices can't handle the quantity of processing tasks assigned to them, so in the re-orchestration it will assign fewer tasks. Since these devices will always break, the orchestrator will eventually not consider these devices in the assignment of nodes. \textit{This scenario will be implemented with a modified device script that will trigger an out-of-memory error after a random period after executing the given tasks.}
+            \item \textbf{Experiment C.} With 4 devices, each one with different processing capabilities. During orchestration, some devices will develop an out-of-memory error because they can't process all the processing tasks assigned to them, specifically the size of the script given. The orchestrator decides to send less tasks to these devices. The system will converge in a working solution. \textit{This experiment will be implemented with a modified device script. When devices receive a script, it will generate a memory error if the length of the script passes a certain threshold. This simulates the memory constraints of devices when receiving a file to big.}
+            \item \textbf{Experiment D.} With 4 devices, some of them have a memory leak with an unknown cause. After random time Random(t0,t1), these problematic devices stop working with an out-of-memory error. The orchestrator thinks that the devices can't handle the quantity of processing tasks assigned to them, so in the re-orchestration it will assign fewer tasks. Since these devices will always break, the orchestrator will eventually not consider these devices in the assignment of nodes. \textit{This experiment will be implemented with a modified device script that will trigger an out-of-memory error after a random period after executing the given tasks.}
             \item \textbf{Experiment E.} With 4 devices, there is a device that is sensitive to a particular node, which causes the device to give out an out-of-memory error. The orchestrator will potentially assign this node to the specific device. When the device gives out the out-of-memory error, the orchestrator will eventually converge in a solution where the node is not assigned to the particular device, and the system will converge.  \textit{These out-of-memory errors will be simulated with the use of a failure node that forces an \texttt{MemoryException} in the device.}
             \item \textbf{Experiment F.} With 50 devices, each second the device has a probability to fail. This failure can go from 0 to 10 seconds, randomly chosen. The orchestrator must deal with the random failure of the devices and re-orchestrate the system. This experiment is considered a stress test, causing repeated failures and forcing constant re-orchestration.
         \end{itemize}
@@ -301,7 +297,7 @@ It is possible to conclude that the developed solution's node communication is s
 
 \textcolor{red}{Add other tables with the timestamps in the annex}
 
-\section{Hypothesis}\label{sec:evaliation_research_questions}
+\section{Hypothesis Evaluation}\label{sec:evaluation_hypothesis}
 
 This evaluation process aimed to prove the hypothesis presented in Section \ref{sec:main_hypothesis}.
 
@@ -315,7 +311,15 @@ Given the results of the experiments, it is possible to conclude that the system
 
 In conclusion, the developed solution is more scalable than a centralized one, dealing with a dynamic number of devices while taking advantage of their computational capabilities. It is also robust to handle the failures and constraints of these devices. Lastly, the developed solution is not more efficient, but the its latency is due to factors external to the developed firmware. Since it is a decentralized solution, implementations with increased latency were made to enable communication between nodes.
 
+\section{Lessons Learned}\label{sec:evaluation_lessons_learned}
+
+There were several changes made to the developed solution during the evaluation process. These changes were necessary to allow the capture of data that was later used to generate graphics and reach conclusions. The lessons learned during this process consisted in learning how to build a framework that supported sending and capture of data, as well as its aggregation and visualization. 
+
+Each device was modified to allow them to send metrics to MQTT topics, which in turn were captured by a bridge that populated an InfluxDB database. This database supplied a Grafana dashboard, were the data from the evaluation was exported from. In addition to this, both the devices and Node-RED sent data to a Logstash, which supplied both a Kibana instance using Elastic Search. These logs were sometimes useful to understand the events happening in the devices and orchestrator in more complex experiments.
+
+The setup necessary for this process required learning tools and modifying the developed solution. It was an iterative process in which the number of metrics captured increased each time an experiment was made. Due to this fact, the evaluation process took more time than was expected.
+
 \section{Conclusions}\label{sec:evaluation_conclusions}
 
-\textcolor{blue}{Overview of the evaluation of the system, with conclusions of the evaluation of the system as a whole}
+This Chapter presents the results from the evaluation process of the developed solution. Section \ref{sec:scenarios_experiments} starts by defining the scenarios and experiments that were used to test the tool and its compliance with the proposed requirements. Section \ref{sec:evaluation_discussion} analyzes the results from the experiments and reaches conclusions about the requirement each test was measuring. Section \ref{sec:evaluation_hypothesis} verifies if the data contrived from the evaluation process proves this dissertation hypothesis. Finally, Section \ref{sec:evaluation_lessons_learned} reflects on the lessons learned during the evaluation process. 
 
