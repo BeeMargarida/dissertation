@@ -211,8 +211,6 @@ As it can be observed in Figure \ref{fig:experiment_d_graph}, Device 2 is consis
 
 \subsubsection{Experiment E}
 
-\textcolor{blue}{TODO}
-
 This experiment purpose is inject a node that causes \textit{Out-of-Memory} errors in specific devices. With this, the system should (re)orchestrate and converge in a solution where the specific nodes are assigned to devices not affected by them. In their turn, the devices affected by these nodes should have less nodes assigned to them. The system and devices do not know that a specific node is creating the \textit{Out-of-Memory} errors and interpret the error as a device problem.
 
 Since the first assignment can already be correct by default, meaning that these faulty nodes are assigned to devices not affected by them, some changes were made to force the system to (re)orchestrate. The devices were all turned off and on in in different order, this repeated 3 times. These events can be observed in Figure \ref{fig:experiment_e_graph} around the 125, 200 and 275 second timestamps. It is important to note that the devices affected by the faulty nodes are devices 4 and 2.
@@ -299,8 +297,6 @@ When the decentralization is applied inside Node-RED, without running any MicroP
 Lastly, the experiment was repeated in physical devices, first by running a simple code in he MicroPython flashed devices and insertion of the message using the Mosquitto client, and second by using the whole developed system, with the modified Node-RED and firmware in the devices. The results allows us to conclude that the devices produce the worst time, but firmware developed introduces little latency, visible by the comparison of both their results.
 
 It is possible to conclude that the developed solution's node communication is slower than the original Node-RED mostly due to the nature of Wi-Fi communications and the MicroPython port used.   
-
-\textcolor{red}{Add other tables with the timestamps in the annex}
 
 \section{Hypothesis Evaluation}\label{sec:evaluation_hypothesis}
 
