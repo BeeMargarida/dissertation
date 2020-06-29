@@ -1,7 +1,8 @@
-\chapter{Solution} \label{chap:solution} \minitoc
+\chapter{Solution} \label{chap:solution}
 
 \section*{}
 
+\minitoc \mtcskip \noindent
 This chapter describes how the problem presented in Chapter \ref{chap:problem_statement} was solved by stating the solution implemented and the reasons for the choices taken. Section \ref{sec:solution_overview} provides an overview of the developed solution, which is detailed in Section \ref{sec:implementation_details}. Finally, in Section \ref{sec:solution_summary}, a summary of the developed solution is presented, which mentions some limitations of the developed solution and problems that is able to solve.
 
 \section{Overview}\label{sec:solution_overview}
@@ -16,7 +17,7 @@ An high-level overview of the system can be seen in Fig.~\ref{fig:solution_overv
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\linewidth]{overview.pdf}
+    \includegraphics[width=\linewidth]{orchestrator-overview.pdf}
     \caption{Solution's overview, presenting three devices as orchestration \textit{targets}.}
     \label{fig:solution_overview}
 \end{figure}
@@ -29,20 +30,20 @@ The implemented solution consists of two co-dependent modules that are necessary
 
 For the purposes of this work we considered constrained devices that are capable of running custom code. Amongst the available hardware solutions, taking into consideration both costs and features, we picked two IoT development devices based on the Espressif Systems ESP32 and ESP8266 systems on chip (SoC)~\cite{esp32,esp8266}. An overview on these devices hardware capabilities is given on Table~\ref{tab:esps}.
 
-\begin{table}[]
+\begin{table}[h]
 \centering
-\caption{Comparison between the Espressif Systems ESP32 and ESP8266 systems on chip.}
 \begin{tabular}{@{}lll@{}}
 \toprule
-                & \textbf{ESP8266}                   & \textbf{ESP32}                       \\ \midrule
-MCU                & Single-core 32bit         & Dual-Core 32bit \\
-Frequency          & 80 MHz                    & 160 MHz                     \\
-SRAM               & 160kBytes                 & 512kBytes                   \\
-Flash              & SPI, 16MBytes             & SPI, 16MBytes               \\
-802.11 b/g/n WiFi  & Yes                       & Yes                         \\
-Bluetooth          & No                        & Yes                         \\
+& \textbf{ESP8266} & \textbf{ESP32}\\ \midrule
+MCU & Single-core 32bit & Dual-Core 32bit \\
+Frequency & 80 MHz & 160 MHz \\
+SRAM & 160kBytes & 512kBytes \\
+Flash & SPI, 16MBytes & SPI, 16MBytes \\
+802.11 b/g/n WiFi & Yes & Yes \\
+Bluetooth & No & Yes \\
 Programming Lang.  & \multicolumn{2}{c}{Lua, Python and C} \\ \bottomrule
 \end{tabular}
+\caption{Comparison between the Espressif Systems ESP32 and ESP8266 systems on chip.}
 \label{tab:esps}
 \end{table}
 

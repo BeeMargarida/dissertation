@@ -1,5 +1,7 @@
 %some macro definitions
 
+\RequirePackage{ifthen}
+
 % format
 \newcommand{\class}[1]{{\normalfont\slshape #1\/}}
 
@@ -28,3 +30,67 @@
   	\caption[#6]{#5} \label{#4}
   \end{sidewaystable}
 }
+
+% Imported macros from Diogo
+
+\RequirePackage{ifthen}
+
+%%
+%% Reference shorthands.
+%%
+
+\newcounter{cPage}
+\newcommand\optref[1]{%
+ \refstepcounter{cPage}\label{current\thecPage}%
+ \ifthenelse{\equal{\pageref{#1}}{\pageref{current\thecPage}}}%
+  {}{~(p.~\pageref{#1})}%
+}
+
+\newcommand\optrefparens[1]{%
+ \refstepcounter{cPage}\label{current\thecPage}%
+ \ifthenelse{\equal{\pageref{#1}}{\pageref{current\thecPage}}}%
+  {}{,~p.~\pageref{#1}}%
+}
+
+\newcommand\coderef[1]{Source~\ref{#1}\optref{#1}}
+\newcommand\figureref[1]{Figure~\ref{#1}\optref{#1}}
+\newcommand\seefigureref[1]{(\emph{cf.} Figure~\ref{#1}\optrefparens{#1})}
+\newcommand\tableref[1]{Table~\ref{#1}\optref{#1}}
+\newcommand\chapterref[1]{Chapter~\ref{#1}\optref{#1}}
+\newcommand\seechapterref[1]{(\emph{cf.} Chapter~\ref{#1}\optrefparens{#1})}
+\newcommand\sectionref[1]{Section~\ref{#1}\optref{#1}}
+\newcommand\seesectionref[1]{Section~\ref{#1}\optrefparens{#1}}
+\newcommand\sectionintroref[1]{Section~\ref{#1}}
+
+\newcommand\appendixref[1]{Appendix~\ref{#1}\optref{#1}}
+
+% MiniTOC
+\usepackage[tight]{minitoc}
+\setcounter{minitocdepth}{1}
+\renewcommand{\mtctitle}{}
+\renewcommand{\kernafterminitoc}{\vspace{0.2cm}}
+\renewcommand{\mtcoffset}{-0.3cm}
+
+%%
+%% Hyphenization
+%%
+
+\RequirePackage[english=usenglishmax]{hyphsubst}
+
+%%
+%% Page layout
+%%
+
+\raggedbottom
+
+% No orphans
+\clubpenalty = 500
+\widowpenalty = 1000
+% \checkandfixthelayout
+
+%%
+%% Line breaking
+%%
+
+\RequirePackage[final=true,step=1]{microtype}
+\RequirePackage{ragged2e}
