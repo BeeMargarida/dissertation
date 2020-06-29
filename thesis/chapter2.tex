@@ -3,7 +3,7 @@
 \section*{}
 
 \minitoc \mtcskip \noindent
-This chapter describes the necessary foundations regarding visual programming tools for the Internet-of-Things context. Section~\ref{sec:background_iot} describes the background of the Internet-of-Things paradigm and important concepts in that area, with a description of IoT architectures, including Fog and Edge, in Section~\ref{sec:architectures}. Section~\ref{sec:node-red} describes the Node-RED programming tool and its architecture and uses. Finally, Section~\ref{sec:background_vpl} mentions visual programming languages, their uses as well as their benefits and drawbacks.
+This chapter describes the necessary foundations regarding visual programming tools for the Internet-of-Things context. \sectionintroref{sec:background_iot} describes the background of the Internet-of-Things paradigm and important concepts in that area, with a description of IoT architectures, including Fog and Edge, in \sectionintroref{sec:architectures}. \sectionintroref{sec:node-red} describes the Node-RED programming tool and its architecture and uses. Finally, \sectionintroref{sec:background_vpl} mentions visual programming languages, their uses as well as their benefits and drawbacks.
 
 \section{Internet-of-Things}\label{sec:background_iot}
 
@@ -79,7 +79,7 @@ Node-RED~\cite{node_red} is a programming tool applied to the development of Int
 
 It is a web-based tool consisting of a run time built with the Node.js framework and a browser-based visual editor. This tool provides the end-user with a simple interface to connected devices and APIs, using a flow-programming approach. Programs are called \emph{flows}, built with \emph{nodes} connected by wires. Each node corresponds to an action, such as input, output, data processing, etc.
 
-The Node-RED interface has three components: (1)~Palette, (2)~Workspace and (3)~Sidebar. The Palette contains all the nodes installed and available to use, divided into categories. They can be used by dragging them into the workspace and additional features for each node are accessible by double-clicking them. The Workspace is where the flows are created and modified. It is possible to have several \emph{flows} and \emph{sub-flows} accessible with the use of tabs. Lastly, the Sidebar contains information about the nodes, the debug console, node configuration manager and the context data. Figure \ref{fig:node_red_window} showcases the visual interface of Node-RED and its elements.
+The Node-RED interface has three components: (1)~Palette, (2)~Workspace and (3)~Sidebar. The Palette contains all the nodes installed and available to use, divided into categories. They can be used by dragging them into the workspace and additional features for each node are accessible by double-clicking them. The Workspace is where the flows are created and modified. It is possible to have several \emph{flows} and \emph{sub-flows} accessible with the use of tabs. Lastly, the Sidebar contains information about the nodes, the debug console, node configuration manager and the context data. \figureref{fig:node_red_window} showcases the visual interface of Node-RED and its elements.
 
 \begin{figure}[h]
 \centering
@@ -88,7 +88,7 @@ The Node-RED interface has three components: (1)~Palette, (2)~Workspace and (3)~
 \label{fig:node_red_window}
 \end{figure}
 
-One example of a \emph{flow} can be seen in picture \ref{fig:node_red_example}, where a request is being made in intervals of 5 minutes to an HTTP URL that returns a CSV with the feed of significant earthquakes in the last 7 days. The data from the CSV is then printed to the debug console and, if the magnitude is equal or bigger than 7, the message "PANIC!" is printed to the console. 
+One example of a \emph{flow} can be seen in \figureref{fig:node_red_example}, where a request is being made in intervals of 5 minutes to an HTTP URL that returns a CSV with the feed of significant earthquakes in the last 7 days. The data from the CSV is then printed to the debug console and, if the magnitude is equal or bigger than 7, the message "PANIC!" is printed to the console. 
 
 \begin{figure}[!ht]
 \centering

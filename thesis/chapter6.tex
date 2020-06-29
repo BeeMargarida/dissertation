@@ -3,7 +3,7 @@
 \section*{}
 
 \minitoc \mtcskip \noindent
-This section evaluates how the solution developed proves the hypothesis proposed in Section \ref{sec:main_hypothesis} and fulfills the requirements presented in Section \ref{sec:desiderata}. Section \ref{sec:scenarios_experiments} proposes scenarios and experiments that will be used to evaluate the developed solution. Section \ref{sec:evaluation_discussion} discusses the results of the experiments and concludes the fulfillment of the requirement each test aims to assess. Section \ref{sec:evaluation_hypothesis} verifies if the main hypothesis is proved with the evaluation data. Finally, Section \ref{sec:evaluation_lessons_learned} reflects on the lessons learned during the evaluation process. 
+This section evaluates how the solution developed proves the hypothesis proposed in \sectionintroref{sec:main_hypothesis} and fulfills the requirements presented in \sectionintroref{sec:desiderata}. \sectionintroref{sec:scenarios_experiments} proposes scenarios and experiments that will be used to evaluate the developed solution. \sectionintroref{sec:evaluation_discussion} discusses the results of the experiments and concludes the fulfillment of the requirement each test aims to assess. \sectionintroref{sec:evaluation_hypothesis} verifies if the main hypothesis is proved with the evaluation data. Finally, \sectionintroref{sec:evaluation_lessons_learned} reflects on the lessons learned during the evaluation process. 
 
 \section{Scenarios and Experiments}\label{sec:scenarios_experiments}
 
@@ -58,11 +58,11 @@ This experience is implemented in several environments:
 
 \section{Discussion}\label{sec:evaluation_discussion}
 
-The scenarios and respective experiments present in Section \ref{sec:scenarios_experiments} were implemented and several metrics all the components of the system were measured. We analyse the data collected and reach conclusions regarding their content.
+The scenarios and respective experiments present in \sectionref{sec:scenarios_experiments} were implemented and several metrics all the components of the system were measured. We analyse the data collected and reach conclusions regarding their content.
 
 \subsection{Scenario 1}\label{sec:discussion_scenario1}
 
-As mentioned previously, the first scenario consists of a system that controls an A/C. This system takes into account readings of 3 temperature and humidity sensors to define if the room's temperature is too hot, cold of humid and sends commands to the A/C with the respective actions. The Node-RED implementation of this system can be seen in Figure \ref{fig:scenario1_node_red}.
+As mentioned previously, the first scenario consists of a system that controls an A/C. This system takes into account readings of 3 temperature and humidity sensors to define if the room's temperature is too hot, cold of humid and sends commands to the A/C with the respective actions. The Node-RED implementation of this system can be seen in \figureref{fig:scenario1_node_red}.
 
 \begin{figure}[h]
 \centering
@@ -76,7 +76,7 @@ The sanity check experiments will prove that the devices can satisfy the nodes, 
 
 \subsubsection{Sanity Check}\label{sec:sanity_check_exp}
 
-The first experiment made to the developed solution tested the overall functionality of the tool and its efficiency. Using 4 Docker containers with the MicroPython Unix port with the developed firmware, the scenario presented in Figure \ref{fig:scenario1_node_red} was partitioned and assigned evenly to them. The assignment can be observed in Figure \ref{fig:sanity_check_graph}, where it was allocated 9 \textit{nodes} for each device.
+The first experiment made to the developed solution tested the overall functionality of the tool and its efficiency. Using 4 Docker containers with the MicroPython Unix port with the developed firmware, the scenario presented in \figureref{fig:scenario1_node_red} was partitioned and assigned evenly to them. The assignment can be observed in \figureref{fig:sanity_check_graph}, where it was allocated 9 \textit{nodes} for each device.
 
 \begin{figure}[h]
 \centering
@@ -84,7 +84,7 @@ The first experiment made to the developed solution tested the overall functiona
 \caption[Sanity check experience measurements]{Sanity check experience measurements}\label{fig:sanity_check_graph}
 \end{figure}
 
-The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be observed in Figure \ref{fig:sanity_check_graph}. The flash size only decreases around 150000 bytes, when the device receives a script to execute. This quantity matches the overall payload received by the devices.
+The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be observed in \figureref{fig:sanity_check_graph}. The flash size only decreases around 150000 bytes, when the device receives a script to execute. This quantity matches the overall payload received by the devices.
 
 \begin{figure}[h]
 \centering
@@ -92,11 +92,11 @@ The usage of RAM was significant, varying from 60Kb to 200Kb, as it can be obser
 \caption[Sanity check experiment script delivery time.]{Sanity check experiment script delivery time.}\label{fig:sanity_check_delivery_time}
 \end{figure}
 
-As mentioned before, once the orchestrator defines the \textit{nodes} assignment, a script is built and send to the devices. The confirmation of this delivery is necessary for the system to conclude the assignment phase and start the constant verification of the state of the system. The time it takes to deliver the script was timed and it can be consulted in Figure \ref{fig:sanity_check_delivery_time}. The usage of virtual devices running in the same host as the Node-RED instance allows for smaller times, which are measured in milliseconds.
+As mentioned before, once the orchestrator defines the \textit{nodes} assignment, a script is built and send to the devices. The confirmation of this delivery is necessary for the system to conclude the assignment phase and start the constant verification of the state of the system. The time it takes to deliver the script was timed and it can be consulted in \figureref{fig:sanity_check_delivery_time}. The usage of virtual devices running in the same host as the Node-RED instance allows for smaller times, which are measured in milliseconds.
 
-Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other, publishing and consuming MQTT messages. To verify that the system works, the messages of all communicating topics were captured. This messages prove that the system works, since all \textit{nodes} are receiving their inputs and producing outputs. The number of communications can be consulted in Figure \ref{fig:sanity_check_graph}. As it can be observed, the number of communications in Device 1 is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages, a number communication events bigger than any other node. The Device 2 contains the other temperature-humidity node.
+Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other, publishing and consuming MQTT messages. To verify that the system works, the messages of all communicating topics were captured. This messages prove that the system works, since all \textit{nodes} are receiving their inputs and producing outputs. The number of communications can be consulted in \figureref{fig:sanity_check_graph}. As it can be observed, the number of communications in Device 1 is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages, a number communication events bigger than any other node. The Device 2 contains the other temperature-humidity node.
 
-To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing Figure \ref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time.
+To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing \figureref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time.
 
 \begin{figure}[h]
 \centering
@@ -110,7 +110,7 @@ It can be concluded from this sanity check experiment that the solution develope
 
 \subsubsection{Sanity Check with Physical Devices}\label{sec:sanity_check_phys_exp}
 
-The sanity check experiment was repeated using physical devices, more specifically 4 ESP32. Similar to the virtual devices, the assignment of \textit{nodes} to devices spread the number of \textit{nodes} equally, with each device having 9 \textit{nodes} to their responsibility. This assignment result can be seen in Figure \ref{fig:sanity_check_phys_graph}.
+The sanity check experiment was repeated using physical devices, more specifically 4 ESP32. Similar to the virtual devices, the assignment of \textit{nodes} to devices spread the number of \textit{nodes} equally, with each device having 9 \textit{nodes} to their responsibility. This assignment result can be seen in \figureref{fig:sanity_check_phys_graph}.
 
 \begin{figure}[h]
 \centering
@@ -120,7 +120,7 @@ The sanity check experiment was repeated using physical devices, more specifical
 
 The usage of RAM in physical devices is smaller than the one used by virtual devices. This can be explained with the possible optimization differences in the MicroPython ports, as well as the changes implemented in libraries to support the Unix port.
 
-The flash size of the physical devices is smaller than the physical ones, as expected. It can be observed in Figure \ref{fig:sanity_check_phys_graph} that the device with the biggest payload, Device 1, ends up having the smaller flash size, which is logical. The overall size of the payloads are very similar to the ones in the previous experiment. 
+The flash size of the physical devices is smaller than the physical ones, as expected. It can be observed in \figureref{fig:sanity_check_phys_graph} that the device with the biggest payload, Device 1, ends up having the smaller flash size, which is logical. The overall size of the payloads are very similar to the ones in the previous experiment. 
 
 \begin{figure}[h]
 \centering
@@ -128,7 +128,7 @@ The flash size of the physical devices is smaller than the physical ones, as exp
 \caption[Sanity check with physical devices experiment script delivery time.]{Sanity check with physical devices experiment script delivery time.}\label{fig:sanity_check_phys_delivery_time}
 \end{figure}
 
-The script delivery time for physical devices is bigger than the virtual devices, as it can be observed in Figure \ref{fig:sanity_check_phys_delivery_time}. Since they are not running in the same machine, the WiFi stack as well as the devices' hardware hinder the speed of communication. The uptime is similar to the previous experiment, since no device failed.
+The script delivery time for physical devices is bigger than the virtual devices, as it can be observed in \figureref{fig:sanity_check_phys_delivery_time}. Since they are not running in the same machine, the WiFi stack as well as the devices' hardware hinder the speed of communication. The uptime is similar to the previous experiment, since no device failed.
 
 %%%%%%%%%%%%%%%%%%%%%% Exp A %%%%%%%%%%%%%%%%%%%%%%
 
@@ -136,7 +136,7 @@ The script delivery time for physical devices is bigger than the virtual devices
 
 This experiment aims to test the system's ability to re-orchestrate when a device fails or becomes available. During the occurrence of the experiment, devices were turned off one by one until only one was left running. The expected behaviour is that the system detects that a device has become unavailable and re-orchestrates, assigning \textit{nodes} to the available devices. In the end, only one device is running and all the \textit{nodes} are assigned to it.
 
-It can be observed in Figure \ref{fig:experiment_a_graph} that the uptime of the devices stops increasing one by one, identifying the moment the device fails. Once a failure happens, the system (re)orchestrates, assigning the nodes of the device to the other available devices, increasing their number. This can also be observed in Figure \ref{fig:experiment_a_graph}. This increase in the number of nodes assigned to the available devices can also be observed in the payload size. When all devices fail except one, the one remaining is the only one that receives the payload, which is higher than any other previously received.
+It can be observed in \figureref{fig:experiment_a_graph} that the uptime of the devices stops increasing one by one, identifying the moment the device fails. Once a failure happens, the system (re)orchestrates, assigning the nodes of the device to the other available devices, increasing their number. This can also be observed in \figureref{fig:experiment_a_graph}. This increase in the number of nodes assigned to the available devices can also be observed in the payload size. When all devices fail except one, the one remaining is the only one that receives the payload, which is higher than any other previously received.
 
 The information regarding the number of nodes is not updated to 0 once the device fails, since it is no longer active to send the updated metric. 
 
@@ -152,7 +152,7 @@ This experiment proves that the system identifies the failure of devices and tak
 
 \subsubsection{Experiment A with physical devices}
 
-This experiment is very similar to the previous one, the only difference is in the use of physical devices instead of virtual ones. The payloads and number of nodes assigned through the experiment is very similar to the ones achieved with virtual devices. The only thing to note is the fact that Device 2, the  last remaining active device, fails when receiving the bigger payload. This payload contains the code for all the nodes of the system, since no other device is available. 
+This experiment is very similar to the previous one, the only difference is in the use of physical devices instead of virtual ones. The payloads and number of nodes assigned through the experiment are very similar to the ones achieved with virtual devices \seefigureref{fig:experiment_a_phys_graph}. The only thing to note is the fact that Device 2, the  last remaining active device, fails when receiving the bigger payload. This payload contains the code for all the nodes of the system, since no other device is available. 
 
 This exposes one of the limitations of using physical devices, the memory. The device does not have enough memory to handle that big of a script, so it \textsc{fail-safe}s, informing the system that there was an \textit{Out-of-Memory} error. In its turn, the system assigns less nodes to the device.
 
@@ -166,7 +166,7 @@ This exposes one of the limitations of using physical devices, the memory. The d
 
 \subsubsection{Experiment B}
 
-Similar to the two previous experiments, this one takes it a step further, not only testing the system's ability to recover when devices fail, but also when they recover. In Figure \ref{fig:experiment_b_graph}, Device 3 and 4 fail early on and the system recovers, spreading the nodes assigned to them to other devices. Device 4 recovers around the 100s, fails again and then recovers. This change was not caught by the system, since it was very fast, and the system only re(orchestrates) the second time Device 4 recovers. During the course of the experiment, Device 3 and 4 continue to fail and recover, and the system always adapts.
+Similar to the two previous experiments, this one takes it a step further, not only testing the system's ability to recover when devices fail, but also when they recover. In \figureref{fig:experiment_b_graph}, Device 3 and 4 fail early on and the system recovers, spreading the nodes assigned to them to other devices. Device 4 recovers around the 100s, fails again and then recovers. This change was not caught by the system, since it was very fast, and the system only re(orchestrates) the second time Device 4 recovers. During the course of the experiment, Device 3 and 4 continue to fail and recover, and the system always adapts.
 
 This ability for the system to re(orchestrate) when a device recovers can be taxing to the functionality of the system. If a device is constantly failing and recovering, the system will always adapts itself, halting its functionality to orchestrate itself.
 
@@ -182,9 +182,9 @@ This ability for the system to re(orchestrate) when a device recovers can be tax
 
 This experiment aims to test the system's ability to recover and adapt to the devices' memory constraints. More specifically, memory errors that can arise when writing the received script into the device SPI.
 
-In the Figure \ref{fig:experiment_c_graph}, both the Device 2 and 4 are memory constrained. When the first assignment is made, around the 50 seconds, both these devices \textsc{fail-safe} due to \textit{Out-of-Memory} errors. The number of nodes presented in Figure \ref{fig:experiment_c_graph} are the ones assigned after devices 2 and 4 communicate to the orchestrator their limitations. 
+In the \figureref{fig:experiment_c_graph}, both the Device 2 and 4 are memory constrained. When the first assignment is made, around the 50 seconds, both these devices \textsc{fail-safe} due to \textit{Out-of-Memory} errors. The number of nodes presented in \figureref{fig:experiment_c_graph} are the ones assigned after devices 2 and 4 communicate to the orchestrator their limitations. 
 
-To assess if the system saves information about the limitations of the devices, one of them was turned of and later turned on. This event is identified in the Figure \ref{fig:experiment_c_graph}. As it can be observed, Device 2 uptime stops increasing around the time of the event and its nodes are distributed by the other devices, with the exception of Device 4, which is memory constrained. 
+To assess if the system saves information about the limitations of the devices, one of them was turned of and later turned on. This event is identified in the \figureref{fig:experiment_c_graph}. As it can be observed, Device 2 uptime stops increasing around the time of the event and its nodes are distributed by the other devices, with the exception of Device 4, which is memory constrained. 
 After the recovery of Device 2, the system (re)orchestrates and the same number of nodes is assigned to the devices. However, Device 4 failed when Device 2 recovered. This implies that the system repeated the process assignment process again, ignoring the previously known information about memory constraints.
 
 \begin{figure}[h]
@@ -199,7 +199,7 @@ After the recovery of Device 2, the system (re)orchestrates and the same number 
 
 In this experiment the goal is to check into the system's ability to handle a damaged device that has a memory leak. This device, which in this situation is Device 2, will always generate an \textit{Out-of-Memory} error after a random period of time. The system should be able to exclude this device during the course of the assignment process.
 
-As it can be observed in Figure \ref{fig:experiment_d_graph}, Device 2 is consistently failing after the first assignment of nodes, around 75 seconds. The number of nodes assigned decreases, until no node is assigned and the device is excluded from consideration. This is an iterative process, in which the system will decrease the number of nodes it assigns to a device if the device communicates an \textit{Out-of-Memory} to the orchestrator. Eventually, if the device does not handle any node, the minimum number of nodes the device can handle is 0, excluding the device from the assignment process.
+As it can be observed in \figureref{fig:experiment_d_graph}, Device 2 is consistently failing after the first assignment of nodes, around 75 seconds. The number of nodes assigned decreases, until no node is assigned and the device is excluded from consideration. This is an iterative process, in which the system will decrease the number of nodes it assigns to a device if the device communicates an \textit{Out-of-Memory} to the orchestrator. Eventually, if the device does not handle any node, the minimum number of nodes the device can handle is 0, excluding the device from the assignment process.
 
 \begin{figure}[h]
 \centering
@@ -213,7 +213,7 @@ As it can be observed in Figure \ref{fig:experiment_d_graph}, Device 2 is consis
 
 This experiment purpose is inject a node that causes \textit{Out-of-Memory} errors in specific devices. With this, the system should (re)orchestrate and converge in a solution where the specific nodes are assigned to devices not affected by them. In their turn, the devices affected by these nodes should have less nodes assigned to them. The system and devices do not know that a specific node is creating the \textit{Out-of-Memory} errors and interpret the error as a device problem.
 
-Since the first assignment can already be correct by default, meaning that these faulty nodes are assigned to devices not affected by them, some changes were made to force the system to (re)orchestrate. The devices were all turned off and on in in different order, this repeated 3 times. These events can be observed in Figure \ref{fig:experiment_e_graph} around the 125, 200 and 275 second timestamps. It is important to note that the devices affected by the faulty nodes are devices 4 and 2.
+Since the first assignment can already be correct by default, meaning that these faulty nodes are assigned to devices not affected by them, some changes were made to force the system to (re)orchestrate. The devices were all turned off and on in in different order, this repeated 3 times. These events can be observed in \figureref{fig:experiment_e_graph} around the 125, 200 and 275 second timestamps. It is important to note that the devices affected by the faulty nodes are devices 4 and 2.
 
 The event we aim to test occurs around 300 seconds, however a limitation is apparent. As it can be seen, Device 1 is assigned 9 nodes and Device 4 is assigned 10. The uptime of Device 4 resets in this small time period, meaning that an \textit{Out-of-Memory} occured and the device performed a \textsc{fail-safe}. The system updates, spreading the 10 nodes previously assigned to Device 4 through all the available devices. 
 
@@ -231,9 +231,9 @@ When the system receives information that Device 4 is available again, it alread
 
 This experiment consists of pushing the system to its limits by introducing constant failures in its devices. Every second, each device has a 5\% probability of becoming unavailable from 0 to 10 seconds. During this period, the device is unresponsive to the orchestrator requests and, when recovered, announces itself.
 
-The results of the experiment can be consulted in Figures \ref{fig:stress_test_nodes} and \ref{fig:stress_test_status}. From Figure \ref{fig:stress_test_nodes} it can be concluded that the system is constantly (re)orchestrating itself, and once the majority of devices failed, the system becomes unstable. It is important to note that, similar to previous devices, once a device fails, the number of nodes does not update to 0. With this in mind, it can be concluded that devices with the same number of nodes during the total execution of the system failed early on and continued to fail, not allowing another assignment by the orchestrator.
+The results of the experiment can be consulted in Figures \ref{fig:stress_test_nodes} and \ref{fig:stress_test_status}. From \figureref{fig:stress_test_nodes} it can be concluded that the system is constantly (re)orchestrating itself, and once the majority of devices failed, the system becomes unstable. It is important to note that, similar to previous devices, once a device fails, the number of nodes does not update to 0. With this in mind, it can be concluded that devices with the same number of nodes during the total execution of the system failed early on and continued to fail, not allowing another assignment by the orchestrator.
 
-Around the 100 seconds, it can be noted in Figure \ref{fig:stress_test_status} a period where all devices were available. However, the node assignment in Figure \ref{fig:stress_test_nodes} does not converge during that time period. The reason for this behaviour is that the system will (re)orchestrate when a device becomes available. Since each device announces itself individually, each announcement triggers a new orchestration. This process takes time and results in several failed orchestrations due to outdated data of the status of the devices. 
+Around the 100 seconds, it can be noted in \figureref{fig:stress_test_status} a period where all devices were available. However, the node assignment in \figureref{fig:stress_test_nodes} does not converge during that time period. The reason for this behaviour is that the system will (re)orchestrate when a device becomes available. Since each device announces itself individually, each announcement triggers a new orchestration. This process takes time and results in several failed orchestrations due to outdated data of the status of the devices. 
 
 This is a limitation of the system, making it vulnerable to a possible DoS attack in the form of an excess of status activity from the devices. This constant orchestration is also taxing for the devices, causing an overload of received assignments that will never make the system function as a whole.
 
@@ -253,7 +253,7 @@ This is a limitation of the system, making it vulnerable to a possible DoS attac
 
 \subsection{Scenario 2}\label{sec:discussion_scenario2}
 
-As mentioned previously, several experiences were made to compare the developed solution to existing ones. To this end goal, a simple experiment of passing a message through several devices was implemented and the time the message takes to pass through all the devices was measured. The implementation of the scenario in the Node-RED tool is shown in Figure \ref{fig:scenario2_node_red}. The \textit{nothing} nodes execution consists of only redirecting their input to their output. The message consisting of the current timestamp is inserted into the system by the \textit{inject} node with user input, and the same message is showcased by the \textit{debug} node, the green one.
+As mentioned previously, several experiences were made to compare the developed solution to existing ones. To this end goal, a simple experiment of passing a message through several devices was implemented and the time the message takes to pass through all the devices was measured. The implementation of the scenario in the Node-RED tool is shown in \figureref{fig:scenario2_node_red}. The \textit{nothing} nodes execution consists of only redirecting their input to their output. The message consisting of the current timestamp is inserted into the system by the \textit{inject} node with user input, and the same message is showcased by the \textit{debug} node, the green one.
 
 \begin{figure}[h]
 \centering
@@ -261,7 +261,7 @@ As mentioned previously, several experiences were made to compare the developed 
 \caption[Node-RED implementation of scenario 2]{Node-RED implementation of scenario 2}\label{fig:scenario2_node_red}
 \end{figure}
 
-This same setup was replicated in several environments, as mentioned before. Each experiment was replicated 10 times, resulting in the data seen in the Appendix \ref{ap:scenario2_tables} tables. These tables were analysed to construct the Table \ref{tab:scenario2_table} and its visually representation in Figure \ref{fig:scenario2_candlestick}.
+This same setup was replicated in several environments, as mentioned before. Each experiment was replicated 10 times, resulting in the data seen in the \appendixref{ap:scenario2_tables} tables. These tables were analysed to construct the \tableref{tab:scenario2_table} and its visually representation in \figureref{fig:scenario2_candlestick}.
 
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
@@ -290,7 +290,7 @@ This same setup was replicated in several environments, as mentioned before. Eac
 \caption[Scenario 2 results]{Scenario 2 results}\label{fig:scenario2_candlestick}
 \end{figure}
 
-The Figure \ref{fig:scenario2_candlestick} demonstrates that the developed solution is considerably less efficient in communicating message between nodes. However, given the other experiences, it is possible to conclude that this lack of efficiency is caused not by the firmware created but because of the stack of communication the message as to go through, as well as the nature of MicroPython. 
+\figureref{fig:scenario2_candlestick} demonstrates that the developed solution is considerably less efficient in communicating message between nodes. However, given the other experiences, it is possible to conclude that this lack of efficiency is caused not by the firmware created but because of the stack of communication the message as to go through, as well as the nature of MicroPython. 
 
 When the decentralization is applied inside Node-RED, without running any MicroPython, it is possible to see that the introduction of a Mosquitto broker running in the same host causes some latency. The introduction of Dockers running the firmware in the same host as the Node-RED instance and Mosquitto broker causes more latency, making it possible to conclude that MicroPython of the developed firmware also delay de communication. By repeating the same experience as before but with the Mosquitto broker in another machine, it is noticeable that the times are more spread out and the overall latency of the system is bigger. Given the stacks of Wi-Fi that the message as to go through, this result is logical.
 
@@ -302,12 +302,12 @@ It is possible to conclude that the developed solution's node communication is s
 
 This evaluation process aimed to prove the hypothesis presented in Section \ref{sec:main_hypothesis}.
 
-Given the results of the experiments, it is possible to conclude that the system's implemented features are working, more specifically the decentralization of computation, handling of device's memory constraints and dynamic adaptation of the system. The attributes mentioned in Section \ref{sec:main_hypothesis} were evaluated, resulting in the following conclusions:
+Given the results of the experiments, it is possible to conclude that the system's implemented features are working, more specifically the decentralization of computation, handling of device's memory constraints and dynamic adaptation of the system. The attributes mentioned in \sectionref{sec:main_hypothesis} were evaluated, resulting in the following conclusions:
 
 \begin{itemize}
     \item \textbf{Resilience}: The developed solution is moderately robust, handling device failures and memory constraints dynamically at run-time. However, there are some limitations to this robustness. As demonstrated in Section \ref{sec:experiment_f}, the system reaches a maximum point of adaptability when several devices fail and recover constantly.
-    \item \textbf{Efficiency}: The developed solution is slower that the original Node-RED system. However, as demonstrated in Section \ref{sec:discussion_scenario2}, the increased latency is due to the introduced communication stack between nodes, that changed from Javascript events into MQTT communications. This new way of communication between nodes in addition to the Wi-Fi stack and MicroPython firmware introduces latency. Despite this, the developed modules, such as the orchestrator and the device's firmware introduce little latency to the latency of the whole system.
-    \item \textbf{Elasticity}: The solution handles a different number of devices, as it was demonstrated in the experiments from Section \ref{sec:scenarios_experiments}. It also handles the number of devices changes throughout the lifespan of the system, adapting the orchestration to the number of devices available.
+    \item \textbf{Efficiency}: The developed solution is slower that the original Node-RED system. However, as demonstrated in \sectionref{sec:discussion_scenario2}, the increased latency is due to the introduced communication stack between nodes, that changed from Javascript events into MQTT communications. This new way of communication between nodes in addition to the Wi-Fi stack and MicroPython firmware introduces latency. Despite this, the developed modules, such as the orchestrator and the device's firmware introduce little latency to the latency of the whole system.
+    \item \textbf{Elasticity}: The solution handles a different number of devices, as it was demonstrated in the experiments from \sectionref{sec:scenarios_experiments}. It also handles the number of devices changes throughout the lifespan of the system, adapting the orchestration to the number of devices available.
 \end{itemize}
 
 In conclusion, the developed solution is more scalable than a centralized one, dealing with a dynamic number of devices while taking advantage of their computational capabilities. It is also robust to handle the failures and constraints of these devices. Lastly, the developed solution is not more efficient, but the its latency is due to factors external to the developed firmware. Since it is a decentralized solution, implementations with increased latency were made to enable communication between nodes.
@@ -322,5 +322,5 @@ The setup necessary for this process required learning tools and modifying the d
 
 \section{Conclusions}\label{sec:evaluation_conclusions}
 
-This Chapter presents the results from the evaluation process of the developed solution. Section \ref{sec:scenarios_experiments} starts by defining the scenarios and experiments that were used to test the tool and its compliance with the proposed requirements. Section \ref{sec:evaluation_discussion} analyzes the results from the experiments and reaches conclusions about the requirement each test was measuring. Section \ref{sec:evaluation_hypothesis} verifies if the data contrived from the evaluation process proves this dissertation hypothesis. Finally, Section \ref{sec:evaluation_lessons_learned} reflects on the lessons learned during the evaluation process. 
+This Chapter presents the results from the evaluation process of the developed solution. \sectionref{sec:scenarios_experiments} starts by defining the scenarios and experiments that were used to test the tool and its compliance with the proposed requirements. \sectionref{sec:evaluation_discussion} analyzes the results from the experiments and reaches conclusions about the requirement each test was measuring. \sectionref{sec:evaluation_hypothesis} verifies if the data contrived from the evaluation process proves this dissertation hypothesis. Finally, \sectionref{sec:evaluation_lessons_learned} reflects on the lessons learned during the evaluation process. 
 
