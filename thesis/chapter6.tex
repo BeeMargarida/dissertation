@@ -96,12 +96,12 @@ As mentioned before, once the orchestrator defines the \textit{nodes} assignment
 
 Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other, publishing and consuming MQTT messages. To verify that the system works, the messages of all communicating topics were captured. This messages prove that the system works, since all \textit{nodes} are receiving their inputs and producing outputs. The number of communications can be consulted in \figureref{fig:sanity_check_graph}. As it can be observed, the number of communications in Device 1 is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages, a number communication events bigger than any other node. The Device 2 contains the other temperature-humidity node.
 
-To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing \figureref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time.
+To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing \figureref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time. This verification allowed the making of an average of the delivery time, which is $~0.304\pm0.165$s. 
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{experiences/1-sanity_check/sending_script_times_comp.pdf}
-\caption[Script delivery times]{Script delivery}\label{fig:delivery_times_comp}
+\caption[Sanity Check script delivery time]{Sanity Check script delivery time}\label{fig:delivery_times_comp}
 \end{figure}
 
 It can be concluded from this sanity check experiment that the solution developed works, not only by spreading the computation throughout the available devices, but it also results in a functional system.
@@ -128,7 +128,7 @@ The flash size of the physical devices is smaller than the physical ones, as exp
 \caption[Sanity check with physical devices experiment script delivery time.]{Sanity check with physical devices experiment script delivery time.}\label{fig:sanity_check_phys_delivery_time}
 \end{figure}
 
-The script delivery time for physical devices is bigger than the virtual devices, as it can be observed in \figureref{fig:sanity_check_phys_delivery_time}. Since they are not running in the same machine, the WiFi stack as well as the devices' hardware hinder the speed of communication. The uptime is similar to the previous experiment, since no device failed.
+The script delivery time for physical devices is bigger than the virtual devices, with an average of $~6.578\pm0.476$s \seefigureref{fig:sanity_check_phys_delivery_time}. Since they are not running in the same machine, the WiFi stack as well as the devices' hardware hinder the speed of communication. The uptime is similar to the previous experiment, since no device failed.
 
 %%%%%%%%%%%%%%%%%%%%%% Exp A %%%%%%%%%%%%%%%%%%%%%%
 
