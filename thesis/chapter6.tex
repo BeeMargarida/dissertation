@@ -82,12 +82,18 @@ These experiments will prove that the devices can satisfy the \textit{nodes}, me
 
 \subsubsection{ES1-SC1}\label{sec:sanity_check_exp}
 
-With the purpose of testing the overall functionality of the approach in a controlled way (the use of virtual devices reduce the proneness to hardware-provoked failures), the experiment resulting orchestration can be observed in \figureref{fig:sanity_check_graph}, where the \textit{Orchestrator node} allocated nine \textit{nodes} to each device.
+With the purpose of testing the overall functionality of the approach in a controlled way (the use of virtual devices reduce the proneness to hardware-provoked failures), the experiment resulting orchestration can be observed in \figureref{fig:sanity_check_graph}, where the \textit{Orchestrator node} allocated nine \textit{nodes} to each device. \figureref{fig:sanity_check_node_assignment_visual} demonstrates in which devices each \textit{node} was assigned to.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{experiences/1-sanity_check/sanity_check.pdf}
 \caption[ES1-SC1 measurements.]{ES1-SC1 measurements.}\label{fig:sanity_check_graph}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{thesis/figures/experiences/1-sanity_check/node-assignment-visual.pdf}
+\caption[ES1-SC1 \textit{node} assignment.]{ES1-SC1 \textit{node} assignment.}\label{fig:sanity_check_node_assignment_visual}
 \end{figure}
 
 The usage of RAM was significant, varying from 60Kb to 200Kb \seefigureref{fig:sanity_check_graph}. The flash size only decreases around 150000 bytes, when the device receives a script to execute --- matching the size of the payload received by the devices.
@@ -100,7 +106,7 @@ As the orchestrator defines the \textit{nodes} assignment, a script is built and
 \caption[ES1-SC1 script delivery time.]{ES1-SC1 script delivery time.}\label{fig:sanity_check_delivery_time}
 \end{figure}
 
-Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other. To verify that the system works, the messages of all communicating topics were capture, which allowed us to verify that all \textit{nodes} are receiving the messages and producing the expected output messages . The number of communications can be consulted in \figureref{fig:sanity_check_graph}. As it can be observed, the number of messages produced by \textit{Device 1} is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages which are more than the produced by any other device. The \textit{Device 2} contains the other temperature-humidity node.
+Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other. To verify that the system works, the messages of all communicating topics were capture, which allowed us to verify that all \textit{nodes} are receiving the messages and producing the expected output messages . The number of communications can be consulted in \figureref{fig:sanity_check_graph}. As it can be observed, the number of messages produced by \textit{Device 4} is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages which are more than the produced by any other device. The \textit{Device 3} contains the other temperature-humidity node \seefigureref{fig:sanity_check_node_assignment_visual}.
 
 To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing \figureref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time. This verification allowed the making of an average of the delivery time, which is $~0.304\pm0.165$s. 
 
@@ -111,6 +117,8 @@ To verify if the script delivery time is directly related with the payload size,
 \end{figure}
 
 The sanity check approach performs as expected in a virtual-only setup by (1) spreading the computation amongst available resources and (2) maintaining the system within expected behaviour.
+
+\todo[inline]{New stuff: Add Node-RED screenshots of flow with the assigned device labeled for each node (showcasing the assignment of nodes)}
 
 %%%%%%%%%%%%%%%%%%%%%% SC Phys %%%%%%%%%%%%%%%%%%%%%%
 
