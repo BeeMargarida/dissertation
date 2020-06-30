@@ -108,7 +108,7 @@ As the orchestrator defines the \textit{nodes} assignment, a script is built and
 
 Once the devices execute the script given to them, each \textit{node} allocated to a device start to communicate with each other. To verify that the system works, the messages of all communicating topics were capture, which allowed us to verify that all \textit{nodes} are receiving the messages and producing the expected output messages . The number of communications can be consulted in \figureref{fig:sanity_check_graph}. As it can be observed, the number of messages produced by \textit{Device 4} is bigger than any other. This is due to the fact that in this device two temperature-humidity \textit{nodes} were allocated, which publish 3 messages which are more than the produced by any other device. The \textit{Device 3} contains the other temperature-humidity node \seefigureref{fig:sanity_check_node_assignment_visual}.
 
-To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing \figureref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time. This verification allowed the making of an average of the delivery time, which is $~0.304\pm0.165$s. 
+To verify if the script delivery time is directly related with the payload size, this experiment was repeated 10 times and the script delivery time for each device was measured. By analyzing \figureref{fig:delivery_times_comp}, we can observe that the script delivery times between devices is very similar. Therefore, there is no relation between payload size and script delivery time. This verification allowed the making of an average of the delivery time, which is $~0.303\pm0.165$s. 
 
 \begin{figure}[h]
 \centering
@@ -140,13 +140,15 @@ The free flash space of the physical devices is smaller than the virtual ones, a
 \caption[ES1-SC2 script delivery time.]{ES1-SC2 script delivery time.}\label{fig:sanity_check_phys_delivery_time}
 \end{figure}
 
-The script delivery time for physical devices is bigger than their virtual counterpart, with an average of $~6.578\pm0.476$s \seefigureref{fig:sanity_check_phys_delivery_time}. Since things are not running in the same machine, the Wi-Fi stack and the devices' hardware  characteristics hinder the communication speed. The uptime is similar to the previous experiment, since there were no hardware failures.
+The script delivery time for physical devices is bigger than their virtual counterpart, with an average of $~6.776\pm0.476$s \seefigureref{fig:sanity_check_phys_delivery_time}. Since things are not running in the same machine, the Wi-Fi stack and the devices' hardware  characteristics hinder the communication speed. The uptime is similar to the previous experiment, since there were no hardware failures.
 
-%%%%%%%%%%%%%%%%%%%%%% Exp A %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Exps %%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{ES1: Experimental Tasks}\label{sec:discussion_scenario1_exp}
 
 These experiments focus one validating and evaluating the tool's capacity to adapt to devices' failures. Since the previous experiments (\cf \seesectionref{sec:discussion_scenario1}) already proved that the system executes the tasks that are given to them, this verification will not be repeated in this section's experiments.
+
+%%%%%%%%%%%%%%%%%%%%%% Exp A %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ES1-A}\label{sec:exp_a}
 
@@ -164,7 +166,7 @@ The information regarding the number of nodes is not updated to zero once the de
 
 This allow us to verify that the system identifies the failure of devices and takes actions to rectify it by repeating the assignment process, taking into account the available devices.
 
-%%%%%%%%%%%%%%%%%%%%%% Exp A Phys %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Exp B %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ES1-B}
 
@@ -181,7 +183,7 @@ The payloads and number of nodes assigned through the experiment are very simila
 
 The device constrained memory does not have capacity to handle the payload size, so it \textsc{fail-safe}s, informing the system that there was an \textit{Out-of-Memory} error, which results in \textit{Orchestrator node} assigning less nodes to the device.
 
-%%%%%%%%%%%%%%%%%%%%%% Exp B %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Exp C %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ES1-C}
 
@@ -196,7 +198,7 @@ Similar to \textbf{ES1-A} and \textit{ES1-B}, this experiment focuses on testing
 
 This ability for the system to re-orchestrates when a device recovers can be taxing to the functionality of the system. If a device is constantly failing and recovering, the system will always adapts itself, halting its functionality to orchestrate itself.
 
-%%%%%%%%%%%%%%%%%%%%%% Exp C %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Exp D %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ES1-D}
 
@@ -214,7 +216,7 @@ After the recovery of \textit{Device 2}, the system (re)orchestrates and the sam
 \end{figure}
 
 
-%%%%%%%%%%%%%%%%%%%%%% Exp D %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Exp E %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ES1-E}
 
@@ -228,7 +230,7 @@ As it can be observed in \figureref{fig:experiment_d_graph}, \textit{Device 2} i
 \caption[ES1-E measurements]{ES1-E measurements.}\label{fig:experiment_d_graph}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%% Exp E %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Exp F %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ES1-F}
 
@@ -246,7 +248,7 @@ When the system receives information that \textit{Device 4} is available again, 
 \caption[ES1-F measurements]{ES1-F measurements.}\label{fig:experiment_e_graph}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%% Exp F %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Exp G %%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ES1-G}\label{sec:experiment_f}
 
@@ -287,17 +289,17 @@ This same setup was replicated in several environments, as mentioned before. Eac
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
     \centering
-    \resizebox{0.8\textwidth}{!}{%
-    \begin{tabular}{ l  c  c  c  c }
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{ l  c  c  c  c  c  c }
         \toprule
-        \textbf{Label} & \textbf{Min} & \textbf{Q2} & \textbf{Q3} & \textbf{Max}\\
+        \textbf{Label} & \textbf{Min}  & \textbf{Q1} & \textbf{Q2}  & \textbf{Avg} & \textbf{Q3} & \textbf{Max}\\
         \midrule
-        \textbf{ES2-A}: Node-RED original & 3 & 10 & 13.25 & 15 \\
-        \textbf{ES2-B}: Node-RED + MQTT & 134 & 430.5 & 711.25 & 883 \\
-        \textbf{ES2-C}: Node-RED modified + Dockers (same host) & 1217 & 1318 & 1573.75 & 1665 \\
-        \textbf{ES2-D}: Node-RED modified + Dockers (different host) & 1445 & 2536 & 2708 & 3059 \\
-        \textbf{ES2-E}: Physical + MQTT & 3616 & 4142 & 4372 & 4452 \\
-        \textbf{ES2-F}: Node-RED modified + MQTT + Physical + Firmware & 4168 & 4569 & 5087.75 & 5940 \\
+        \textbf{ES2-A}: Node-RED original & 3 & 8 & 10 & 10 & 13 & 15 \\
+        \textbf{ES2-B}: Node-RED + MQTT & 134 & 353 & 431 & 489 & 711 & 883 \\
+        \textbf{ES2-C}: Node-RED modified + Dockers (same host) & 1217 & 1260 & 1318 & 1400 & 1574 & 1665 \\
+        \textbf{ES2-D}: Node-RED modified + Dockers (different host) & 1445 & 2332 & 2536 & 2392 & 2708 & 3059 \\
+        \textbf{ES2-E}: Physical + MQTT & 3616 & 4031 & 4142 & 4133 & 4372 & 4452 \\
+        \textbf{ES2-F}: Node-RED modified + MQTT + Physical + Firmware & 4168 & 4357 & 4569 & 4751 & 5088 & 5940 \\
         \bottomrule
     \end{tabular}
     }
