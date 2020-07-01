@@ -43,7 +43,6 @@ Our systematic literature review protocol followed the inclusion and exclusion c
 
 \begin{table}[ht]
     \centering
-    \caption{Inclusion and exclusion criteria.}
     \label{tab:incexclude}
     \begin{tabular}{@{} l l p{13cm} @{}}
     \toprule
@@ -64,8 +63,8 @@ Our systematic literature review protocol followed the inclusion and exclusion c
        & IC5 & Is a survey that focus visual programming in IoT or 
         \\ \bottomrule
     \end{tabular}
+    \caption{Inclusion and exclusion criteria.}
     \end{table}
-    
     \begin{figure}[h]
     \centering
     \includegraphics[width=.99\linewidth]{SLR_Pipeline.pdf}
@@ -104,7 +103,7 @@ The selected 21 articles described approaches that use visual programming in the
 \begin{figure}[h]
 \centering
 \includegraphics[width=.5\linewidth]{Belsa.PNG}
-\caption{Belsa et al.~\cite{Belsa2018} solution architecture. The \texttt{Modeller} is a Node-RED flow editor canvas were new flows can be created by connecting nodes that correspond to the available services (\texttt{Service Catalog and Discovery}) which are then stored in the \texttt{Flow Repository}. The \texttt{Orchestrator} is responsible managing and running the specified flows as required (by running several instances of the Node-RED runtime) and converting Node-RED calls to the different IoT Platforms \textit{native calls} (aided by the \texttt{Semantic Mediator}).}
+\caption[Belsa et al.~\cite{Belsa2018} solution architecture.]{Belsa et al.~\cite{Belsa2018} solution architecture. The \texttt{Modeller} is a Node-RED flow editor canvas were new flows can be created by connecting nodes that correspond to the available services (\texttt{Service Catalog and Discovery}) which are then stored in the \texttt{Flow Repository}. The \texttt{Orchestrator} is responsible managing and running the specified flows as required (by running several instances of the Node-RED runtime) and converting Node-RED calls to the different IoT Platforms \textit{native calls} (aided by the \texttt{Semantic Mediator}).}
 \label{fig:belsa}
 \end{figure}
 
@@ -139,7 +138,7 @@ The selected 21 articles described approaches that use visual programming in the
 \begin{figure}[h]
 \centering
 \includegraphics[width=.45\linewidth]{FRED.PNG}
-\caption{FRED~\cite{fred} high-level architecture. FRED is based on Node-RED and addresses the limitation of running several flows in parallel (multiple runtimes) by orchestrating several instances of Node-RED (\texttt{FRED-IS}) using their \texttt{FRED Proxy}.}\label{fig:fred1}
+\caption[FRED~\cite{fred} high-level architecture.]{FRED~\cite{fred} high-level architecture. FRED is based on Node-RED and addresses the limitation of running several flows in parallel (multiple runtimes) by orchestrating several instances of Node-RED (\texttt{FRED-IS}) using their \texttt{FRED Proxy}.}\label{fig:fred1}
 \end{figure}    
 
 \item\textbf{FRED}~\cite{fred} is a frontend for Node-RED, a development tool that makes it possible to host multiple Node-RED runtimes (\figureref{fig:fred1}). It can be used to connect devices to services in the cloud, manage communication between devices, create new web app applications, APIs and event-integrated services. To provide all these features, FRED allows the running of flows for multiple users, in which all flows get fair access to resources such as CPU, memory, storage, as well as secure access to flow editors and the flow runtime. The authors concluded that FRED is useful for users learning about Node-RED and allows users to prototype cloud-hosted applications rapidly.
@@ -169,7 +168,6 @@ The mentioned frameworks and tools were divided into the following categories, a
 
 \begin{table*}[h]
     \centering
-    \caption{Visual programming solutions applied to IoT and their characteristics. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
     \label{tab:slr_table_results}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
@@ -200,7 +198,7 @@ The mentioned frameworks and tools were divided into the following categories, a
         \bottomrule
     \end{tabular}
     }
-
+    \caption[Visual programming solutions applied to IoT and their characteristics.]{Visual programming solutions applied to IoT and their characteristics. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
     %\hrule width0.5\textwidth
     \begin{tablenotes}\footnotesize
         \item[1] Used for several purposes, did not specify the tier it is located in regarding IoT.
@@ -223,7 +221,7 @@ The results of the Systematic Literature Review were disclosed in the previous s
 \begin{figure}[h]
 \centering
 \includegraphics[width=.65\linewidth]{nodered.png}
-\caption{Node-RED~\cite{node_red} high-level architecture, identifying its development interface, runtime and \texttt{node.js} dependency. The \textit{flows} can be versioned and organized in projects and new modules (\emph{i.e.}, \textit{nodes}) can be added using the \texttt{node.js} dependency manager tool (\emph{i.e.}, \texttt{npm}).}
+\caption[Node-RED~\cite{node_red} high-level architecture.]{Node-RED~\cite{node_red} high-level architecture, identifying its development interface, runtime and \texttt{node.js} dependency. The \textit{flows} can be versioned and organized in projects and new modules (\emph{i.e.}, \textit{nodes}) can be added using the \texttt{node.js} dependency manager tool (\emph{i.e.}, \texttt{npm}).}
 \label{fig:nodered-seq}
 \end{figure}
 
@@ -403,7 +401,6 @@ The mentioned tools were characterized based on their mentions or support for th
 
 \begin{table*}[!h]
     \centering
-    \caption[Decentralized visual programming solutions applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
     \label{tab:decentralized_sota_results}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
@@ -418,6 +415,7 @@ The mentioned tools were characterized based on their mentions or support for th
         \bottomrule
     \end{tabular}
     }
+    \caption[Decentralized visual programming solutions applied to IoT and their characteristics.]{Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
     \begin{tablenotes}\footnotesize
         \item[1] Assumes that all devices run Node-RED, which limits the type of devices.
         \item[2] Do not specify the algorithm used.
