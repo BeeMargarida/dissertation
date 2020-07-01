@@ -103,7 +103,7 @@ The selected 21 articles described approaches that use visual programming in the
 \begin{figure}[h]
 \centering
 \includegraphics[width=.5\linewidth]{Belsa.PNG}
-\caption[Belsa et al.~\cite{Belsa2018} solution architecture.]{Belsa et al.~\cite{Belsa2018} solution architecture. The \texttt{Modeller} is a Node-RED flow editor canvas were new flows can be created by connecting nodes that correspond to the available services (\texttt{Service Catalog and Discovery}) which are then stored in the \texttt{Flow Repository}. The \texttt{Orchestrator} is responsible managing and running the specified flows as required (by running several instances of the Node-RED runtime) and converting Node-RED calls to the different IoT Platforms \textit{native calls} (aided by the \texttt{Semantic Mediator}).}
+\caption[Belsa et al. solution architecture.]{Belsa et al.~\cite{Belsa2018} solution architecture. The \texttt{Modeller} is a Node-RED flow editor canvas were new flows can be created by connecting nodes that correspond to the available services (\texttt{Service Catalog and Discovery}) which are then stored in the \texttt{Flow Repository}. The \texttt{Orchestrator} is responsible managing and running the specified flows as required (by running several instances of the Node-RED runtime) and converting Node-RED calls to the different IoT Platforms \textit{native calls} (aided by the \texttt{Semantic Mediator}).}
 \label{fig:belsa}
 \end{figure}
 
@@ -138,7 +138,7 @@ The selected 21 articles described approaches that use visual programming in the
 \begin{figure}[h]
 \centering
 \includegraphics[width=.45\linewidth]{FRED.PNG}
-\caption[FRED~\cite{fred} high-level architecture.]{FRED~\cite{fred} high-level architecture. FRED is based on Node-RED and addresses the limitation of running several flows in parallel (multiple runtimes) by orchestrating several instances of Node-RED (\texttt{FRED-IS}) using their \texttt{FRED Proxy}.}\label{fig:fred1}
+\caption[FRED high-level architecture.]{FRED~\cite{fred} high-level architecture. FRED is based on Node-RED and addresses the limitation of running several flows in parallel (multiple runtimes) by orchestrating several instances of Node-RED (\texttt{FRED-IS}) using their \texttt{FRED Proxy}.}\label{fig:fred1}
 \end{figure}    
 
 \item\textbf{FRED}~\cite{fred} is a frontend for Node-RED, a development tool that makes it possible to host multiple Node-RED runtimes (\figureref{fig:fred1}). It can be used to connect devices to services in the cloud, manage communication between devices, create new web app applications, APIs and event-integrated services. To provide all these features, FRED allows the running of flows for multiple users, in which all flows get fair access to resources such as CPU, memory, storage, as well as secure access to flow editors and the flow runtime. The authors concluded that FRED is useful for users learning about Node-RED and allows users to prototype cloud-hosted applications rapidly.
@@ -221,7 +221,7 @@ The results of the Systematic Literature Review were disclosed in the previous s
 \begin{figure}[h]
 \centering
 \includegraphics[width=.65\linewidth]{nodered.png}
-\caption[Node-RED~\cite{node_red} high-level architecture.]{Node-RED~\cite{node_red} high-level architecture, identifying its development interface, runtime and \texttt{node.js} dependency. The \textit{flows} can be versioned and organized in projects and new modules (\emph{i.e.}, \textit{nodes}) can be added using the \texttt{node.js} dependency manager tool (\emph{i.e.}, \texttt{npm}).}
+\caption[Node-RED high-level architecture.]{Node-RED~\cite{node_red} high-level architecture, identifying its development interface, runtime and \texttt{node.js} dependency. The \textit{flows} can be versioned and organized in projects and new modules (\emph{i.e.}, \textit{nodes}) can be added using the \texttt{node.js} dependency manager tool (\emph{i.e.}, \texttt{npm}).}
 \label{fig:nodered-seq}
 \end{figure}
 
