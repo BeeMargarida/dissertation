@@ -93,7 +93,7 @@ This experiment was used to the overall functionality of the approach in a contr
 \caption[ES1-SC1 measurements.]{ES1-SC1 measurements.}\label{fig:sanity_check_graph}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{thesis/figures/experiences/1-sanity_check/node-assignment-visual.pdf}
 \caption[ES1-SC1 \textit{node} assignment.]{ES1-SC1 \textit{node} assignment.}\label{fig:sanity_check_node_assignment_visual}
@@ -103,7 +103,7 @@ The usage of RAM was significant, varying from 60Kb to 200Kb \seefigureref{fig:s
 
 As the orchestrator defines the \textit{nodes} assignment, a script is built and send to the devices. The confirmation of this delivery is necessary for the system to conclude the assignment phase and start monitoring the state of the system. The time it takes to deliver the script can be consulted in \figureref{fig:sanity_check_delivery_time}. The usage of virtual devices running in the same host as the Node-RED instance allows for shorter times, which are measured in milliseconds.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{experiences/1-sanity_check/delivery_time_table.pdf}
 \caption[ES1-SC1 script delivery time.]{ES1-SC1 script delivery time.}\label{fig:sanity_check_delivery_time}
@@ -210,7 +210,7 @@ The memory constraints of IoT devices can negatively impact the functioning of t
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{experiences/C-memory_error_on_write/memory_write.pdf}
-\caption[ES1-C measurements]{ES1-C measurements.}\label{fig:experiment_c_graph}
+\caption[ES1-D measurements]{ES1-D measurements.}\label{fig:experiment_c_graph}
 \end{figure}
 
 \figureref{fig:experiment_c_graph} shows the constrained memory of the \textit{Device 2} and \textit{Device 4}. When the first assignment is made, at approx. 50 seconds, both these devices \textsc{fail-safe} due to \textit{Out-of-Memory} errors. The number of \textit{nodes} present on these devices are the ones assigned after they communicate to the orchestrator their limitations. 
@@ -237,7 +237,7 @@ Additionally, to the handling of memory limitations, it is expected that the sys
 
 To further assert the resilience of the system to \textit{Out-of-Memory} errors, a \textit{node} was deliberately injected that causes such error in specific devices. It is expected that the system re-orchestrate and converge in a solution where the specific \textit{nodes} are assigned to devices not affected by them. In their turn, the devices affected by these \textit{nodes} should have fewer \textit{nodes} assigned to them. The system and devices do not know that a specific \textit{node} is creating the \textit{Out-of-Memory} errors and interpret the error as a device problem.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{experiences/E-memory_error_node_failure/memory_failure.pdf}
 \caption[ES1-F measurements]{ES1-F measurements.}\label{fig:experiment_e_graph}
@@ -263,7 +263,7 @@ To assert the system limits, we proceed to inject constant failures in the avail
 
 \figureref{fig:stress_test_nodes} shows that the system is continuously re-orchestrating itself, and once the majority of devices failed, the system becomes unstable. It is important to note that, similar to previous experiments, once a device fails, the number of \textit{nodes} does not update to zero. We then conclude that devices with the same number of \textit{nodes} during the total execution of the system failed early on and continued to fail, not allowing another assignment by the orchestrator.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{experiences/F-stress_test/status.pdf}
 \caption[Number of devices active and inactive]{Number of devices active and inactive}\label{fig:stress_test_status}
@@ -308,7 +308,7 @@ The ES2 implementation in Node-RED can be seen in Fig.~\ref{fig:scenario2_node_r
     \label{tab:scenario2_table}
 \end{table}{}
 
-This experiment was run with different configurations (ES2-A to ES2-F) to assert the impact of each modification/module, as described in Section~\ref{sec:es2}. Each experiment was replicated ten times, and the resulting time measurements are shown in Table~\ref{tab:scenario2_table}.
+This experiment was run with different configurations (ES2-A to ES2-F) to assert the impact of each modification/module, as described in \sectionref{sec:scenarios_experiments}. Each experiment was replicated ten times, and the resulting time measurements are shown in \tableref{tab:scenario2_table}.
 
 \begin{figure}[h]
 \centering
