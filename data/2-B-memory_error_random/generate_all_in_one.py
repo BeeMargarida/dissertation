@@ -26,11 +26,7 @@ x_h = []
 for i in df_uptime_heat['Time']:
     x_h.append(i)
 
-cols = ["Device 1", "Device 2", "Device 3", "Device 4"]
-
-c = df_uptime_heat.columns.values
-c = np.delete(c, 0)
-y = ["Device 1", "Device 2", "Device 3", "Device 4"]
+cols = ["Dev. 1", "Dev. 2", "Dev. 3", "Dev. 4"]
 
 z = []
 for col in df_uptime_heat:
@@ -60,16 +56,14 @@ for n, row in enumerate(z):
             fig.add_annotation(dict(
                 text=str(z[n][m]),
                 x=x_h[m]+2.5,
-                y=y[n],
+                y=cols[n],
                 xref='x',
                 yref='y1',
                 showarrow=False,
-                font=dict(size=8)
+                font=dict(size=16)
             )
           )
 # NR NODES
-cols = ["Device 1", "Device 2", "Device 3", "Device 4"]
-
 z = []
 for col in df_nodes_heat:
     if col == "Time":
@@ -97,21 +91,18 @@ for n, row in enumerate(z):
             fig.add_annotation(dict(
                 text=str(z[n][m]),
                 x=x_h[m]+2.5,
-                y=y[n],
+                y=cols[n],
                 xref='x',
                 yref='y2',
                 showarrow=False,
-                font=dict(size=8)
+                font=dict(size=16)
               )
             )
 
 # Add figure title
 fig.update_layout(
     font=dict(
-        size=15
-    ),
-    xaxis=dict(
-        dtick=5
+        size=18
     ),
     height=500,
     width=1000,

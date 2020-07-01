@@ -5,8 +5,8 @@ import pandas as pd
 import numpy as np
 
 df_payload = pd.read_csv('./data/last_payload.csv')
-df_uptime_heat = pd.read_csv('./data/heatmap_uptime.csv')
-df_nodes_heat = pd.read_csv('./data/heatmap_nodes.csv')
+df_uptime_heat = pd.read_csv('./data/heatmap_uptime_20.csv')
+df_nodes_heat = pd.read_csv('./data/heatmap_nodes_20.csv')
 
 df_payload = df_payload.head(1000)
 df_uptime_heat = df_uptime_heat.head(1000)
@@ -26,11 +26,7 @@ x_h = []
 for i in df_uptime_heat['Time']:
     x_h.append(i)
 
-cols = ["Device 1", "Device 2", "Device 3", "Device 4"]
-
-c = df_uptime_heat.columns.values
-c = np.delete(c, 0)
-y = ["Device 1", "Device 2", "Device 3", "Device 4"]
+cols = ["Dev. 1", "Dev. 2", "Dev. 3", "Dev. 4"]
 
 z = []
 for col in df_uptime_heat:
@@ -41,8 +37,8 @@ for col in df_uptime_heat:
 fig.add_trace(
     go.Heatmap(
         z=z,
-        x0=2.5,
-        dx=5,
+        x0=0,
+        dx=20,
         y=cols,
         xgap=1,
         ygap=1,
@@ -59,17 +55,15 @@ for n, row in enumerate(z):
         if val > 0:
             fig.add_annotation(dict(
                 text=str(z[n][m]),
-                x=x_h[m]+2.5,
-                y=y[n],
+                x=x_h[m],
+                y=cols[n],
                 xref='x',
                 yref='y1',
                 showarrow=False,
-                font=dict(size=8)
+                font=dict(size=16)
             )
           )
 # NR NODES
-cols = ["Device 1", "Device 2", "Device 3", "Device 4"]
-
 z = []
 for col in df_nodes_heat:
     if col == "Time":
@@ -79,8 +73,8 @@ for col in df_nodes_heat:
 fig.add_trace(
     go.Heatmap(
         z=z,
-        x0=2.5,
-        dx=5,
+        x0=0,
+        dx=20,
         y=cols,
         xgap=1,
         ygap=1,
@@ -96,25 +90,25 @@ for n, row in enumerate(z):
         if val > 0:
             fig.add_annotation(dict(
                 text=str(z[n][m]),
-                x=x_h[m]+2.5,
-                y=y[n],
+                x=x_h[m],
+                y=cols[n],
                 xref='x',
                 yref='y2',
                 showarrow=False,
-                font=dict(size=8)
+                font=dict(size=16)
               )
             )
 
 # Add figure title
 fig.update_layout(
     font=dict(
-        size=15
+        size=18
     ),
     xaxis=dict(
         dtick=5
     ),
     height=500,
-    width=2500,
+    width=1000,
     margin=dict(
         t=45,
         b=20,
