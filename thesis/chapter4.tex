@@ -8,7 +8,7 @@ This chapter describes the problem, as can be seen in \sectionintroref{sec:curre
 \section{Current Issues}\label{sec:current_issues}
 
 \chapterref{chap:sota} contains several solutions that provide a decentralized architecture in visual programming tools applied to the Internet-of-Things paradigm. However, some of these tools solve specific problems or make assumptions regarding the scale of the system and the constraints of the devices.
-We can define the problem in these issues:
+\sectionref{sec:decentralized_sota_conclusion} contained several limitations in the current solutions which remain to be addressed:
 \begin{enumerate}
     \item \textbf{Leveraging devices in the network}: since most tools use a centralized architecture, including Node-RED, they do not leverage the devices in the network. Fog Computing introduces a decentralized solution, one that can be applied to Node-RED by distributing the computational tasks across the edge devices.
     \item \textbf{Communication of computational capabilities}: some of the current tools require the developer to manually introduce the resources of each device in the network, which is not a scalable solution. Others have a specific list of services, manually inserted, that the devices can provide. Information about the computational capabilities of the devices in the network is vital for the successful distribution of computation across the devices.
@@ -18,7 +18,7 @@ We can define the problem in these issues:
 \end{enumerate}
 
 \section{Desiderata}\label{sec:desiderata}
-Desiderata is a Latin word that translates to "\emph{things wanted}". In the context of this document, this section contains requirements wanted in a solution that aims to solve all the issues identified in \sectionref{sec:current_issues}. The requirements are the following:
+In the context of this document, this section contains requirements wanted in a solution that aims to solve all the issues identified in \sectionref{sec:current_issues}. The requirements are the following:
 
 \begin{description}
     \item [D1: Communicate computational capabilities of devices connected] so that this information can be sent to an orchestrator that will decompose the total computation workload based on this data.
@@ -45,7 +45,7 @@ The attributes presented in the hypothesis will be measure against a system usin
 
 \begin{itemize}
     \item \textbf{Resilience} means the system's capability to adapt to failures and changes. It will be measured by injecting failures and measuring the recovery patterns.
-    \item \textbf{Efficiency} how fast the system can execute the logic of the system and communicate between nodes. The efficiency of a system is measured by the latency when reacting to system events. 
+    \item \textbf{Efficiency} how fast the system can execute the logic of the system and communicate between nodes. The efficiency of a system is measured by the latency when reacting to system events.
     \item \textbf{Elasticity} specifies how a system can grow and shrink. This attribute will be tested by increasingly adding or removing devices in different scenarios and assessing the overall system's behavior.
 \end{itemize}
 

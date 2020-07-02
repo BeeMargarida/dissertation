@@ -43,10 +43,9 @@ Our systematic literature review protocol followed the inclusion and exclusion c
 
 \begin{table}[ht]
     \centering
-    \label{tab:incexclude}
     \begin{tabular}{@{} l l p{13cm} @{}}
     \toprule
-    \textbf{I/E}    & \textbf{ID}  & \textbf{Criterion}                                                                                                           \\ \midrule
+    \textbf{I/E}    & \textbf{ID}  & \textbf{Criterion}                                                                                                          \\ \midrule
     \multirow{5}{*}{\rotatebox[origin=c]{90}{Exclusion}} 
        & EC1 & Not written in English. \\
        & EC2 & Presents just ideas, tutorials, integration experimentation, magazine publications, interviews or discussion papers. \\
@@ -64,6 +63,7 @@ Our systematic literature review protocol followed the inclusion and exclusion c
         \\ \bottomrule
     \end{tabular}
     \caption{Inclusion and exclusion criteria.}
+    \label{tab:incexclude}
     \end{table}
     \begin{figure}[h]
     \centering
@@ -154,6 +154,38 @@ The selected 21 articles described approaches that use visual programming in the
 \item\textbf{Eun et al.}~\cite{eud_platform} proposes an End-User Development (EUD) tool that allows users to develop their applications. It uses the dataflow approach, which allows for a more generalized programming experience as well as the facility to build more complex programs with simple modules. The proposed tool has three main components: Service Template Authoring Tool, Service Template Repository, and Smartphone Application. The first one allows the end-user to build more complex methods using atomic templates (components with simple functionality, like opening a curtain if it receives a command). The Service Template Repository contains the proprietary atomic templates as well as ones built by the user. Lastly, the Smartphone Application runs and manages the applications built by the user, as well as their requirements and dependencies. The developed EUD tool was compared with \textit{IFTTT} and Zapier; other tools focused on end-user development. \textit{IFTTT} and the developed tool are similar, focusing on consumer development, IoT, and home environments, with Zapier focusing on business environments. Both Zapier and \textit{IFTTT} use the Trigger-Action paradigm (TAP), which differs from the dataflow paradigm used in this paper's tool.
 \end{itemize}
 
+\subsection{Expanded Search}\label{sec:slr_expanded_research}
+
+The results of the Systematic Literature Review were disclosed in the previous section. However, some tools were found in a non-systematic survey~\cite{survey_vpl_iot} that are not present in the selected papers. We consider that this divergence may result from tools that have no academic publications associated with them, thus not being present in the publication databases mentioned in \sectionref{sec:databases}. One famous example is \textit{Node-RED}~\cite{node_red}. The results from the survey~\cite{survey_vpl_iot} were analyzed, the described tools were assessed against the evaluation process defined in \sectionref{sec:methodology} and characterized by the categories mentioned in \sectionref{sec:slr_results}. Using the methodology described, the results are:
+
+\begin{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.65\linewidth]{nodered.png}
+\caption[Node-RED high-level architecture.]{Node-RED~\cite{node_red} high-level architecture, identifying its development interface, runtime and \texttt{node.js} dependency. The \textit{flows} can be versioned and organized in projects and new modules (\emph{i.e.}, \textit{nodes}) can be added using the \texttt{node.js} dependency manager tool (\emph{i.e.}, \texttt{npm}).}
+\label{fig:nodered-seq}
+\end{figure}
+
+\item\textbf{Node-RED}~\cite{node_red} is a visual programming environment applied to the IoT paradigm. It makes use of flow-based development (connecting communication and computation \textit{nodes} in \textit{flows}), supporting a wide range of devices and APIs. It has two main modules: (1) a development interface which consists of a flow drawing canvas and a \textit{node} palette, and (2) a runtime module that leverages the Node.JS event-loop to pass messages between the different \textit{nodes}~\seefigureref{fig:nodered-seq}. Due to being open-source and extendable, its large community contributes with features that enrich the tool, some of them talked about in \sectionref{sec:slr_results} (\emph{e.g.}, FRED~\cite{fred} and DDF~\cite{ddf}).
+
+\item\textbf{NETLab Toolkit}~\cite{netlabtoolkit} is a visual environment that makes use of \textit{drag-and-drop} actions to allow users to build IoT applications. It provides a web interface to connect sensors, actuators, and others for quick prototypes.
+
+\item\textbf{NooDL}~\cite{noodl} is a platform that provides a visual programming interface for prototyping applications. It allows for the creation of interfaces, using live data, and supporting several types of hardware. Although it is not specific to IoT, NooDL covers the programming of IoT systems. It makes use of MQTT broker agents for connecting devices and visual paradigms such as \textit{nodes}, \textit{connections}, and \textit{hierarchies} to allow the user to build its system.
+
+\item\textbf{DGLux5}~\cite{dglux5} for DSA is a \textit{drag-and-drop} visual language and environment that allows its users to build applications tailored for Distributed Services Architecture (DSA) IoT middleware. It provides a dashboard for analyzing and controlling device data in real-time and builds the system only using visual elements.
+
+\item\textbf{AT\&T Flow Designer}~\cite{attflowdesigner} is a visual tool incorporated in a cloud development environment, applied to the development of IoT systems. Its visual paradigm is similar to Node-RED, with the notion of \textit{nodes} and \textit{wires}. This tool provides an easy iteration and improvement of a product, as well as an easy deployment.
+
+\item\textbf{GraspIO}~\cite{graspio} is a Graphical Smart Program for Inputs and Outputs that contains a block \textit{drag-and-drop} visual paradigm that allows its users to build applications for the \textit{Cloudio} hardware. It offers a Cloud Service that connects and manages all \textit{Cloudio} devices, making them available at the user's mobile device.
+
+\item\textbf{Wyliodrin}~\cite{wyliodrin} is a browser-based visual programming environment that allows the development of IoT systems of several devices, such as Raspberry Pi, Arduino, Intel Galileo, Intel Edison, and others. It provides a \textit{drag-and-drop} environment, as well as support for text-based languages. A dashboard for visualizing the data collected is provided.
+
+\item\textbf{Zenodys}~\cite{zenodys} provides a \textit{drag-and-drop} interface to build application backends as well as user interfaces. Its computing engine can run in several types of devices, from the cloud to chips, devices, and distributed computers. Zenodys contains a visual debugger as well as support for text-based programming and code generation. 
+\end{itemize}
+
+\subsection{Results Categorization}\label{sec:slr_results_categorization}
+
 The mentioned frameworks and tools were divided into the following categories, according to several characteristics:
 
 \begin{enumerate}
@@ -166,9 +198,10 @@ The mentioned frameworks and tools were divided into the following categories, a
     \item\textbf{Web-based.} Defines if the visual programming language and/or environment can be used in a browser. It is useful in terms of the usability of the tool.
 \end{enumerate}
 
+The resulting categorization of the SLR results is depicted in \tableref{tab:slr_table_results}. Some key take-ways are easily observable, namely: (1)~most tools use a centralized architecture, (2)~the hybrid visual-textual programming paradigm is predominant, and (3)~most of the tools are web-based. The extended search findings and their categorization is presented in \tableref{tab:expanded_research_results}, following the same previously defined categories.
+
 \begin{table*}[h]
     \centering
-    \label{tab:slr_table_results}
     \begin{threeparttable}
     \resizebox{\textwidth}{!}{
     \begin{tabular}{ l  c  c  c  c  c  c  c }
@@ -199,6 +232,7 @@ The mentioned frameworks and tools were divided into the following categories, a
     \end{tabular}
     }
     \caption[Visual programming solutions applied to IoT and their characteristics.]{Visual programming solutions applied to IoT and their characteristics. Small circles (\textbullet) mean \textit{yes}, hyphens (-) means \textit{no information available}, empty means \textit{no} and asterisk (*) means more than one.}
+    \label{tab:slr_table_results}
     %\hrule width0.5\textwidth
     \begin{tablenotes}\footnotesize
         \item[1] Used for several purposes, did not specify the tier it is located in regarding IoT.
@@ -211,36 +245,6 @@ The mentioned frameworks and tools were divided into the following categories, a
     \end{tablenotes}
     \end{threeparttable}
 \end{table*}
-
-\subsection{Expanded Search}\label{sec:slr_expanded_research}
-
-The results of the Systematic Literature Review were disclosed in the previous section. However, some tools were found in a non-systematic survey~\cite{survey_vpl_iot} that are not present in the selected papers. We consider that this divergence may result from tools that have no academic publications associated with them, thus not being present in the publication databases mentioned in \sectionref{sec:databases}. One famous example is \textit{Node-RED}~\cite{node_red}. The results from the survey~\cite{survey_vpl_iot} were analyzed, the described tools were assessed against the evaluation process defined in \sectionref{sec:methodology} and characterized by the categories mentioned in \sectionref{sec:slr_results}. Using the methodology described, the results are:
-
-\begin{itemize}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=.65\linewidth]{nodered.png}
-\caption[Node-RED high-level architecture.]{Node-RED~\cite{node_red} high-level architecture, identifying its development interface, runtime and \texttt{node.js} dependency. The \textit{flows} can be versioned and organized in projects and new modules (\emph{i.e.}, \textit{nodes}) can be added using the \texttt{node.js} dependency manager tool (\emph{i.e.}, \texttt{npm}).}
-\label{fig:nodered-seq}
-\end{figure}
-
-\item\textbf{Node-RED}~\cite{node_red} is a visual programming environment applied to the IoT paradigm. It makes use of flow-based development (connecting communication and computation \textit{nodes} in \textit{flows}), supporting a wide range of devices and APIs. It has two main modules: (1) a development interface which consists of a flow drawing canvas and a \textit{node} palette, and (2) a runtime module that leverages the Node.JS event-loop to pass messages between the different \textit{nodes}~\seefigureref{fig:nodered-seq}. Due to being open-source and extendable, its large community contributes with features that enrich the tool, some of them talked about in \sectionref{sec:slr_results} (\emph{e.g.}, FRED~\cite{fred} and DDF~\cite{ddf}).
-
-\item\textbf{NETLab Toolkit}~\cite{netlabtoolkit} is a visual environment that makes use of \textit{drag-and-drop} actions to allow users to build IoT applications. It provides a web interface to connect sensors, actuators, and others for quick prototypes.
-
-\item\textbf{NooDL}~\cite{noodl} is a platform that provides a visual programming interface for prototyping applications. It allows for the creation of interfaces, using live data, and supporting several types of hardware. Although it is not specific to IoT, NooDL covers the programming of IoT systems. It makes use of MQTT broker agents for connecting devices and visual paradigms such as \textit{nodes}, \textit{connections}, and \textit{hierarchies} to allow the user to build its system.
-
-\item\textbf{DGLux5}~\cite{dglux5} for DSA is a \textit{drag-and-drop} visual language and environment that allows its users to build applications tailored for Distributed Services Architecture (DSA) IoT middleware. It provides a dashboard for analyzing and controlling device data in real-time and builds the system only using visual elements.
-
-\item\textbf{AT\&T Flow Designer}~\cite{attflowdesigner} is a visual tool incorporated in a cloud development environment, applied to the development of IoT systems. Its visual paradigm is similar to Node-RED, with the notion of \textit{nodes} and \textit{wires}. This tool provides an easy iteration and improvement of a product, as well as an easy deployment.
-
-\item\textbf{GraspIO}~\cite{graspio} is a Graphical Smart Program for Inputs and Outputs that contains a block \textit{drag-and-drop} visual paradigm that allows its users to build applications for the \textit{Cloudio} hardware. It offers a Cloud Service that connects and manages all \textit{Cloudio} devices, making them available at the user's mobile device.
-
-\item\textbf{Wyliodrin}~\cite{wyliodrin} is a browser-based visual programming environment that allows the development of IoT systems of several devices, such as Raspberry Pi, Arduino, Intel Galileo, Intel Edison, and others. It provides a \textit{drag-and-drop} environment, as well as support for text-based languages. A dashboard for visualizing the data collected is provided.
-
-\item\textbf{Zenodys}~\cite{zenodys} provides a \textit{drag-and-drop} interface to build application backends as well as user interfaces. Its computing engine can run in several types of devices, from the cloud to chips, devices, and distributed computers. Zenodys contains a visual debugger as well as support for text-based programming and code generation. 
-\end{itemize}
 
 \captionsetup{belowskip=12pt,aboveskip=4pt}
 \begin{table}[ht]
@@ -287,6 +291,8 @@ To understand the evolution of visual programming languages applied to IoT, the 
 \end{figure}
 
 \subsubsection{Result Analysis}\label{sec:result_analysis}
+
+By analysing the tools based on categories established in \sectionref{sec:slr_results_categorization}, the following conclusions were taken:
 
 \begin{description}
     \item [Scope] Most of the tools found have several scopes, such as education, industry or home automation. From the 28 tools, six were specific to home automation, 4 to education, 3 to specific domains, and 1 for the industry; the remainder 14 had a wide range of use cases.
