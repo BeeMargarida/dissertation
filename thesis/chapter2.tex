@@ -3,39 +3,40 @@
 \section*{}
 
 \minitoc \mtcskip \noindent
-This chapter describes the necessary foundations regarding visual programming tools for the Internet-of-Things context. \sectionintroref{sec:background_iot} describes the background of the Internet-of-Things paradigm and important concepts in that area, with a description of IoT architectures, including Fog and Edge, in \sectionintroref{sec:architectures}. \sectionintroref{sec:node-red} describes the Node-RED programming tool and its architecture and uses. Finally, \sectionintroref{sec:background_vpl} mentions visual programming languages, their uses as well as their benefits and drawbacks.
+This chapter describes the necessary foundations regarding the Internet-of-Things context. \sectionintroref{sec:background_iot} describes the background of the Internet-of-Things paradigm and important concepts in that area, with a description of IoT architectures, including Fog and Edge, in \sectionintroref{sec:architectures}. Finally, \sectionintroref{sec:background_vpl} mentions visual programming languages, their uses as well as their benefits and drawbacks.
 
 \section{Internet-of-Things}\label{sec:background_iot}
 
-Internet-of-Things paradigm is defined by the committee of the International Organization for Standardization and the International Electrotechnical Commission~\cite{ISOIEC} as:
+The Internet-of-Things paradigm is defined by the committee of the International Organization for Standardization and the International Electrotechnical Commission~\cite{ISOIEC} as:
 
 \begin{quote}
     \emph{"An infrastructure of interconnected objects, people, systems and information resources together with intelligent services to allow them to process information of the physical and the virtual world and react."}
 \end{quote}
 
-IoT systems are, mostly, networks of heterogeneous devices attempting to bridge the gap between people and their surroundings. According to Buuya~\cite{iot_future_direction}, the applications of IoT systems can be divided into four categories: (i)~\textit{Home} at the scale of a few individuals or domestic scenarios, (ii)~\textit{Enterprise} at the scale of a community or larger environments, (iii)~\textit{Utilities} at a national or regional scale and (iv)~\textit{Mobile}, which is spread across domains due to its large scale in connectivity and scale. 
+\noindent
+IoT systems are, mostly, networks of heterogeneous devices attempting to bridge the gap between people and their surroundings. According to Buuya~\cite{iot_future_direction}, the applications of IoT systems can be divided into four categories: (i)~\textit{Home}, at the scale of a few individuals or domestic scenarios, (ii)~\textit{Enterprise}, at the scale of a community or larger environments, (iii)~\textit{Utilities}, at a national or regional scale and (iv)~\textit{Mobile}, which is spread across domains due to its large scale in connectivity and scale. 
 
-One might think that IoT only relates to machines and interactions between them. Most of the devices we use in our day-to-day --- \emph{e.g.}, mobile phones, security cameras, watches, coffee machines --- are now computation capable of making moderately complex tasks and are continually generating and sending information. This relates to the \emph{human-in-the-loop} concept, where humans and machines have a symbiotic relationship~\cite{human_in_the_loop_survey}.
+One might think that IoT only relates to machines and interactions between them. Most of the devices we use in our day-to-day --- \emph{e.g.}, mobile phones, security cameras, watches, coffee machines --- are computation capable of making moderately complex tasks and are continually generating and sending information. This incrementally translates towards the \emph{human-in-the-loop} concept, where humans and machines become part of a "symbiotic" relationship~\cite{human_in_the_loop_survey}.
  
 \subsection{IoT architectures}\label{sec:architectures}
 
-Internet-of-Things systems deal with big amounts of data from different sources and have to process it in an efficient and fast fashion. Typical IoT systems are composed of three tiers, which are:
+Internet-of-Things systems deal with big amounts of data from different sources and have to process it in an efficient and fast fashion~\cite{lin_survey}. Typical IoT systems are composed of three tiers~\cite{Yang2019}, which are:
 
 \begin{description}
     \item[Cloud Tier] mostly composed of data centers and servers, normally running remotely. It is characterized by having high computation power and latency.
     \item[Fog Tier] composed of gateways and devices that are normally between the cloud servers and the edge devices. This tier has less latency than the cloud, more heterogeneity, and, typically, is more geographically distributed.
-    \item[Edge Tier] composed of all the peripheral devices (\emph{e.g.}, sensors, embedded systems, light sources and air conditioners). These devices have several limitations in computational capabilities, but have less latency.
+    \item[Edge Tier] composed of all the peripheral devices (\emph{e.g.}, sensors, embedded systems, light sources and air conditioners). These devices have several limitations in computational capabilities, but exhibit less latency since the data is processed in the same place it is captured.
 \end{description}
 
-Complementary to these tiers, we can also partition IoT systems into an Application Layer, a Network Layer, and a Perception Layer~\cite{iot_layers}. At first sight, these might seem compatible with the tiers mentioned above (in the same order); however, not all devices in each tier map to their respective layer. One example is a third-party service that gives readings. It can be contained in the Perceptive Layer, but it is not included in the Edge Tier.
+Complementary to these tiers, we can also partition IoT systems into an Application Layer, a Network Layer, and a Perception Layer~\cite{iot_layers}. At first sight, these might seem compatible with the tiers mentioned above (in the same order); however, not all devices in each tier map to their respective layer. One example is a third-party service that provides readings, \eg temperature APIs. It can be contained in the Perceptive Layer, but it is not included in the Edge Tier.
 
-New paradigms of computing appeared related to each of these tiers. The majority of IoT systems use a Cloud Computing architecture, taking advantage of centralized computing and storage. This approach has several benefits, such as increased computational capabilities and storage, as well as easier maintenance. However, it comes with several problems such as (1)~high latency, and~(2) high use of bandwidth, due to the need to send the data generated from the sensors to the centralized unit~\cite{connecting_fog_and_cloud}. Systems that only use cloud computing face several challenges~\cite{aazam2014cloud}, especially real-time applications, which are sensitive to increased latency. With the increasing computation capabilities of edge devices and the requirement of reduced latency, two new paradigms appeared: Fog Computing and Edge Computing.
+New paradigms of computing emerged related to each of these tiers. The majority of IoT systems use a Cloud Computing architecture~\cite{cisco}, taking advantage of centralized computing and storage. This approach poses some benefits, such as increased computational capabilities and storage, as well as easier maintenance. However, it also comes with several shortcomings such as (1)~higher latency, and~(2) higher usage of bandwidth, due to the need to send the data generated from the sensors back to the centralized unit(s)~\cite{connecting_fog_and_cloud}. Systems that only use cloud computing face several challenges~\cite{aazam2014cloud}, especially in real-time applications, which are sensitive to increased latency~\cite{latency_critical}. But with the increasing computation capabilities of edge devices and the requirement of reduced latency, two new paradigms appeared: Fog Computing and Edge Computing.
 
 \subsubsection{Fog Computing}\label{sec:fog_computing}
 
-With the improvement of wireless technologies and the increasing computational power (and reducing costs) of lower-tier devices (\emph{i.e.}, fog and edge), it became possible to improve the computational execution of IoT systems. By not depending so much on the cloud tier, communication and resource sharing between devices can occur with lower latency. The central coordinator (on-premises or cloud-based), which in Cloud Computing was responsible for all the computation, now serves as a scheduler and state manager of the communication between devices, occasionally providing necessary resources. This new paradigm, where fog and edge devices are leveraged as computational entities (and not only merely sensing, actuating and gateway devices in the network) is called Fog Computing, which aims to bring computing closer to the perception tier, bringing the computation nearer to the edge of the network~\cite{mobile_cloud}. It focuses on distributing data throughout the IoT system, from the cloud to the edge devices, making the system distributed.
+The improvement of wireless technologies and the increasing computational power and reduced costs of lower-tier devices (\emph{i.e.}, fog and edge) allow the usage of these devices as computational resources in IoT systems. By not depending so much on the cloud tier, communication and resource sharing between devices can occur with lower latency and reduced amount of data transferred to the central instance. The central coordinator (on-premises or cloud-based), which in Cloud Computing was responsible for all the computation, now serves as an orchestrator of the communication between devices, occasionally providing necessary resources. This paradigm is called Fog Computing, where fog and edge devices are leveraged as computational entities, instead of merely sensors, actuators and gateways. It focuses on distributing data throughout the IoT system, from the cloud to the edge devices, making the system distributed and bringing computation closer to the perception tier~\cite{mobile_cloud}.
 
-According to Buuya~\cite{IoT_principles_and_paradigms}, Fog Computing has several advantages: (1)~reduction of network traffic by having edge devices filtering and analyzing the data generated and sending data to the cloud only if necessary, (2)~reduced communication distance by having the devices communicate between them without using the cloud as a middleman, (3)~low-latency by moving the processing closer to the data source rather than communicating all the data to the cloud for it to be processed, and (4)~scalability by reducing the burden on the cloud, which could be a bottleneck for the system.
+According to Buuya~\cite{IoT_principles_and_paradigms}, Fog Computing poses several advantages: (1)~reduction of network traffic by having edge devices filtering and analyzing the data generated and sending data to the cloud only if necessary, (2)~reduced communication distance by having the devices communicate between them without using the cloud as a middleman, (3)~low-latency by moving the processing closer to the data source rather than communicating all the data to the cloud for it to be processed, and (4)~scalability by reducing the burden on the cloud, which could be a bottleneck for the system.
 
 \begin{figure}[h]
 \centering
@@ -44,40 +45,38 @@ According to Buuya~\cite{IoT_principles_and_paradigms}, Fog Computing has severa
 \label{fig:fog_architecture}
 \end{figure}
 
-Despite all the advantages, Fog Computing has several requirements and difficulties. To make a successful and efficient distribution of computation and communication, it requires knowledge about the resources of the connected devices. The complexity is also more significant than Cloud Computing since it needs to work with heterogeneous devices with different capacities.
+Despite all the advantages, Fog Computing has several challenges and difficulties. One of them is the management of resources and service allocation, responsible for deciding which tasks will be performed in the fog and where in the fog they will be allocated ~\cite{mukherjee}. The complexity is also more significant than Cloud Computing since it needs to work with heterogeneous devices with different capabilities.
        
 \subsubsection{Edge Computing}\label{sec:edge_computing}
 
 Edge Computing, also known as Mist Computing, is a distributed architecture that uses the devices' computational power to process the data they collect or generate. It takes advantage of the Edge tier, which contains the devices closer to the end-user, such as smartphones, TVs and sensors. The goal of this paradigm is to minimize the bandwidth and time response of IoT systems while leveraging the computational power of the devices in them. It reduces bandwidth usage by processing data instead of sending it to the cloud to be processed, which is also correlated to reduced latency since it does not wait for the server response. In addition to these advantages, and related to their cause, Edge Computing also prevents sensitive data from leaving the network, reducing data leakage and increasing security and privacy~\cite{edge_computing, edge_computing_2019}.
 
-In this paradigm, each device serves both as a data producer and a data consumer. Since each device is constrained in terms of resources, this brings several challenges such as system reliability and energy constraints due to short battery life and overall security. Other issues consist of the lack of easy-to-use tools and frameworks to build cloud-edge systems, non-existent standards regarding the naming of edge devices and the lack of security edge devices have against outside threats such as hackers~\cite{promise_of_edge_computing}.
+In this paradigm, each device serves both as a data producer and a data consumer. Since each device is constrained in terms of resources, this brings several challenges such as system reliability and energy constraints due to short battery life. Other issues consist of the lack of easy-to-use tools and frameworks to build cloud-edge systems, non-existent standards regarding the naming of edge devices and the lack of security edge devices have against outside threats such as hackers~\cite{promise_of_edge_computing}.
 
 There is some confusion in the research community regarding the concepts of Fog and Edge computing. The publication from Iorga et al.~\cite{fog_edge_differences} was used to inspire the definitions of these terms. Edge Computing focuses on executing applications in constrained devices, without worrying about storage or state preservation. On the other hand, Fog Computing is hierarchical and includes devices with more capabilities, capable of control activities, storage, and orchestration.
 
 \section{Visual Programming Languages}\label{sec:background_vpl}
 
-Visual Programming, as defined by Shu~\cite{vpl_definition_shu}, consists of using meaningful graphical representations in the process of programming. With this definition, we can consider Visual Programming Languages (VPLs) as a way of handling visual information and interaction with it, allowing the use of visual expressions for programming. According to Burnet and Baker~\cite{scaling_vpls}, visual programming languages are constructed to \emph{ "improve the programmer's ability to express program logic and to understand how the program works"}.
+Having seen the characteristics and different ties of IoT, we will now address one of the most user-friendly ways of developing IoT systems.
 
-There are several applications of visual programming languages in different areas, such as education, video game development, automation, multimedia, data warehousing, system management, and simulation, with this last area being the area with most use cases~\cite{survey_vpl_iot}.
+Visual Programming, as defined by Shu~\cite{vpl_definition_shu}, consists of using meaningful graphical representations in the process of programming. We can consider Visual Programming Languages (VPLs) as a way of handling visual information and interaction with it, allowing the use of visual expressions for programming. According to Burnet and Baker~\cite{scaling_vpls}, visual programming languages are constructed to \emph{ "improve the programmer's ability to express program logic and to understand how the program works"}. There are several applications of visual programming languages in different areas, such as education, video game development, automation, multimedia, data warehousing, system management, and simulation, with this last area being the one with the most use cases~\cite{survey_vpl_iot}.
 
-Visual programming languages have several characteristics, such as a concrete process and depiction of the program, immediate visual feedback and require the knowledge of fewer programming concepts~\cite{scaling_vpls}.
-
-VPLs can be categorized by their visual paradigms and architecture~\cite{vpls_survey}: 
+Visual programming languages exhibit several characteristics, such as a concrete and visual process and depiction of the program, immediate visual feedback, and usually require less knowledge of programming concepts~\cite{scaling_vpls}. VPLs can be categorized~\cite{vpls_survey} in the following way: 
 \begin{description}
-    \item[Purely Visual Languages] where the system is developed using only graphical elements and the subsequently debugging and execution is made in the same environment.
-    \item[Hybrid text and visual systems] where the programs are created using graphical elements, but their executions is translated into a text language.
-    \item[Programming-by-example systems] where a user uses graphical elements to teach the system.
-    \item[Constraint-oriented systems] where the user translates physical entities into virtual objects and applies constraints to them, in order to simulate their behaviour in reality.
-    \item[Form-based systems] which are based on the architecture and behaviour of spreadsheets.
+    \item[Purely Visual Languages], where the system is developed using only graphical elements and the subsequently debugging and execution is made in the same environment;
+    \item[Hybrid text and visual systems], where the programs are created using graphical elements, but their execution is translated into a text language;
+    \item[Programming-by-example systems], where a user uses graphical elements to teach the system;
+    \item[Constraint-oriented systems], where the user translates physical entities into virtual objects and applies constraints to them, in order to simulate their behaviour in reality;
+    \item[Form-based systems], which are based on the architecture and behaviour of spreadsheets.
 \end{description}
 
-The categories mentioned can be present in a single system, making them not mutually exclusive.
+Some of these categories can be simultaneously present in a single system, making them not mutually exclusive.
 
-\section{Node-RED}\label{sec:node-red}
+\subsection{Node-RED}\label{sec:node-red}
 
-Node-RED~\cite{node_red} is a programming tool applied to the development of Internet-of-Things systems. It was first developed with to manipulate and visualize mappings between MQTT topics in IBM's Emerging Technology Services group. It then expanded into a more general open-source tool, which is now part of the JS Foundation.
+Node-RED~\cite{node_red} is a visual programming tool applied to the development of Internet-of-Things systems. It was first developed to manipulate and visualize mappings between Message Queuing Telemetry Transport (MQTT) topics in IBM's Emerging Technology Services group. It then expanded into a more general open-source tool, which is now part of the JS Foundation.
 
-It is a web-based tool consisting of a run time built with the Node.js framework and a browser-based visual editor. This tool provides the end-user with a simple interface to connected devices and APIs, using a flow-programming approach. Programs are called \emph{flows}, built with \emph{nodes} connected by wires. Each node corresponds to an action, such as input, output, data processing, etc.
+It is a web-based tool consisting of a run time built with the Node.js framework and a browser-based visual editor. This tool provides the end-user with a simple interface to connected devices and APIs, using a flow-programming approach~\cite{node_red}. Programs are called \emph{flows}, built with \emph{nodes} connected by wires. Each node corresponds to an action, such as input, output, data processing, etc.
 
 The Node-RED interface has three components: (1)~Palette, (2)~Workspace and (3)~Sidebar. The Palette contains all the nodes installed and available to use, divided into categories. They can be used by dragging them into the workspace and additional features for each node are accessible by double-clicking them. The Workspace is where the flows are created and modified. It is possible to have several \emph{flows} and \emph{sub-flows} accessible with the use of tabs. Lastly, the Sidebar contains information about the nodes, the debug console, node configuration manager and the context data. \figureref{fig:node_red_window} showcases the visual interface of Node-RED and its elements.
 
@@ -88,7 +87,7 @@ The Node-RED interface has three components: (1)~Palette, (2)~Workspace and (3)~
 \label{fig:node_red_window}
 \end{figure}
 
-One example of a \emph{flow} can be seen in \figureref{fig:node_red_example}, where a request is being made in intervals of 5 minutes to an HTTP URL that returns a CSV with the feed of significant earthquakes in the last 7 days. The data from the CSV is then printed to the debug console and, if the magnitude is equal or bigger than 7, the message "PANIC!" is printed to the console. 
+One example of a \emph{flow} can be seen in \figureref{fig:node_red_example}, where a request is being made in intervals of 5 minutes to an HTTP URL that returns a CSV with the feed of significant earthquakes in the last 7 days. The data from the CSV is then printed to a MQTT topic and, if the magnitude is equal or bigger than 7, the message "PANIC!" is printed to other MQTT topic. 
 
 \begin{figure}[!ht]
 \centering
@@ -97,10 +96,12 @@ One example of a \emph{flow} can be seen in \figureref{fig:node_red_example}, wh
 \label{fig:node_red_example}
 \end{figure}
 
-Regarding the architecture of Node-RED, the \texttt{Node} base class is a subclass of Node.js event APIs \texttt{EventEmitter}. This class implements an observer design pattern that maintains a subscriber list of all the nodes connected to it by \emph{wires} and emits events to them. When a node finishes processing data from external sources or another node, it calls the methods \texttt{send()} with a Javascript object. In its turn, this method calls the \texttt{EventEmitter emit()} method that sends named events to the subscribed nodes. 
+Node-RED is modular, allowing the installation of community-made extensions, such as \textit{nodes}. These custom nodes extend from the base class \texttt{Node}, which implements an event based communication. Each node sends and receives messages, triggering events that execute each \textit{node}'s specific behaviour.
 
 Being open-source, Node-RED takes advantage of a large community that contributes with new nodes and improvements to the tool. It is the most popular open-source visual programming tool for IoT, with more than 9,300 stars on Github.
 
 \section{Summary}
+
+\todo[inline]{Fix this after fixing everything else}
 
 This chapter introduces two areas that are fundamental to the understanding of this dissertation. Internet-of-Things is defined, as well as its use cases and categories. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document. Node-RED is introduced as a visual programming tool for IoT and its architecture is explained. Finally, a definition and categorization of visual programming languages are introduced and explained.
