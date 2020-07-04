@@ -100,8 +100,48 @@ Node-RED is modular, allowing the installation of community-made extensions, suc
 
 Being open-source, Node-RED takes advantage of a large community that contributes with new nodes and improvements to the tool. It is the most popular open-source visual programming tool for IoT, with more than 9,300 stars on Github.
 
+\subsection{Godot}\label{sec:godot}
+
+There are also other domains besides IoT where visual programming languages are being used. One example is the game engine Godot~\footnote{https://godotengine.org/} with its visual scripting. Godot is an open-source game engine that has recently increased in popularity, currently having 31,600 stars on GitHub~\footnote{https://github.com/godotengine/godot}. It offers several alternatives for its users to program their games, from using C++ to their own GDScript. However, to lower the barrier for a user to start using the engine, allowing people with no programming experience to easily understand the flow of logic, they developed a visual alternative --- visual scripting \seefigureref{fig:godot}.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1\textwidth]{godot_vpl.png}
+\caption[Godot visual scripting]{Godot visual scripting~\cite{godot_image}}
+\label{fig:godot}
+\end{figure}
+
+Each node corresponds to a function in a normal text script. Each node contains properties, ports and connections. Properties consist of arguments the function receives, as well as arguments globally accessible by the script. Ports and connections consist of inputs and outputs it can receive, either from other nodes or signals emitted during the events of the game.
+
+Although most features are implemented in this visual alternative, it does not substitute programming with code, since visual scripting takes more time to develop code and it hinders project scalability.
+
+\subsection{Blender}\label{sec:blender}
+
+Blender~\footnote{https://www.blender.org/} is an open-source 3D creation suite that supports that entirety of the 3D pipeline. It is open to the community, with its source code being under the GPL license. It contains a visual programming editor, called Node Editor, which works with 3 types of nodes: (i) material, (ii) composite and (iii) texture nodes. \figureref{fig:blender} contains an example of a composition.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1\textwidth]{blender_image.png}
+\caption[Blender composition node editor]{Blender composition node editor~\cite{blender_image}}
+\label{fig:blender}
+\end{figure}
+
+Each node contains a title, inputs, outputs, and properties. Properties are visible in each node and can be altered, which possible results in different outputs.The inputs and outputs are located at the bottom left and top right, respectively. 
+
+\section{Decentralized Orchestration}\label{sec:background_decentralized_orchestration}
+
+As mentioned in \sectionref{sec:background_iot}, several IoT architectures focus on a more decentralized approach, allocating tasks in devices present in Fog and Edge tiers. This concept or decentralized orchestration is present in other domains besides IoT.
+
+\subsection{Kubernetes}
+
+Kubernetes~\footnote{https://kubernetes.io/} is an open-source system for automating deployment scaling and management of applications. It includes features such as load balancing, service discovery, self-healing and scaling. When Kubernetes is deployed, a \textit{cluster} is created. This \textit{cluster} contains \textit{nodes} that run containerized applications, which in turn can host \textit{pods}. Pods are processes that represent an instance of an application, which might translate into a single container or multiple tightly-coupled containers. They might have predicates, which are constraints that cannot be violated, and priorities, which would be beneficial if accomplished but can violated if not possible.
+
+Each Kubernetes instance is composed of a scheduler, an API server, an etcd, a kube controller manager and a cloud controller manager. The scheduler is responsible for assigning \textit{pods} to \textit{nodes}. The API exposes the Kubernetes API, allowing users to interact with the system. The etcd consists of a key-value store for storing all the \textit{cluster} data. The controllers deal with process specific management, \ie noticing if nodes become unavailable and maintaining the replication factor.
+
+After the deployment of a Kubernetes instance, the scheduler assigns the \textit{pods} to \textit{nodes}. The operation consists of two steps: (i) filtering, where the available \textit{nodes} are filtered in order to not violate the \textit{pod}'s predicates, and (ii) scoring, where the scheduler uses the remaining nodes from the filtering process and ranks them regarding their compliance to the \textit{pods} priorities. 
+
+Finally, the scheduler assigns each \textit{pod} to the \textit{node} with the highest ranking. The filtering process might result in an impossible assignment, if there are no \textit{nodes} that comply with a \textit{pod}'s predicates. 
+
 \section{Summary}
 
-\todo[inline]{Fix this after fixing everything else}
-
-This chapter introduces two areas that are fundamental to the understanding of this dissertation. Internet-of-Things is defined, as well as its use cases and categories. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document. Node-RED is introduced as a visual programming tool for IoT and its architecture is explained. Finally, a definition and categorization of visual programming languages are introduced and explained.
+This chapter introduces concepts regarding IoT, visual programming and decentralized orchestration, which are fundamental to the understanding of this dissertation. \sectionref{sec:background_iot} defines Internet-of-Things, as well as its use cases. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document. \sectionref{sec:background_vpl} introduces and explains the definition and categorization of visual programming languages, with examples of their application in several domains. Finally, \sectionref{sec:background_decentralized_orchestration} exposes decentralized orchestration implementations such as Kubernetes.
