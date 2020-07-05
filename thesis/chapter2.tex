@@ -57,6 +57,8 @@ There is some confusion in the research community regarding the concepts of Fog 
 
 \subsection{IoT development tools}\label{sec:iot_tools}
 
+There are several tools that allow the development of IoT systems, with some of them being specific to certain domains and use-cases. \sectionref{sec:home_assistant} presents and IoT development tool focused on the home automation domain, where \sectionref{sec:device_hive} presents a more generic tool.
+
 \subsubsection{Home Assistant}\label{sec:home_assistant}
 
 Home Assistant~\cite{home_assistant} is an open-source home automation system that supports several mainstream IoT devices such as ESPs, Amazon Alexa, Google Assistant, and others. The configuration of the system is made with the use of a \textit{.yaml} file that is loaded by the system when it starts. This configuration file contains the integrations to be made and their respective configurations.
@@ -72,9 +74,11 @@ After creating the system, the user can interact with it by using a progressive 
 
 The backend is made using Python3 and is composed of three modules: (1) the Home Control, responsible for collecting information and controlling the devices, (2) the Home Automation, responsible for triggering commands based on the user configuration, and (3) the Smart Home, for triggering commands based on previous interactions.
 
-% \subsubsection{Device Hive}\label{sec:device_hive}
+\subsubsection{Device Hive}\label{sec:device_hive}
 
-% Device Hive~\cite{device_hive}
+Device Hive~\cite{device_hive} is an open-source IoT platform that supports multi-platform libraries for the development of IoT system in several domains (\eg home automation, smart energy, monitoring, remote control and others). It integrates with different types of devices, allowing modularity not only in the construction of client applications but also in the interfaces that connect with the devices. Device Hive is composed of three components: (1) the Auth service, responsible for the authorization and authentication of users and plugins, (2) the WebSocket Kafka Proxy, responsible for establishing communication between devices as well as allowing users to interact with plugins, and (3) the Plugin Management Service, that provides information about plugins, allows operations upon them and also allows the management of device operations.
+
+Although the main core of the tool is a server that deals with all the devices and their data, it provides modules that can be integrated into the tool. They provide an Admin panel, which allows users to visually manage the connected devices and the installed plugins. It also integrates with Grafana~\footnote{https://grafana.com/} for data visualization. 
 
 \section{Visual Programming Languages}\label{sec:background_vpl}
 
@@ -165,4 +169,4 @@ Finally, the scheduler assigns each \textit{pod} to the \textit{node} with the h
 
 \section{Summary}
 
-This chapter introduces concepts regarding IoT, visual programming and decentralized orchestration, which are fundamental to the understanding of this dissertation. \sectionref{sec:background_iot} defines Internet-of-Things, as well as its use cases. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document. \sectionref{sec:background_vpl} introduces and explains the definition and categorization of visual programming languages, with examples of their application in several domains. Finally, \sectionref{sec:background_decentralized_orchestration} exposes decentralized orchestration implementations such as Kubernetes.
+This chapter introduces concepts regarding IoT, visual programming and decentralized orchestration, which are fundamental to the understanding of this dissertation. \sectionref{sec:background_iot} defines Internet-of-Things, as well as its use cases. Fog and Edge computing paradigms are explained, which will be mentioned throughout this document, as well as examples of tools for the development of IoT systems. \sectionref{sec:background_vpl} introduces and explains the definition and categorization of visual programming languages, with examples of their application in several domains. Finally, \sectionref{sec:background_decentralized_orchestration} exposes decentralized orchestration implementations such as Kubernetes.
