@@ -7,8 +7,8 @@ df = pd.read_csv('./data/status_data.csv')
 df = df.head(1050)
 
 fig = go.Figure(data=[
-    go.Bar(name='Active', x=df['Time'], y=df['Active']),
-    go.Bar(name='Inactive', x=df['Time'], y=df['Inactive'])
+    go.Bar(name='Active', x=df['Time'], y=df['Active'], marker_color="#000000"),
+    go.Bar(name='Inactive', x=df['Time'], y=df['Inactive'], marker_color="#cccccc")
 ])
 
 fig.update_layout(
