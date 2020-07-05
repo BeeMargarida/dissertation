@@ -8,7 +8,7 @@ df = df.head(1050)
 
 fig = go.Figure(data=[
     go.Bar(name='Active', x=df['Time'], y=df['Active'], marker_color="#000000"),
-    go.Bar(name='Inactive', x=df['Time'], y=df['Inactive'], marker_color="#cccccc")
+    go.Bar(name='Inactive', x=df['Time'], y=df['Inactive'], marker_color="#d9655d")
 ])
 
 fig.update_layout(
@@ -30,6 +30,7 @@ fig.update_layout(
         xanchor='center',
         yanchor='top'
     ),
+    plot_bgcolor='rgba(0,0,0,0)'
 )
 
 fig.update_xaxes(title_text="Time (s)")
