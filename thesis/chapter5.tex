@@ -242,7 +242,7 @@ The requirements to achieve this are two-fold: (1) a \textit{node} should act as
         
         $nodesPerDevice$ $\gets$ $\sum{nodes \in \text{device}}$
         
-        $nodesPrioritiesPerDeviceRatio$ $\gets$ $\sum{node.priorities \in \text{device.tags}}$ / $\sum{device \in \text{tags}}$ 
+        $nodesPrioritiesPerDeviceRatio$ $\gets$ $\sum{node.priorities \in \text{device.tags}}$ / $\sum{\text{tags} \in device}$ 
         
         $matchIndex$ $\gets$ $intersectionIndex * 0.5 + (1/nodesPerDevice + 1) * 0.4 + nodesPrioritiesPerDeviceRatio * 0.1$
         
