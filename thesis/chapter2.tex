@@ -55,8 +55,26 @@ In this paradigm, each device serves both as a data producer and a data consumer
 
 There is some confusion in the research community regarding the concepts of Fog and Edge computing. The publication from Iorga et al.~\cite{fog_edge_differences} was used to inspire the definitions of these terms. Edge Computing focuses on executing applications in constrained devices, without worrying about storage or state preservation. On the other hand, Fog Computing is hierarchical and includes devices with more capabilities, capable of control activities, storage, and orchestration.
 
-%\subsection{IoT tools}\label{sec:iot_tools}
+\subsection{IoT development tools}\label{sec:iot_tools}
 
+\subsubsection{Home Assistant}\label{sec:home_assistant}
+
+Home Assistant~\cite{home_assistant} is an open-source home automation system that supports several mainstream IoT devices such as ESPs, Amazon Alexa, Google Assistant, and others. The configuration of the system is made with the use of a \textit{.yaml} file that is loaded by the system when it starts. This configuration file contains the integrations to be made and their respective configurations.
+
+After creating the system, the user can interact with it by using a progressive web application. The interface, which consists of a dashboard, can be modified by the user to match its needs, with the addition of new panels or even the creation of new elements. It has integration with their Lovelace~\footnote{https://github.com/home-assistant/frontend/} front-end and React~\footnote{https://reactjs.org/}. An example of a Home Assistant dashboard can be seen in \figureref{fig:home_assistant}. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\textwidth]{home_assistant.png}
+\caption[Example of a Home Assistant dashboard]{Example of a Home Assistant dashboard~\cite{homeassistant_image}}
+\label{fig:home_assistant}
+\end{figure}
+
+The backend is made using Python3 and is composed of three modules: (1) the Home Control, responsible for collecting information and controlling the devices, (2) the Home Automation, responsible for triggering commands based on the user configuration, and (3) the Smart Home, for triggering commands based on previous interactions.
+
+% \subsubsection{Device Hive}\label{sec:device_hive}
+
+% Device Hive~\cite{device_hive}
 
 \section{Visual Programming Languages}\label{sec:background_vpl}
 
