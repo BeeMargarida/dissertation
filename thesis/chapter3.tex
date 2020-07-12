@@ -414,7 +414,7 @@ The mentioned tools were characterized based on their support for the following 
         \textbf{Tool} & \textbf{Leverage devices} & \textbf{Capabilities communication} & \textbf{Open-source} & \textbf{Computation decomposition}  & \textbf{Run-time adaptation}\\
         \midrule
         DDF~\cite{ddf,wotflow_dnr,fog_at_the_edge,exogenous_coordination} & Limited\tnote{1} & \textbullet & \textbullet & Limited\tnote{2} & \textbullet \\
-        \textit{FogFlow} \& \textit{uFlow}~\cite{flow_based_programming_fog,fog_flow} & \textbullet & Limited\tnote{3} &  & Limited\tnote{2} & Limited\tnote{3}\\
+        \textit{FogFlow} \& \textit{uFlow}~\cite{flow_based_programming_fog,fog_flow} & \textbullet & Limited\tnote{3} &  & \textbullet & Limited\tnote{3}\\
         \textit{FogFlow}~\cite{fogflow_github,fog_flow_easy,fog_flow_tool} & \textbullet & - & \textbullet & Limited\tnote{2} & \textbullet\\
         \textit{DDFlow}~\cite{ddflow} & Limited\tnote{4} & \textbullet &  & Limited\tnote{2} & \textbullet\\
         \bottomrule
@@ -442,10 +442,10 @@ Regarding the method used to decompose and assign computations to the available 
 There are a few solutions available that attempt to provide a decentralized architecture in visual programming tools applied to the Internet-of-Things paradigm. However, some of these tools solve specific problems or make assumptions regarding the scale of the system and the constraints of the devices. We can highlight the following research challenges that remain to be addressed by the research community:
 
 \begin{enumerate}
-    \item \textbf{Leveraging devices in the network}: all the analyzed tools take advantage of the computation resources of the devices. However, some of them place limitations on how constrained the device can be, with one solution having an x86 or ARM Linux-based device as the minimum possible.
+    \item \textbf{Leveraging idle computation power available}: all the analyzed tools take advantage of the computation resources of the devices. However, some of them place limitations on how constrained the device can be, with one solution having an x86 or ARM Linux-based device as the minimum possible.
     \item \textbf{Communication of computational capabilities}: some of the current tools require the developer to manually introduce the resources of each device in the network, which is not a scalable solution. Having devices independently provide information about their computational capabilities is vital for the successful automatic distribution of computation across the devices.
     \item \textbf{Code generation of sub-flows}: to truly leverage constrained devices, it is important to convert sub-flows or "tasks" into executable code. Only one tool implements this, with the support for the execution of Lua scripts.
-    \item \textbf{Provide self-adaption of the system}: when a device fails or becomes unavailable, the system needs to realize and adapt automatically. The majority of current solutions claim to implement this feature, with only one having evaluated its functionality.
+    \item \textbf{Providing self-adaption of the system}: when a device fails or becomes unavailable, the system needs to realize and adapt automatically. The majority of current solutions claim to implement this feature, with only one having evaluated its functionality.
 \end{enumerate}
 
 \section{Summary}
