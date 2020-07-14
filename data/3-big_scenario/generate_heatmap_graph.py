@@ -5,7 +5,7 @@ import plotly.figure_factory as ff
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('./data/heatmap_nodes_10.csv')
+df = pd.read_csv('./data/heatmap_nodes_20.csv')
 df = df.head(10000)
 
 x = []
@@ -29,7 +29,7 @@ for col in df:
 fig = go.Figure(data=go.Heatmap(
     z=z,
     x0=0,
-    dx=10,
+    dx=20,
     y=y,
     showscale=False,
     colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(140, 149, 255)']]))
@@ -52,13 +52,16 @@ for n, row in enumerate(z):
 
 # Add figure title
 fig.update_layout(
-    height=1000,
-    width=1000,
+    height=900,
+    width=500,
     font=dict(
         size=16
     ),
     yaxis=dict(
         dtick=1
+    ),
+    xaxis=dict(
+        dtick=40
     ),
     margin=dict(
         t=45,
@@ -77,10 +80,10 @@ fig.update_layout(
 )
 
 # # Set x-axis title
-fig.update_xaxes(title_text="Time (s)", range=[20,285])
+fig.update_xaxes(title_text="Time (s)", range=[0,290])
 
 # Set y-axes titles
 fig.update_yaxes(title_text="Device")
 
 # fig.show()
-fig.write_image("nr_nodes.pdf")
+fig.write_image("nr_nodes_paper_1.pdf")

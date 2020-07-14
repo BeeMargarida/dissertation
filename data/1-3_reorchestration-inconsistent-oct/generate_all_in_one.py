@@ -84,7 +84,7 @@ for n, row in enumerate(z):
     for m, val in enumerate(row):
         if val > 0:
             fig.add_annotation(dict(
-                text=str(z[n][m]),
+                text=str(int(z[n][m])),
                 x=x_h[m],
                 y=y[n],
                 xref='x',
@@ -119,7 +119,7 @@ for n, row in enumerate(z):
     for m, val in enumerate(row):
         if val > 0:
             fig.add_annotation(dict(
-                text=str(z[n][m]),
+                text=str(int(z[n][m])),
                 x=x_h[m],
                 y=y[n],
                 xref='x',
@@ -156,7 +156,7 @@ fig.update_layout(
         size=18
     ),
     height=1000,
-    width=1100,
+    width=1000,
     margin=dict(
         t=45,
         b=20,
@@ -175,6 +175,6 @@ fig.update_layout(
     plot_bgcolor='rgba(0,0,0,0)'
 )
 
-fig.update_xaxes(range=[-5, 350])
+fig.update_xaxes(range=[-5, 290])
 #fig.show()
 fig.write_image("reorchestration_inc.pdf")

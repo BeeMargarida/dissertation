@@ -5,8 +5,8 @@ import pandas as pd
 import numpy as np
 
 df_payload = pd.read_csv('./data/last_payload.csv')
-df_uptime_heat = pd.read_csv('./data/heatmap_uptime.csv')
-df_nodes_heat = pd.read_csv('./data/heatmap_nodes.csv')
+df_uptime_heat = pd.read_csv('./data/heatmap_uptime_10.csv')
+df_nodes_heat = pd.read_csv('./data/heatmap_nodes_10.csv')
 
 df_payload = df_payload.head(1000)
 df_uptime_heat = df_uptime_heat.head(1000)
@@ -67,8 +67,8 @@ for col in df_uptime_heat:
 fig.add_trace(
     go.Heatmap(
         z=z,
-        x0=2.5,
-        dx=5,
+        x0=0,
+        dx=10,
         y=cols,
         xgap=1,
         ygap=1,
@@ -84,8 +84,8 @@ for n, row in enumerate(z):
     for m, val in enumerate(row):
         if val > 0:
             fig.add_annotation(dict(
-                text=str(z[n][m]),
-                x=x_h[m]+2.5,
+                text=str(int(z[n][m])),
+                x=x_h[m],
                 y=y[n],
                 xref='x',
                 yref='y2',
@@ -103,8 +103,8 @@ for col in df_nodes_heat:
 fig.add_trace(
     go.Heatmap(
         z=z,
-        x0=2.5,
-        dx=5,
+        x0=0,
+        dx=10,
         y=cols,
         xgap=1,
         ygap=1,
@@ -119,8 +119,8 @@ for n, row in enumerate(z):
     for m, val in enumerate(row):
         if val > 0:
             fig.add_annotation(dict(
-                text=str(z[n][m]),
-                x=x_h[m]+2.5,
+                text=str(int(z[n][m])),
+                x=x_h[m],
                 y=y[n],
                 xref='x',
                 yref='y3',

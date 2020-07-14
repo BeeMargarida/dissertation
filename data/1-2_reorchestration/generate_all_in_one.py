@@ -84,7 +84,7 @@ for n, row in enumerate(z):
     for m, val in enumerate(row):
         if val > 0:
             fig.add_annotation(dict(
-                text=str(z[n][m]),
+                text=str(int(z[n][m])),
                 x=x_h[m],
                 y=y[n],
                 xref='x',
@@ -119,7 +119,7 @@ for n, row in enumerate(z):
     for m, val in enumerate(row):
         if val > 0:
             fig.add_annotation(dict(
-                text=str(z[n][m]),
+                text=str(int(z[n][m])),
                 x=x_h[m],
                 y=y[n],
                 xref='x',
