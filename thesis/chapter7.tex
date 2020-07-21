@@ -13,7 +13,7 @@ The first difficulty was the modification of communication between Node-RED \tex
 
 There were several difficulties when it comes to the devices' firmware. Early on in the development phase, it was noted the memory limitations of ESP8266 chips, which led to the construction of the \textsc{fail-safe} mechanism, after exploring several others. However, it was noted that if an assigned script passed a certain threshold, the device could not recover. This led to the exploration of several alternatives until the change in hardware from ESP8266 to ESP32. Besides this difficulty, there were some problems regarding the differences between MicroPython Unix and ESP ports. This led to several changes in the developed firmware to allow compatibility in both environments. 
 
-Finally, the libraries used in the MicroPython firmware have some limitations, which were mentioned before in \sectionref{sec:devices_decentralization}. These limitations consist of the MQTT client's inexistence of support for QoS.
+Finally, the libraries used in the MicroPython firmware have some limitations, which were mentioned before in \sectionref{sec:devices_decentralization}. These limitations consist of the MQTT client's nonexistence of support for QoS.
 
 \section{Future Work}\label{sec:future_work}
 
@@ -21,7 +21,7 @@ The solution developed during the course of this dissertation solved the more pr
 
 As mentioned previously in \sectionref{sec:evaluation_discussion} experiments, the orchestrator is sensible to any change in the status of the devices. This characteristic leads the orchestrator to perform several orchestrations that are costly to the system. For example, one failed \textsc{Ping} request should not lead to a complete (re-)orchestration of the system, since the device non-response may not mean total unavailability. Instead, there should be retries, where the system made sure that the device was indeed unavailable. This mechanism should be configurable by the user or based on existing algorithms used in distributed systems.
 
-Currently, every time the orchestrator starts the assignment process, the system stops working until the process is finished. One optimization that would greatly increase the system's availability would be to implement a way of (re)orchestrating without forcing the system to stop. For example, instead of sending a script that contains all the \textit{nodes}' code, send snippets for each node and each device would be responsible for adding it to its execution script. However, this is not a trivial problem and more exploration would have to be made.
+Currently, every time the orchestrator starts the assignment process, the system stops working until the process is finished. One optimization that would greatly increase the system's availability would be to implement a way of (re)orchestrating without forcing the system to stop. For example, instead of sending a script that contains all the \textit{nodes}' code, send snippets for each node and each device would be responsible for adding it to its execution script. Another solution would be the improvement of the assignment algorithm in order to minimize the number of changes compared to the previous assignment. However, this is not a trivial problem and more exploration would have to be made.
 
 The \textit{node} assignment method used in the developed solution uses a greedy algorithm to assess the best device for each \textit{node}. As mentioned in \sectionref{sec:node_red_computation_decentralization}, this has limitations that can lead to impossible assignments. The assignment process could be greatly improved with the use of better algorithms, for example by using SAT solving algorithms. This improvement can lead to several different solutions, each with their advantages.
 
@@ -29,18 +29,15 @@ Lastly, to validate the current solution, only a small portion of \textit{nodes}
 
 We can conclude that the developed tool has space for improvement, not only in the expansion to new firmware and environments but also in its optimization and enrichment.
 
-% \section{Contributions}\label{sec:contributions}
+\section{Contributions}\label{sec:contributions}
+During this dissertation, several contributions were made, such as:
 
-% To solve the issues detailed in Section \ref{sec:current_issues} and to implement the features proposed in Section \ref{sec:desiderata}, this work presents several contributions, which are as follow:
+\begin{description}
+    \item \textbf{Systematic Literature Review of VPLs applied to IoT}: An analysis was made to the state of the art regarding existing visual programming tools applied to the Internet-of-Things domain. This analysis resulted in a paper that was already submitted to the 2020 Concurrency and Computation: Practice and Experience Journal.
+    \item \textbf{The developed prototype}: Our solution includes changes to Node-RED to support decentralization, as well as a MicroPython firmware that allows Node-RED to use these devices as computational resources.
+    \item \textbf{Paper}: The discoveries made during this dissertation were synthesized in a paper, which will be submitted to the EAI MobiQuitous 2020 Conference until the end of July.
+\end{description}
 
-% \begin{description}
-%     \item [Systematic Literature Review of Visual Programming and Orchestration in the Internet-of-Things]: 
-%     \item [Decentralized Node-RED]
-%     \item [MicroPython firmware for decentralization support] so that each computational task can be executed in edge and fog devices, which contain limited resources.
-%     \item [D4: Provide self-adaptation of the system] so that it can adapt to the non-availability of resources or even appearances of new devices.
-% \end{description}
-
-% \textcolor{blue}{Complete the conclusion with the conclusions from the evaluation}
 
 \section{Conclusions}\label{sec:conclusion_conclusions}
 
