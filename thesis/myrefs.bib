@@ -17,14 +17,22 @@
 }
 
 @inproceedings{localfist,
-    author = {Kleppmann, Martin and Wiggins, Adam and Hardenberg, Peter and McGranaghan, Mark},
+    author = {Kleppmann, Martin and Wiggins, Adam and van Hardenberg, Peter and McGranaghan, Mark},
+    title = {Local-First Software: You Own Your Data, in Spite of the Cloud},
     year = {2019},
-    month = {10},
-    pages = {154-178},
-    title = {Local-first software: you own your data, in spite of the cloud},
-    isbn = {978-1-4503-6995-4},
-    doi = {10.1145/3359591.3359737}
+    isbn = {9781450369954},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3359591.3359737},
+    doi = {10.1145/3359591.3359737},
+    booktitle = {Proceedings of the 2019 ACM SIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software},
+    pages = {154–178},
+    numpages = {25},
+    keywords = {mobile computing, collaboration software, peer-to-peer communication, CRDTs, data ownership},
+    location = {Athens, Greece},
+    series = {Onward! 2019}
 }
+  
 
 @ARTICLE{Want15,
     author={R. {Want} and B. N. {Schilit} and S. {Jenson}},
@@ -146,9 +154,10 @@
   pages={70-78},
 }
 
-@inproceedings{cisco,
+@techreport{cisco,
   author={Cisco},
   title={Cisco Global Cloud Index: Forecast and Methodology,2015–2020},
+  institution={Cisco},
   year={2016}
 }
 
@@ -231,6 +240,7 @@
     month = {05},
     pages = {},
     title = {A Reliable Communication Framework and Its Use in Internet of Things (IoT)},
+    journal = {International Journal of Scientific Research in Computer Science, Engineering and Information Technology},
     volume = {3}
 }
 
@@ -380,7 +390,10 @@
 @techreport{fog_edge_differences,
   title={Fog computing conceptual model},
   author={Iorga, Michaela and Feldman, Larry and Barton, Robert and Martin, Michael J and Goren, Nedim S and Mahmoudi, Charif},
-  year={2018}
+  institution={National Institute of Standards and Technology},
+  number={500-325},
+  year={2018},
+  month={March}
 }
 
 @INPROCEEDINGS{iot_layers,
@@ -443,12 +456,15 @@
     eprint = {https://www.worldscientific.com/doi/pdf/10.1142/4603-vol2}
 }
 
-@article{vpls_survey,
-    author = {Boshernitsan, Marat and Downes, Michael},
-    year = {1998},
-    month = {08},
-    pages = {},
-    title = {Visual Programming Languages: A Survey}
+@techreport{vpls_survey,
+    author = {Boshernitsan, Marat and Downes, Michael S.},
+    title = {Visual Programming Languages: a Survey},
+    institution = {EECS Department, University of California, Berkeley},
+    year = {2004},
+    month = {Dec},
+    url = {http://www2.eecs.berkeley.edu/Pubs/TechRpts/2004/6201.html},
+    number = {UCB/CSD-04-1368},
+    abstract = {Over the past ten years, frequent increases in computer processing speed and graphics display capabilities have made possible a great deal of research and experimentation in the field of visual programming languages. A variety of different design methodologies have arisen from these research efforts, and numerous visual programming systems have been developed to address both specific application areas, such as user interface design and physical simulation, and more general programming tasks. We present a survey of the field of visual programming languages beginning with an historical overview of some of the pioneering efforts in the field. In addition, we present different classifications of visual programming languages, touch on implementation and design issues, and discuss efforts to formalize the theoretical basis for visual languages. We also discuss and examine a variety of the more important projects in the field over the last few years.}
 }
 
 % Not sure if needed, but it is interesting
@@ -610,14 +626,25 @@
     year = {2017}
 }
 
-@inproceedings{jigsaw03,
-    author = {Humble, Jan and Crabtree, Andy and Hemmings, Terry and Åkesson, Karl-Petter and Koleva, Boriana and Rodden, Tom and Hansson, Pär},
-    year = {2003},
-    month = {10},
-    pages = {256-263},
-    title = {“Playing with the Bits” User-Configuration of Ubiquitous Domestic Environments},
-    volume = {2864},
-    doi = {10.1007/978-3-540-39653-6_20}
+@InProceedings{jigsaw03,
+    author="Humble, Jan
+    and Crabtree, Andy
+    and Hemmings, Terry
+    and {\AA}kesson, Karl-Petter
+    and Koleva, Boriana
+    and Rodden, Tom
+    and Hansson, P{\"a}r",
+    editor="Dey, Anind K.
+    and Schmidt, Albrecht
+    and McCarthy, Joseph F.",
+    title="``Playing with the Bits'' User-Configuration of Ubiquitous Domestic Environments",
+    booktitle="UbiComp 2003: Ubiquitous Computing",
+    year="2003",
+    publisher="Springer Berlin Heidelberg",
+    address="Berlin, Heidelberg",
+    pages="256--263",
+    abstract="This paper presents the development of a user-oriented framework to support the user reconfiguration of ubiquitous domestic environments. We present a lightweight component model that allows a range of devices to be readily interconnected and an editor to support users in doing this. The editor discovers available ubiquitous components and presents these to users as jigsaw pieces that can be dynamically recombined. The developed editor allows users to assemble lightweight sensors, devices such as displays and larger applications in order to meet their particular needs.",
+    isbn="978-3-540-39653-6"
 }
 
 @inproceedings{ivy,
@@ -758,19 +785,22 @@
     year = {2015}
 }
 
-@book{visual_paradigm_iot_solutions_development,
-    abstract = {Despite the proliferation of Internet-of-Things (IoT) applications and services, there are still very few tools and techniques for developing IoT solutions in a visual fashion through minimal (or even) zero programming. In this paper we introduce a novel approach for developing IoT solution through visual development tools. The presented approach presents several advantages, in particular: (a) It leverages standards-based semantic models for sensors and IoT context (notably the W3 SSN ontology), (b) It is based on popular/mainstream web-based technologies (i.e. SPARQL, REST), (c) It provides a basis for integrated development of IoT services on the basis of a W3C SSN based Model Driven Architecture (MDA), (d) It is implemented as open source software as part of the OpenIoT open source project.},
-    author = {Kefalakis, Nikos and Soldatos, John and Anagnostopoulos, Achilleas and Dimitropoulos, Panagiotis},
-    booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
-    doi = {10.1007/978-3-319-16546-2_4},
-    isbn = {9783319165455},
-    issn = {16113349},
-    keywords = {Cloud computing,Internet-of-Things (IoT),Open source,Sensors,Visual tools},
-    mendeley-groups = {Pack 2,Phase2/2},
-    pages = {26--45},
-    title = {{A visual paradigm for IoT solutions development}},
-    volume = {9001},
-    year = {2015}
+@InProceedings{visual_paradigm_iot_solutions_development,
+    author="Kefalakis, Nikos
+    and Soldatos, John
+    and Anagnostopoulos, Achilleas
+    and Dimitropoulos, Panagiotis",
+    editor="Podnar {\v{Z}}arko, Ivana
+    and Pripu{\v{z}}i{\'{c}}, Kre{\v{s}}imir
+    and Serrano, Martin",
+    title="A Visual Paradigm for IoT Solutions Development",
+    booktitle="Interoperability and Open-Source Solutions for the Internet of Things",
+    year="2015",
+    publisher="Springer International Publishing",
+    address="Cham",
+    pages="26--45",
+    abstract="Despite the proliferation of Internet-of-Things (IoT) applications and services, there are still very few tools and techniques for developing IoT solutions in a visual fashion through minimal (or even) zero programming. In this paper we introduce a novel approach for developing IoT solution through visual development tools. The presented approach presents several advantages, in particular: (a) It leverages standards-based semantic models for sensors and IoT context (notably the W3 SSN ontology), (b) It is based on popular/mainstream web-based technologies (i.e. SPARQL, REST), (c) It provides a basis for integrated development of IoT services on the basis of a W3C SSN based Model Driven Architecture (MDA), (d) It is implemented as open source software as part of the OpenIoT open source project.",
+    isbn="978-3-319-16546-2"
 }
 
 @article{agarwal2016toward,
@@ -1020,6 +1050,7 @@
     month = {06},
     pages = {634-647},
     title = {FogFlow - Computation Organization for Heterogeneous Fog Computing Environments},
+    publisher={Springer International Publishing},
     doi = {10.1007/978-3-030-22744-9_49}
 }
 
